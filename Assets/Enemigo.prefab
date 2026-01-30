@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7546199560631077213}
   - component: {fileID: 544770762539737156}
   m_Layer: 0
-  m_Name: EnemigoRapido
+  m_Name: Enemigo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +111,9 @@ MonoBehaviour:
   shadowOffset: 0.45
   lightDirection: {x: 1, y: -1}
   shadowOpacity: 0.726
+  coinDropMin: 5
+  coinDropMax: 15
+  gemDropChance: 0.05
 --- !u!58 &7546199560631077213
 CircleCollider2D:
   m_ObjectHideFlags: 0

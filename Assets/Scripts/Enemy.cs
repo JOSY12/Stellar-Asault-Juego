@@ -7,10 +7,17 @@ public class Enemy : MonoBehaviour
     public int health = 2;
     public float shadowOffset = 0.3f;
     public Vector2 lightDirection = new Vector2(1, -1);
-[Range(0, 1)] public float shadowOpacity = 0.5f; // 0 es invisible, 1 es negro total
+    [Range(0, 1)] public float shadowOpacity = 0.5f;
+    
+    [Header("Recompensas")]
+    public int coinDropMin = 5;
+    public int coinDropMax = 15;
+    public float gemDropChance = 0.05f; // 5% chance de dropear gem
+    
     private Transform player;
     private SpriteRenderer enemyRenderer;
     private SpriteRenderer shadowRenderer;
+    private int maxHealth; // Para health bar
 
     void Awake()
     {
@@ -22,6 +29,8 @@ public class Enemy : MonoBehaviour
     {
         GameObject pObj = GameObject.FindGameObjectWithTag("Player");
         if (pObj != null) player = pObj.transform;
+
+        maxHealth = health;
 
         // PARCHE: Desactivar sombra un instante para evitar el "flash" en el centro
         if (shadowRenderer != null) shadowRenderer.enabled = false;
@@ -36,8 +45,7 @@ public class Enemy : MonoBehaviour
         shadowObj.transform.parent = transform;
         shadowRenderer = shadowObj.AddComponent<SpriteRenderer>();
         shadowRenderer.sprite = enemyRenderer.sprite;
-        // Aplicamos la opacidad aquí
-            shadowRenderer.color = new Color(0, 0, 0, shadowOpacity);
+        shadowRenderer.color = new Color(0, 0, 0, shadowOpacity);
         shadowRenderer.sortingOrder = enemyRenderer.sortingOrder - 1;
         ActualizarPosicionSombra();
     }
@@ -75,6 +83,102 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
-        if (health <= 0) Destroy(gameObject);
+        
+        // Feedback visual de daño
+        StartCoroutine(DamageFlash());
+        
+        // Mostrar número flotante de daño
+        ShowDamageNumber(amount);
+        
+        if (health <= 0)
+        {
+            Die();
+        }
     }
+
+    void Die()
+    {
+        // Drop de recompensas
+        DropRewards();
+        
+        // Efectos visuales de muerte
+        SpawnDeathEffect();
+        
+        // Screen shake proporcional al enemigo
+        if (CameraShake.Instance != null)
+        {
+            float shakeIntensity = 0.05f * (transform.localScale.x); // Boss shake más
+            CameraShake.Instance.Shake(shakeIntensity, 0.1f);
+        }
+        
+        Destroy(gameObject);
+    }
+
+    #region Rewards
+
+    void DropRewards()
+    {
+        // Coins siempre
+        int coinsDropped = Random.Range(coinDropMin, coinDropMax + 1);
+        CurrencyManager.Instance.AddCoins(coinsDropped);
+        
+        // Chance de gem
+        if (Random.value < gemDropChance)
+        {
+            CurrencyManager.Instance.AddGems(1);
+            Debug.Log("💎 ¡Gem dropeada!");
+        }
+    }
+
+    #endregion
+
+    #region Visual Feedback
+
+    System.Collections.IEnumerator DamageFlash()
+    {
+        if (enemyRenderer != null)
+        {
+            Color originalColor = enemyRenderer.color;
+            enemyRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            enemyRenderer.color = originalColor;
+        }
+    }
+
+    void SpawnDeathEffect()
+    {
+        // TODO: Instanciar particle system
+        // Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+        
+        // Por ahora solo debug
+        Debug.Log($"💀 Enemy murió en {transform.position}");
+    }
+
+    void ShowDamageNumber(int damage)
+    {
+        // TODO: Implementar floating damage numbers con pooling
+        // FloatingTextPool.Instance.ShowNumber(transform.position, damage.ToString(), Color.yellow);
+    }
+
+    #endregion
+
+    #region Collision con Player
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            // Damage al player
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(1);
+            }
+            
+            // El enemigo muere al tocar player (como Vampire Survivors)
+            Die();
+        }
+    }
+
+    #endregion
 }

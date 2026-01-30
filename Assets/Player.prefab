@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7259121088400104660}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,8 +159,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7468284076431048001, guid: 2a93ccfb3055d6209bc91bf492da882d, type: 3}
   fireRate: 0.1
   spread: 12
+  bulletCount: 1
+  multiShotAngle: 15
   shakeIntensity: 0.12
   shakeDuration: 0.08
+  criticalChance: 0
+  criticalDamageMultiplier: 3
 --- !u!58 &7259121088400104660
 CircleCollider2D:
   m_ObjectHideFlags: 0
