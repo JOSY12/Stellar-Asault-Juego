@@ -155,9 +155,15 @@ public class UpgradeManager : MonoBehaviour
         else if (bulletCountLevel >= 5) bulletCount = 3;  // 90° spread
         else if (bulletCountLevel >= 3) bulletCount = 2;  // 45° doble
         
+    if (player != null)
+    {
+        player.SetBulletCount(bulletCount); // ← NUEVO
+    }
         // Modificar PlayerController para soportar multi-shot
         Debug.Log($"Bullet Count mejorado a nivel {bulletCountLevel}: {bulletCount} balas");
     }
+
+ 
 
     /// <summary>
     /// Mejora velocidad de movimiento
