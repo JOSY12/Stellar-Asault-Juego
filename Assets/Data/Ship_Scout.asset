@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da21be7e564529398438f9c22f73fc6, type: 3}
+  m_Name: Ship_Scout
+  m_EditorClassIdentifier: Assembly-CSharp::ShipData
+  shipName: Scout
+  shipSprite: {fileID: 2811949307016648950, guid: ca5cfb0e5510fc9e498a217b6dd198c3, type: 3}
+  purchaseCost: 200
+  damage:
+    statName: Damage
+    baseValue: 2
+    maxValue: 6
+    maxLevel: 5
+    baseUpgradeCost: 15
+    currentValue: 0
+    currentLevel: 1
+  fireRate:
+    statName: FireRate
+    baseValue: 0.25
+    maxValue: 0.08
+    maxLevel: 5
+    baseUpgradeCost: 20
+    currentValue: 0
+    currentLevel: 1
+  moveSpeed:
+    statName: MoveSpeed
+    baseValue: 8
+    maxValue: 14
+    maxLevel: 5
+    baseUpgradeCost: 18
+    currentValue: 0
+    currentLevel: 1
+  health:
+    statName: Health
+    baseValue: 2
+    maxValue: 6
+    maxLevel: 5
+    baseUpgradeCost: 25
+    currentValue: 0
+    currentLevel: 1
+  bulletSpeed:
+    statName: BulletSpeed
+    baseValue: 15
+    maxValue: 25
+    maxLevel: 5
+    baseUpgradeCost: 12
+    currentValue: 0
+    currentLevel: 1

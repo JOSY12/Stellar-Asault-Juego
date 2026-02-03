@@ -67,61 +67,63 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 }
-```
 
----
 
-## ✅ MANTENER ESTOS SCRIPTS (Ya los tienes)
+// ```
 
-**NO BORRES:**
-- `ShadowController.cs` - Funciona perfecto ✅
-- `VirtualJoystick.cs` - Lo usaremos ✅
-- `CameraShake.cs` - Funciona perfecto ✅
+// ---
 
-**PUEDES BORRAR:**
-- `Bala.cs` - Reemplazado por `Bullet.cs`
-- `Enemy.cs` viejo - Reemplazado por el nuevo
-- `PlayerController.cs` viejo - Reemplazado
-- `EnemySpawner.cs` viejo - Reemplazado
+// ## ✅ MANTENER ESTOS SCRIPTS (Ya los tienes)
 
----
+// **NO BORRES:**
+// - `ShadowController.cs` - Funciona perfecto ✅
+// - `VirtualJoystick.cs` - Lo usaremos ✅
+// - `CameraShake.cs` - Funciona perfecto ✅
 
-## 🎨 PALETAS DE COLOR (Para FASE 2)
-```
-PALETA 1 - NEON (Gratis, Default)
-├─ Background: #000000 (Negro)
-├─ Player: #00FFFF (Cyan)
-├─ Bullet: #FFFFFF (Blanco)
-├─ Enemy Scout: #00FF00 (Verde)
-├─ Enemy Grunt: #FFFF00 (Amarillo)
-└─ Enemy Kamikaze: #FF0000 (Rojo)
+// **PUEDES BORRAR:**
+// - `Bala.cs` - Reemplazado por `Bullet.cs`
+// - `Enemy.cs` viejo - Reemplazado por el nuevo
+// - `PlayerController.cs` viejo - Reemplazado
+// - `EnemySpawner.cs` viejo - Reemplazado
 
-PALETA 2 - RETRO (Gratis)
-├─ Background: #0F380F (Verde Game Boy oscuro)
-├─ Player: #9BBC0F (Verde Game Boy claro)
-├─ Bullet: #8BAC0F
-├─ Enemies: #306230 (Verde medio)
+// ---
 
-PALETA 3 - BLOOD (1 Ad)
-├─ Background: #1A0000 (Negro rojizo)
-├─ Player: #FF3333 (Rojo brillante)
-├─ Bullet: #FF0000
-├─ Enemies: #800000 (Rojo oscuro)
+// ## 🎨 PALETAS DE COLOR (Para FASE 2)
+// ```
+// PALETA 1 - NEON (Gratis, Default)
+// ├─ Background: #000000 (Negro)
+// ├─ Player: #00FFFF (Cyan)
+// ├─ Bullet: #FFFFFF (Blanco)
+// ├─ Enemy Scout: #00FF00 (Verde)
+// ├─ Enemy Grunt: #FFFF00 (Amarillo)
+// └─ Enemy Kamikaze: #FF0000 (Rojo)
 
-PALETA 4 - OCEAN (1 Ad)
-├─ Background: #001A33 (Azul profundo)
-├─ Player: #00BFFF (Azul cielo)
-├─ Bullet: #FFFFFF
-├─ Enemies: #004D99 (Azul medio)
+// PALETA 2 - RETRO (Gratis)
+// ├─ Background: #0F380F (Verde Game Boy oscuro)
+// ├─ Player: #9BBC0F (Verde Game Boy claro)
+// ├─ Bullet: #8BAC0F
+// ├─ Enemies: #306230 (Verde medio)
 
-PALETA 5 - CYBERPUNK (2 Ads)
-├─ Background: #0D0221 (Púrpura oscuro)
-├─ Player: #FF006E (Magenta)
-├─ Bullet: #FFBE0B (Naranja)
-├─ Enemies: #8338EC (Púrpura)
+// PALETA 3 - BLOOD (1 Ad)
+// ├─ Background: #1A0000 (Negro rojizo)
+// ├─ Player: #FF3333 (Rojo brillante)
+// ├─ Bullet: #FF0000
+// ├─ Enemies: #800000 (Rojo oscuro)
 
-PALETA 6 - MONOCHROME (3 Ads)
-├─ Background: #000000 (Negro)
-├─ Player: #FFFFFF (Blanco)
-├─ Bullet: #CCCCCC (Gris claro)
-├─ Enemies: #666666 (Gris medio)
+// PALETA 4 - OCEAN (1 Ad)
+// ├─ Background: #001A33 (Azul profundo)
+// ├─ Player: #00BFFF (Azul cielo)
+// ├─ Bullet: #FFFFFF
+// ├─ Enemies: #004D99 (Azul medio)
+
+// PALETA 5 - CYBERPUNK (2 Ads)
+// ├─ Background: #0D0221 (Púrpura oscuro)
+// ├─ Player: #FF006E (Magenta)
+// ├─ Bullet: #FFBE0B (Naranja)
+// ├─ Enemies: #8338EC (Púrpura)
+
+// PALETA 6 - MONOCHROME (3 Ads)
+// ├─ Background: #000000 (Negro)
+// ├─ Player: #FFFFFF (Blanco)
+// ├─ Bullet: #CCCCCC (Gris claro)
+// ├─ Enemies: #666666 (Gris medio)

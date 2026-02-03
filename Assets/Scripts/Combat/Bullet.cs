@@ -26,23 +26,39 @@ public class Bullet : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter2D(Collider2D collision)
+  void OnTriggerEnter2D(Collider2D collision)
+{
+    // Si es bala enemiga, solo daña al jugador
+    if (gameObject.CompareTag("EnemyBullet"))
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Player"))
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
-            if (enemy != null)
+            PlayerController player = collision.GetComponent<PlayerController>();
+            if (player != null)
             {
-                enemy.TakeDamage(damage);
-                
-                // Sonido de hit
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyHitSFX);
+                player.TakeDamage(damage);
             }
-            
             Destroy(gameObject);
         }
+        return;
     }
+    
+    // Si es bala del jugador, solo daña enemigos
+    if (collision.CompareTag("Enemy"))
+    {
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+            
+            // Sonido de hit
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyHitSFX);
+        }
+        
+        Destroy(gameObject);
+    }
+}
     
     public void Initialize(float speed, int damage)
     {

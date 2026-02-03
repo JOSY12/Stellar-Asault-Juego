@@ -20,9 +20,10 @@ public class Enemy : MonoBehaviour
     {
         enemyRenderer = GetComponent<SpriteRenderer>();
         CreateShadow();
+        
     }
     
-    void Start()
+   protected void Start()
     {
         FindPlayer();
         
@@ -43,7 +44,7 @@ public class Enemy : MonoBehaviour
             shadowRenderer.enabled = true;
     }
     
-    void CreateShadow()
+   protected void CreateShadow()
     {
         GameObject shadowObj = new GameObject("EnemyShadow");
         shadowObj.transform.parent = transform;
