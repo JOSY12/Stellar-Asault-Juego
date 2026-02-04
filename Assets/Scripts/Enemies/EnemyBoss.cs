@@ -27,9 +27,9 @@ public class EnemyBoss : Enemy
         scrapValue = 50;
     }
 
-    void Start()
+    protected override void Start()  // ← CAMBIO: override en lugar de new
     {
-        base.Start();
+        base.Start();  // Llama al Start() del padre
         
         // Reproducir sonido de boss
         if (AudioManager.Instance != null)

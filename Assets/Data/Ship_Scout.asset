@@ -15,6 +15,7 @@ MonoBehaviour:
   shipName: Scout
   shipSprite: {fileID: 2811949307016648950, guid: ca5cfb0e5510fc9e498a217b6dd198c3, type: 3}
   purchaseCost: 200
+  bulletData: {fileID: 11400000, guid: 6ea4ebc927eff79c2bc682ec586b584d, type: 2}
   damage:
     statName: Damage
     baseValue: 2

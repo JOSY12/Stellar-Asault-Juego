@@ -113,38 +113,44 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    void Shoot()
+   void Shoot()
+{
+    if (bulletPrefab == null || firePoint == null)
     {
-        if (bulletPrefab == null || firePoint == null)
+        Debug.LogError("Missing bullet prefab or fire point!");
+        return;
+    }
+    
+    // Instanciar bala
+    GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    
+    // Configurar bala con stats de la nave
+    Bullet bulletScript = bullet.GetComponent<Bullet>();
+    if (bulletScript != null)
+    {
+        bulletScript.Initialize(
+            currentShip.bulletSpeed.currentValue,
+            Mathf.RoundToInt(currentShip.damage.currentValue)
+        );
+        
+        // ← NUEVO: Aplicar visual de la bala
+        if (currentShip.bulletData != null)
         {
-            Debug.LogError("Missing bullet prefab or fire point!");
-            return;
-        }
-        
-        // Instanciar bala
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        
-        // Configurar bala con stats de la nave
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
-        if (bulletScript != null)
-        {
-            bulletScript.Initialize(
-                currentShip.bulletSpeed.currentValue,
-                Mathf.RoundToInt(currentShip.damage.currentValue)
-            );
-        }
-        
-        // Reproducir sonido
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.shootSFX);
-        
-        // Camera shake
-        if (CameraShake.Instance != null && SaveManager.Instance != null)
-        {
-            if (SaveManager.Instance.IsCameraShakeEnabled())
-                CameraShake.Instance.Shake(shakeIntensity, shakeDuration);
+            bulletScript.ApplyBulletData(currentShip.bulletData);
         }
     }
+    
+    // Reproducir sonido
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.shootSFX);
+    
+    // Camera shake
+    if (CameraShake.Instance != null && SaveManager.Instance != null)
+    {
+        if (SaveManager.Instance.IsCameraShakeEnabled())
+            CameraShake.Instance.Shake(shakeIntensity, shakeDuration);
+    }
+}
     
     public void TakeDamage(int amount)
     {

@@ -9,6 +9,7 @@ public class ShipStat
     public int maxLevel = 5;
     public int baseUpgradeCost = 10;
     
+    
     [HideInInspector] public float currentValue;
     [HideInInspector] public int currentLevel = 1;
     
@@ -61,6 +62,8 @@ public class ShipData : ScriptableObject
     public string shipName = "Starter";
     public Sprite shipSprite;
     public int purchaseCost = 0;
+        [Header("Bullet Type")]  // ← NUEVO
+    public BulletData bulletData;  // ← NUEVO
     
     [Header("Ship Stats")]
     public ShipStat damage;

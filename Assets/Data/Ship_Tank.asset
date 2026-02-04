@@ -15,6 +15,7 @@ MonoBehaviour:
   shipName: Tank
   shipSprite: {fileID: -7549170938866561748, guid: ca5cfb0e5510fc9e498a217b6dd198c3, type: 3}
   purchaseCost: 800
+  bulletData: {fileID: 11400000, guid: fee47cc88800e5ca2b52ff8974472c65, type: 2}
   damage:
     statName: Damage
     baseValue: 5

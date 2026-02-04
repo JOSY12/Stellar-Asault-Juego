@@ -15,6 +15,7 @@ MonoBehaviour:
   shipName: Starter
   shipSprite: {fileID: -2770624651766692744, guid: ca5cfb0e5510fc9e498a217b6dd198c3, type: 3}
   purchaseCost: 0
+  bulletData: {fileID: 11400000, guid: e795f735f16c31e6e93429aebc4ca52d, type: 2}
   damage:
     statName: Damage
     baseValue: 1

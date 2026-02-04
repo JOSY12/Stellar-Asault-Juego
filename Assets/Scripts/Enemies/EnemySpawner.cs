@@ -1,24 +1,39 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawn Settings")]
-    public GameObject enemyPrefab;
-    public float spawnRadius = 10f;
-    public float timeBetweenSpawns = 2f;
+    [Header("Enemy Prefabs")]
+    public GameObject scoutPrefab;
+    public GameObject gruntPrefab;
+    public GameObject kamikazePrefab;
+    public GameObject tankPrefab;
+    public GameObject sniperPrefab;
+    public GameObject splitterPrefab;
+    public GameObject zigzagPrefab;
+    public GameObject bossPrefab;
     
-    [Header("Wave Scaling")]
-    public float spawnRateDecrease = 0.05f; // Se hace más rápido cada oleada
-    public float minSpawnRate = 0.5f;
+    [Header("Spawn Settings")]
+    public float spawnRadius = 12f;
+    public float baseSpawnRate = 2f;
+    public float minSpawnRate = 0.3f;
+    public float spawnRateDecrease = 0.05f;
+    
+    [Header("Enemy Count Settings")]
+    public int baseEnemiesPerWave = 3;
+    public int maxEnemiesPerWave = 15;
     
     private Transform player;
     private float currentSpawnRate;
+    private float nextSpawnTime;
+    private int currentWave = 0;
+    private bool bossSpawned = false;
     
     void Start()
     {
         FindPlayer();
-        currentSpawnRate = timeBetweenSpawns;
-        InvokeRepeating("SpawnEnemy", 1f, currentSpawnRate);
+        currentSpawnRate = baseSpawnRate;
+        nextSpawnTime = Time.time + 1f;
     }
     
     void FindPlayer()
@@ -30,43 +45,189 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
-        // Ajustar spawn rate según oleada
+        if (GameManager.Instance != null && GameManager.Instance.isGameOver)
+            return;
+        
+        // Actualizar oleada actual
         if (GameManager.Instance != null)
         {
-            float newRate = timeBetweenSpawns - (GameManager.Instance.currentWave * spawnRateDecrease);
-            newRate = Mathf.Max(newRate, minSpawnRate);
-            
-            if (newRate != currentSpawnRate)
-            {
-                currentSpawnRate = newRate;
-                CancelInvoke("SpawnEnemy");
-                InvokeRepeating("SpawnEnemy", 0f, currentSpawnRate);
-            }
+            currentWave = GameManager.Instance.currentWave;
+        }
+        
+        // Spawn de Boss cada 10 oleadas
+        if (currentWave > 0 && currentWave % 10 == 0 && !bossSpawned)
+        {
+            SpawnBoss();
+            bossSpawned = true;
+            return; // No spawear enemigos normales en oleada de boss
+        }
+        
+        // Resetear flag de boss cuando pase la oleada
+        if (currentWave % 10 != 0)
+        {
+            bossSpawned = false;
+        }
+        
+        // Sistema de spawn continuo
+        if (Time.time >= nextSpawnTime)
+        {
+            SpawnWave();
+            UpdateSpawnRate();
+            nextSpawnTime = Time.time + currentSpawnRate;
         }
     }
     
-    void SpawnEnemy()
+    void SpawnWave()
     {
-        if (enemyPrefab == null) return;
-        if (GameManager.Instance != null && GameManager.Instance.isGameOver) return;
+        // Calcular cuántos enemigos spawear según oleada
+        int enemiesToSpawn = Mathf.Min(
+            baseEnemiesPerWave + (currentWave / 5),
+            maxEnemiesPerWave
+        );
         
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            SpawnRandomEnemy();
+        }
+    }
+    
+    void SpawnRandomEnemy()
+    {
+        GameObject enemyToSpawn = ChooseEnemyByWave();
+        
+        if (enemyToSpawn == null) return;
+        
+        Vector2 spawnPosition = GetRandomSpawnPosition();
+        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+    }
+    
+    GameObject ChooseEnemyByWave()
+    {
+        List<GameObject> availableEnemies = new List<GameObject>();
+        
+        // Oleadas 1-5: Solo básicos
+        if (currentWave <= 5)
+        {
+            if (scoutPrefab != null) availableEnemies.Add(scoutPrefab);
+            if (gruntPrefab != null) availableEnemies.Add(gruntPrefab);
+        }
+        // Oleadas 6-10: Agregar Kamikaze y Tank
+        else if (currentWave <= 10)
+        {
+            if (scoutPrefab != null) availableEnemies.Add(scoutPrefab);
+            if (gruntPrefab != null) availableEnemies.Add(gruntPrefab);
+            if (kamikazePrefab != null) availableEnemies.Add(kamikazePrefab);
+            if (tankPrefab != null) availableEnemies.Add(tankPrefab);
+        }
+        // Oleadas 11-20: Agregar especiales
+        else if (currentWave <= 20)
+        {
+            if (scoutPrefab != null) availableEnemies.Add(scoutPrefab);
+            if (gruntPrefab != null) availableEnemies.Add(gruntPrefab);
+            if (kamikazePrefab != null) availableEnemies.Add(kamikazePrefab);
+            if (tankPrefab != null) availableEnemies.Add(tankPrefab);
+            if (sniperPrefab != null) availableEnemies.Add(sniperPrefab);
+            if (zigzagPrefab != null) availableEnemies.Add(zigzagPrefab);
+            if (splitterPrefab != null) availableEnemies.Add(splitterPrefab);
+        }
+        // Oleadas 21+: Todos mezclados
+        else
+        {
+            if (scoutPrefab != null) availableEnemies.Add(scoutPrefab);
+            if (gruntPrefab != null) availableEnemies.Add(gruntPrefab);
+            if (kamikazePrefab != null) availableEnemies.Add(kamikazePrefab);
+            if (tankPrefab != null) availableEnemies.Add(tankPrefab);
+            if (sniperPrefab != null) availableEnemies.Add(sniperPrefab);
+            if (zigzagPrefab != null) availableEnemies.Add(zigzagPrefab);
+            if (splitterPrefab != null) availableEnemies.Add(splitterPrefab);
+            
+            // Más enemigos fuertes en oleadas altas
+            if (tankPrefab != null) availableEnemies.Add(tankPrefab);
+            if (sniperPrefab != null) availableEnemies.Add(sniperPrefab);
+        }
+        
+        if (availableEnemies.Count == 0)
+        {
+            Debug.LogWarning("No enemy prefabs assigned!");
+            return null;
+        }
+        
+        return availableEnemies[Random.Range(0, availableEnemies.Count)];
+    }
+    
+    void SpawnBoss()
+    {
+        if (bossPrefab == null)
+        {
+            Debug.LogWarning("Boss prefab not assigned!");
+            return;
+        }
+        
+        Vector2 spawnPosition = GetRandomSpawnPosition();
+        Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
+        
+        Debug.Log($"BOSS spawned at wave {currentWave}!");
+    }
+    
+    Vector2 GetRandomSpawnPosition()
+    {
         Vector2 spawnPosition;
         
         if (player != null)
         {
-            // Spawn alrededor del jugador
+            // Spawn fuera de la pantalla, alrededor del jugador
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
             spawnPosition = (Vector2)player.position + randomDirection * spawnRadius;
         }
         else
         {
-            // Spawn alrededor del centro
-            spawnPosition = (Vector2)transform.position + Random.insideUnitCircle.normalized * spawnRadius;
+            // Fallback: spawn alrededor del centro
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+            spawnPosition = randomDirection * spawnRadius;
         }
         
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        return spawnPosition;
+    }
+    
+    void UpdateSpawnRate()
+    {
+        // Hacer spawn más rápido conforme avanzan las oleadas
+        currentSpawnRate = baseSpawnRate - (currentWave * spawnRateDecrease);
+        currentSpawnRate = Mathf.Max(currentSpawnRate, minSpawnRate);
     }
 }
+// ```
+
+// ---
+
+// ## 🔧 CONFIGURAR ENEMYSPAWNER EN UNITY
+
+// ### **PASO 1: Seleccionar EnemySpawner en Hierarchy**
+
+// 1. Click en `EnemySpawner` en Hierarchy
+// 2. En Inspector, verás todos los campos nuevos
+
+// ### **PASO 2: Asignar todos los prefabs**
+// ```
+// Enemy Prefabs:
+// ├─ Scout Prefab: [Arrastra Enemy_Scout desde Prefabs/Enemies/Basic/]
+// ├─ Grunt Prefab: [Arrastra Enemy_Grunt]
+// ├─ Kamikaze Prefab: [Arrastra Enemy_Kamikaze desde Special/]
+// ├─ Tank Prefab: [Arrastra Enemy_Tank]
+// ├─ Sniper Prefab: [Arrastra Enemy_Sniper]
+// ├─ Splitter Prefab: [Arrastra Enemy_Splitter]
+// ├─ Zigzag Prefab: [Arrastra Enemy_Zigzag]
+// └─ Boss Prefab: [Arrastra Enemy_Boss desde Boss/]
+
+// Spawn Settings:
+// ├─ Spawn Radius: 12
+// ├─ Base Spawn Rate: 2
+// ├─ Min Spawn Rate: 0.3
+// └─ Spawn Rate Decrease: 0.05
+
+// Enemy Count Settings:
+// ├─ Base Enemies Per Wave: 3
+// └─ Max Enemies Per Wave: 15
 
 
 // ```

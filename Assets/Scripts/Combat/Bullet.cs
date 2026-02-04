@@ -8,10 +8,14 @@ public class Bullet : MonoBehaviour
     public int damage = 1;
     
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private TrailRenderer trail;
     
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        trail = GetComponent<TrailRenderer>();
     }
     
     void Start()
@@ -26,43 +30,73 @@ public class Bullet : MonoBehaviour
         }
     }
     
-  void OnTriggerEnter2D(Collider2D collision)
-{
-    // Si es bala enemiga, solo daña al jugador
-    if (gameObject.CompareTag("EnemyBullet"))
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        // Si es bala enemiga, solo daña al jugador
+        if (gameObject.CompareTag("EnemyBullet"))
         {
-            PlayerController player = collision.GetComponent<PlayerController>();
-            if (player != null)
+            if (collision.CompareTag("Player"))
             {
-                player.TakeDamage(damage);
+                PlayerController player = collision.GetComponent<PlayerController>();
+                if (player != null)
+                {
+                    player.TakeDamage(damage);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
-        }
-        return;
-    }
-    
-    // Si es bala del jugador, solo daña enemigos
-    if (collision.CompareTag("Enemy"))
-    {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            enemy.TakeDamage(damage);
-            
-            // Sonido de hit
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyHitSFX);
+            return;
         }
         
-        Destroy(gameObject);
+        // Si es bala del jugador, solo daña enemigos
+        if (collision.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                
+                // Sonido de hit
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyHitSFX);
+            }
+            
+            Destroy(gameObject);
+        }
     }
-}
     
     public void Initialize(float speed, int damage)
     {
         this.speed = speed;
         this.damage = damage;
+    }
+    
+    // ← NUEVO: Método para aplicar visual de la bala
+    public void ApplyBulletData(BulletData data)
+    {
+        if (data == null) return;
+        
+        // Aplicar sprite
+        if (spriteRenderer != null && data.bulletSprite != null)
+        {
+            spriteRenderer.sprite = data.bulletSprite;
+            spriteRenderer.color = data.bulletColor;
+            transform.localScale = new Vector3(data.bulletScale.x, data.bulletScale.y, 1);
+        }
+        
+        // Aplicar trail si existe
+        if (data.hasTrail)
+        {
+            if (trail == null)
+            {
+                trail = gameObject.AddComponent<TrailRenderer>();
+            }
+            
+            trail.time = data.trailTime;
+            trail.startWidth = data.trailWidth;
+            trail.endWidth = 0f;
+            trail.material = new Material(Shader.Find("Sprites/Default"));
+            trail.startColor = data.trailColor;
+            trail.endColor = new Color(data.trailColor.r, data.trailColor.g, data.trailColor.b, 0);
+        }
     }
 }

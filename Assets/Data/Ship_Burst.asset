@@ -15,6 +15,7 @@ MonoBehaviour:
   shipName: Burst
   shipSprite: {fileID: 694016440, guid: ca5cfb0e5510fc9e498a217b6dd198c3, type: 3}
   purchaseCost: 2500
+  bulletData: {fileID: 11400000, guid: fe62ebec5f967c277bb30f8880b01e63, type: 2}
   damage:
     statName: Damage
     baseValue: 1

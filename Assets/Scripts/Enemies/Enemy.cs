@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     public int health = 2;
     public float speed = 3f;
     public int scrapValue = 1;
-    
+        
     [Header("Shadow Settings")]
     public float shadowOffset = 0.3f;
     public Vector2 lightDirection = new Vector2(1, -1);
@@ -20,10 +20,9 @@ public class Enemy : MonoBehaviour
     {
         enemyRenderer = GetComponent<SpriteRenderer>();
         CreateShadow();
-        
     }
     
-   protected void Start()
+    protected virtual void Start()  // ← CAMBIO: protected virtual
     {
         FindPlayer();
         
@@ -44,10 +43,10 @@ public class Enemy : MonoBehaviour
             shadowRenderer.enabled = true;
     }
     
-   protected void CreateShadow()
+    protected void CreateShadow()  // ← CAMBIO: protected (sin virtual)
     {
         GameObject shadowObj = new GameObject("EnemyShadow");
-        shadowObj.transform.parent = transform;
+        shadowObj.transform.SetParent(transform);  // ← Importante: hijo del enemigo
         shadowRenderer = shadowObj.AddComponent<SpriteRenderer>();
         shadowRenderer.sprite = enemyRenderer.sprite;
         shadowRenderer.color = new Color(0, 0, 0, shadowOpacity);
