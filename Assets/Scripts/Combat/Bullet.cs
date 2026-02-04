@@ -72,31 +72,55 @@ public class Bullet : MonoBehaviour
     
     // ← NUEVO: Método para aplicar visual de la bala
     public void ApplyBulletData(BulletData data)
+{
+    if (data == null) return;
+    
+    // Aplicar sprite
+    if (spriteRenderer != null && data.bulletSprite != null)
     {
-        if (data == null) return;
+        spriteRenderer.sprite = data.bulletSprite;
         
-        // Aplicar sprite
-        if (spriteRenderer != null && data.bulletSprite != null)
+        // Aplicar color de la paleta actual en lugar del color del BulletData
+        Color finalColor = data.bulletColor;
+        if (PaletteManager.Instance != null)
         {
-            spriteRenderer.sprite = data.bulletSprite;
-            spriteRenderer.color = data.bulletColor;
-            transform.localScale = new Vector3(data.bulletScale.x, data.bulletScale.y, 1);
-        }
-        
-        // Aplicar trail si existe
-        if (data.hasTrail)
-        {
-            if (trail == null)
+            PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
+            if (palette != null)
             {
-                trail = gameObject.AddComponent<TrailRenderer>();
+                finalColor = palette.playerBulletColor;
             }
-            
-            trail.time = data.trailTime;
-            trail.startWidth = data.trailWidth;
-            trail.endWidth = 0f;
-            trail.material = new Material(Shader.Find("Sprites/Default"));
-            trail.startColor = data.trailColor;
-            trail.endColor = new Color(data.trailColor.r, data.trailColor.g, data.trailColor.b, 0);
         }
+        
+        spriteRenderer.color = finalColor;
+        transform.localScale = new Vector3(data.bulletScale.x, data.bulletScale.y, 1);
     }
+    
+    // Aplicar trail si existe
+    if (data.hasTrail)
+    {
+        if (trail == null)
+        {
+            trail = gameObject.AddComponent<TrailRenderer>();
+        }
+        
+        trail.time = data.trailTime;
+        trail.startWidth = data.trailWidth;
+        trail.endWidth = 0f;
+        trail.material = new Material(Shader.Find("Sprites/Default"));
+        
+        // Color del trail también usa la paleta
+        Color trailColor = data.trailColor;
+        if (PaletteManager.Instance != null)
+        {
+            PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
+            if (palette != null)
+            {
+                trailColor = palette.playerBulletColor;
+            }
+        }
+        
+        trail.startColor = trailColor;
+        trail.endColor = new Color(trailColor.r, trailColor.g, trailColor.b, 0);
+    }
+}
 }

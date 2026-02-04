@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcad306bac7399a88c68eb651ddeba1, type: 3}
+  m_Name: Palette_Monochrome
+  m_EditorClassIdentifier: Assembly-CSharp::PaletteData
+  paletteName: MONOCHROME
+  isFree: 0
+  adCostToUnlock: 3
+  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
+  playerBulletColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  enemyScoutColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  enemyGruntColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  enemyKamikazeColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  enemyTankColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  enemySniperColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  enemySplitterColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
+  enemyZigzagColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
+  enemyBossColor: {r: 1, g: 1, b: 1, a: 1}
+  uiAccentColor: {r: 1, g: 1, b: 1, a: 1}
+  uiTextColor: {r: 1, g: 1, b: 1, a: 1}

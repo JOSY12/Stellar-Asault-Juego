@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         LoadShipData();
+            ApplyCurrentPalette(); // ← AGREGAR ESTA LÍNEA
+
     }
     
     void LoadShipData()
@@ -182,4 +184,15 @@ public class PlayerController : MonoBehaviour
         // Desactivar controles
         enabled = false;
     }
+    void ApplyCurrentPalette()
+{
+    if (PaletteManager.Instance != null)
+    {
+        PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
+        if (palette != null && spriteRenderer != null)
+        {
+            spriteRenderer.color = palette.playerColor;
+        }
+    }
+}
 }

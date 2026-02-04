@@ -1111,6 +1111,8 @@ GameObject:
   - component: {fileID: 1670245449}
   - component: {fileID: 1670245448}
   - component: {fileID: 1670245447}
+  - component: {fileID: 1670245453}
+  - component: {fileID: 1670245454}
   m_Layer: 0
   m_Name: _Managers
   m_TagString: Untagged
@@ -1386,6 +1388,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1670245453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670245446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce4b571602eabf16a71840dd7ca18cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PaletteManager
+  allPalettes:
+  - {fileID: 11400000, guid: 7870a6d16fa058e70b779b3dbebb654a, type: 2}
+  - {fileID: 11400000, guid: 0a965921b0289a49ab5373ae1ee61194, type: 2}
+  - {fileID: 11400000, guid: 8f8f5a43107c5da70953a088ccefdc9f, type: 2}
+  - {fileID: 11400000, guid: d1624f823a38b6d989e55f4f1d6bb50a, type: 2}
+  - {fileID: 11400000, guid: f2a99d031fc2fdb249ac74906abc11f4, type: 2}
+  - {fileID: 11400000, guid: 703bdfeec153d889988cbd4d2eb91a8f, type: 2}
+  - {fileID: 11400000, guid: fdbef1c542887870c9bb74c34da413f9, type: 2}
+--- !u!114 &1670245454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670245446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112196c4f3594ec4ca3ab653c037ddd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PaletteDebug
 --- !u!4 &1799829202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8806187688845555741, guid: 6f00ba2b81cec0f0fb511251fb7183d0, type: 3}

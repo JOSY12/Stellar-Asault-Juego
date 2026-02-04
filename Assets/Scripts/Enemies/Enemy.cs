@@ -25,7 +25,9 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()  // ← CAMBIO: protected virtual
     {
         FindPlayer();
-        
+           
+    // Aplicar paleta actual
+    ApplyCurrentPalette();
         // Desactivar sombra temporalmente para evitar flash
         if (shadowRenderer != null) shadowRenderer.enabled = false;
         Invoke("EnableShadow", 0.1f);
@@ -118,4 +120,17 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+ 
+void ApplyCurrentPalette()
+{
+    if (PaletteManager.Instance != null)
+    {
+        PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
+        if (palette != null)
+        {
+            PaletteManager.Instance.ApplyColorToEnemy(gameObject, palette);
+        }
+    }
+}
 }

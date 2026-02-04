@@ -94,6 +94,7 @@ public class SaveManager : MonoBehaviour
     public int GetCurrentPalette()
     {
         return PlayerPrefs.GetInt("CurrentPalette", 0);
+
     }
     
     public void SetCurrentPalette(int paletteIndex)

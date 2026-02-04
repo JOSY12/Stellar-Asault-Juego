@@ -38,10 +38,16 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void Start()
+ void Start()
+{
+    StartNewGame();
+    
+    // Aplicar paleta guardada
+    if (PaletteManager.Instance != null)
     {
-        StartNewGame();
+        PaletteManager.Instance.ApplyCurrentPalette();
     }
+}
     
     void Update()
     {
