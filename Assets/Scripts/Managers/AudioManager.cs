@@ -31,10 +31,11 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             InitializeAudio();
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else if (Instance != this) // ← CAMBIO
+    {
+        Destroy(gameObject);
+        return; // ← AGREGAR
+    }
     }
     
     void InitializeAudio()

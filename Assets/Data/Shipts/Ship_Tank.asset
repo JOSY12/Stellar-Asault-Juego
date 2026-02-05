@@ -26,8 +26,8 @@ MonoBehaviour:
     currentLevel: 1
   fireRate:
     statName: FireRate
-    baseValue: 0.5
-    maxValue: 0.2
+    baseValue: 0.3
+    maxValue: 0.12
     maxLevel: 5
     baseUpgradeCost: 25
     currentValue: 0

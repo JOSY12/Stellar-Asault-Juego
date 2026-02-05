@@ -12,10 +12,11 @@ public class SaveManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+         else if (Instance != this) // ← CAMBIO IMPORTANTE
+    {
+        Destroy(gameObject);
+        return; // ← AGREGAR
+    }
     }
     
     // ============ ECONOMÍA ============

@@ -175,6 +175,8 @@ MonoBehaviour:
   shadowOffset: 0.3
   lightDirection: {x: 1, y: -1}
   shadowOpacity: 0.5
+  hitEffectPrefab: {fileID: 7234725536369653664, guid: b319da430f5a8b62b852c385f3c731ef, type: 3}
+  deathExplosionPrefab: {fileID: 7234725536369653664, guid: 25bff88240aa01ba29204a3fbb0671fd, type: 3}
   bulletPrefab: {fileID: 4671424655407282989, guid: 2b988d7932cd277b8a50fb02b384adfc, type: 3}
   fireRate: 3
   fireRange: 8

@@ -11,7 +11,9 @@ public class Enemy : MonoBehaviour
     public float shadowOffset = 0.3f;
     public Vector2 lightDirection = new Vector2(1, -1);
     [Range(0, 1)] public float shadowOpacity = 0.5f;
-    
+    [Header("VFX")] // ← NUEVO
+    public GameObject hitEffectPrefab;
+    public GameObject deathExplosionPrefab;
     protected Transform player;
     protected SpriteRenderer enemyRenderer;
     protected SpriteRenderer shadowRenderer;
@@ -56,14 +58,21 @@ public class Enemy : MonoBehaviour
         UpdateShadowPosition();
     }
     
-    void LateUpdate()
+   void LateUpdate()
+{
+    // ← AGREGAR: No moverse si game over o paused
+    if (GameManager.Instance != null)
     {
-        if (player != null)
-        {
-            FollowPlayer();
-            UpdateShadowPosition();
-        }
+        if (GameManager.Instance.isGameOver || GameManager.Instance.isPaused)
+            return;
     }
+    
+    if (player != null)
+    {
+        FollowPlayer();
+        UpdateShadowPosition();
+    }
+}
     
     protected virtual void FollowPlayer()
     {
@@ -86,9 +95,28 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    public virtual void TakeDamage(int amount)
+    
+     public virtual void TakeDamage(int amount)
     {
         health -= amount;
+        
+        // ← NUEVO: Efecto de hit
+        if (hitEffectPrefab != null)
+        {
+            GameObject hitVFX = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+            
+            // Aplicar color de paleta
+            ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+            if (ps != null && PaletteManager.Instance != null)
+            {
+                PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
+                if (palette != null)
+                {
+                    var main = ps.main;
+                    main.startColor = enemyRenderer.color;
+                }
+            }
+        }
         
         if (health <= 0)
         {
@@ -96,8 +124,25 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    protected virtual void Die()
+   protected virtual void Die()
     {
+        // ← NUEVO: Explosión al morir
+        if (deathExplosionPrefab != null)
+        {
+            GameObject explosion = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
+            
+            ParticleSystem ps = explosion.GetComponent<ParticleSystem>();
+            if (ps != null && PaletteManager.Instance != null)
+            {
+                PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
+                if (palette != null)
+                {
+                    var main = ps.main;
+                    main.startColor = enemyRenderer.color;
+                }
+            }
+        }
+        
         // Notificar al GameManager
         if (GameManager.Instance != null)
             GameManager.Instance.AddKill();
@@ -118,6 +163,8 @@ public class Enemy : MonoBehaviour
             {
                 playerScript.TakeDamage(1);
             }
+             // ← AGREGAR: Destruir enemigo después de tocar
+        Destroy(gameObject);
         }
     }
 

@@ -64,22 +64,36 @@ public class PlayerController : MonoBehaviour
         Debug.Log($"Move Speed: {currentShip.moveSpeed.currentValue}");
     }
     
-    void Update()
+   void Update()
+{
+    // ← CAMBIO: Verificar game over PRIMERO
+    if (GameManager.Instance != null && GameManager.Instance.isGameOver)
+        return;
+    
+    if (GameManager.Instance != null && GameManager.Instance.isPaused)
+        return;
+    
+    HandleAiming();
+    HandleShooting();
+}
+    
+   void FixedUpdate()
+{
+    // ← CAMBIO: Verificar game over PRIMERO
+    if (GameManager.Instance != null && GameManager.Instance.isGameOver)
     {
-        if (GameManager.Instance != null && (GameManager.Instance.isGameOver || GameManager.Instance.isPaused))
-            return;
-        
-        HandleAiming();
-        HandleShooting();
+        rb.linearVelocity = Vector2.zero; // Detener movimiento
+        return;
     }
     
-    void FixedUpdate()
+    if (GameManager.Instance != null && GameManager.Instance.isPaused)
     {
-        if (GameManager.Instance != null && (GameManager.Instance.isGameOver || GameManager.Instance.isPaused))
-            return;
-        
-        HandleMovement();
+        rb.linearVelocity = Vector2.zero; // Detener movimiento
+        return;
     }
+    
+    HandleMovement();
+}
     
     void HandleMovement()
     {

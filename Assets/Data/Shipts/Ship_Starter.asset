@@ -22,15 +22,15 @@ MonoBehaviour:
     maxValue: 5
     maxLevel: 5
     baseUpgradeCost: 10
-    currentValue: 0
+    currentValue: 1
     currentLevel: 1
   fireRate:
     statName: FireRate
-    baseValue: 0.3
-    maxValue: 0.1
+    baseValue: 0.15
+    maxValue: 0.05
     maxLevel: 5
     baseUpgradeCost: 15
-    currentValue: 0
+    currentValue: 0.3
     currentLevel: 1
   moveSpeed:
     statName: MoveSpeed
@@ -38,7 +38,7 @@ MonoBehaviour:
     maxValue: 10
     maxLevel: 5
     baseUpgradeCost: 12
-    currentValue: 0
+    currentValue: 5
     currentLevel: 1
   health:
     statName: Health
@@ -46,7 +46,7 @@ MonoBehaviour:
     maxValue: 10
     maxLevel: 5
     baseUpgradeCost: 20
-    currentValue: 0
+    currentValue: 3
     currentLevel: 1
   bulletSpeed:
     statName: BulletSpeed
@@ -54,5 +54,5 @@ MonoBehaviour:
     maxValue: 20
     maxLevel: 5
     baseUpgradeCost: 10
-    currentValue: 0
+    currentValue: 10
     currentLevel: 1

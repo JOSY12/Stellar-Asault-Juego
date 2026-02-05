@@ -175,5 +175,7 @@ MonoBehaviour:
   shadowOffset: 0.3
   lightDirection: {x: 1, y: -1}
   shadowOpacity: 0.5
+  hitEffectPrefab: {fileID: 7234725536369653664, guid: b319da430f5a8b62b852c385f3c731ef, type: 3}
+  deathExplosionPrefab: {fileID: 7234725536369653664, guid: 25bff88240aa01ba29204a3fbb0671fd, type: 3}
   scoutPrefab: {fileID: 7521551034816781010, guid: 2d7eda579516ce4e7a6584d51c6a7a3a, type: 3}
   scoutsToSpawn: 2

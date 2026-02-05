@@ -45,6 +45,12 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
+
+        // ← AGREGAR: No hacer nada si game over
+ 
+    
+    if (GameManager.Instance != null && GameManager.Instance.isPaused)
+        return;
         if (GameManager.Instance != null && GameManager.Instance.isGameOver)
             return;
         

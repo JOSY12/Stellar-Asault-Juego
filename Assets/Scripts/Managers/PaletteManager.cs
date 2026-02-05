@@ -16,10 +16,11 @@ public class PaletteManager : MonoBehaviour
             // Desbloquear paletas gratis por defecto
             UnlockFreePalettes();
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else if (Instance != this) // ← CAMBIO
+    {
+        Destroy(gameObject);
+        return; // ← AGREGAR
+    }
     }
     
     void UnlockFreePalettes()
