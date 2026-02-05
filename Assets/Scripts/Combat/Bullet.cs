@@ -7,8 +7,9 @@ public class Bullet : MonoBehaviour
     public float lifeTime = 3f;
     public int damage = 1;
     
-    [Header("Knockback")]
-    public float knockbackForce = 3f;
+ [Header("Knockback")]
+public float knockbackForce = 0.8f;  // ← REDUCIR (antes 3f)
+public float knockbackDuration = 0.05f;  // ← Muy corto
     
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -69,38 +70,38 @@ public class Bullet : MonoBehaviour
     }
     
     void ApplyKnockback(Collider2D enemyCollider)
+{
+    Rigidbody2D enemyRb = enemyCollider.GetComponent<Rigidbody2D>();
+    if (enemyRb != null)
     {
-        Rigidbody2D enemyRb = enemyCollider.GetComponent<Rigidbody2D>();
-        if (enemyRb != null)
+        Vector2 knockbackDir = transform.up;
+        
+        bool wasKinematic = (enemyRb.bodyType == RigidbodyType2D.Kinematic);
+        
+        if (wasKinematic)
         {
-            Vector2 knockbackDir = transform.up;
-            
-            // ← CAMBIO: Usar bodyType en lugar de isKinematic
-            bool wasKinematic = (enemyRb.bodyType == RigidbodyType2D.Kinematic);
-            
-            if (wasKinematic)
-            {
-                enemyRb.bodyType = RigidbodyType2D.Dynamic; // ← CAMBIO
-            }
-            
-            enemyRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-            
-            if (wasKinematic && enemyCollider != null)
-            {
-                StartCoroutine(ResetKinematic(enemyRb, 0.1f));
-            }
+            enemyRb.bodyType = RigidbodyType2D.Dynamic;
+        }
+        
+        enemyRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+        
+        if (wasKinematic && enemyCollider != null)
+        {
+            StartCoroutine(ResetKinematic(enemyRb, knockbackDuration)); // ← Usar variable
         }
     }
+}
+
     
-    System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay)
+   System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay)
+{
+    yield return new WaitForSeconds(delay);
+    if (rb != null)
     {
-        yield return new WaitForSeconds(delay);
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.bodyType = RigidbodyType2D.Kinematic; // ← CAMBIO
-        }
+        rb.linearVelocity = Vector2.zero; // ← Detener completamente
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
+}
     
     public void Initialize(float speed, int damage)
     {

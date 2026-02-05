@@ -67,22 +67,22 @@ public class GameManager : MonoBehaviour
     }
     
     public void StartNewGame()
-    {
-        isGameOver = false;
-        isPaused = false;
-        currentWave = 1;
-        scrapThisRun = 0;
-        killsThisRun = 0;
-        waveTimer = 0f;
-        
-        Time.timeScale = 1f;
-        
-        // Reproducir música de gameplay
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayMusic(AudioManager.Instance.gameplayMusic);
-        
-        Debug.Log("Game Started!");
-    }
+{
+    isGameOver = false;
+    isPaused = false;
+    currentWave = 1;
+    scrapThisRun = 0;
+    killsThisRun = 0;
+    waveTimer = 0f;
+    
+    Time.timeScale = 1f;
+    
+    // ← CAMBIO: Música random
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlayRandomGameplayMusic();
+    
+    Debug.Log("Game Started!");
+}
     
     void NextWave()
     {

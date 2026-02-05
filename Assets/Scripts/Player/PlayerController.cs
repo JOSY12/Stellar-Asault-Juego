@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
     [Header("Camera Shake")]
     public float shakeIntensity = 0.1f;
     public float shakeDuration = 0.1f;
-    
+    [Header("UI References")]
+public HealthUI healthUI; // ← NUEVO
+
     // Runtime stats
     private float currentHealth;
     private float nextFireTime;
@@ -37,7 +39,12 @@ public class PlayerController : MonoBehaviour
     {
         LoadShipData();
             ApplyCurrentPalette(); // ← AGREGAR ESTA LÍNEA
-
+// ← NUEVO: Inicializar UI de salud
+    if (healthUI != null)
+    {
+        healthUI.Initialize(Mathf.RoundToInt(currentShip.health.currentValue));
+        healthUI.UpdateHealth(Mathf.RoundToInt(currentHealth));
+    }
     }
     
     void LoadShipData()
@@ -169,25 +176,31 @@ public class PlayerController : MonoBehaviour
 }
     
     public void TakeDamage(int amount)
+{
+    currentHealth -= amount;
+    
+    // ← NUEVO: Actualizar UI
+    if (healthUI != null)
     {
-        currentHealth -= amount;
-        
-        // Reproducir sonido de daño
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHitSFX);
-        
-        // Camera shake
-        if (CameraShake.Instance != null && SaveManager.Instance != null)
-        {
-            if (SaveManager.Instance.IsCameraShakeEnabled())
-                CameraShake.Instance.Shake(shakeIntensity * 2f, shakeDuration * 2f);
-        }
-        
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        healthUI.UpdateHealth(Mathf.RoundToInt(currentHealth));
     }
+    
+    // Reproducir sonido de daño
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHitSFX);
+    
+    // Camera shake
+    if (CameraShake.Instance != null && SaveManager.Instance != null)
+    {
+        if (SaveManager.Instance.IsCameraShakeEnabled())
+            CameraShake.Instance.Shake(shakeIntensity * 2f, shakeDuration * 2f);
+    }
+    
+    if (currentHealth <= 0)
+    {
+        Die();
+    }
+}
     
     void Die()
     {

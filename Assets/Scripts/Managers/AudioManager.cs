@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
     [Header("Music Clips")]
     public AudioClip menuMusic;
     public AudioClip gameplayMusic;
-    
+    public AudioClip[] gameplayMusicTracks; // ← CAMBIO: Array de canciones
+
     [Header("SFX Clips")]
     public AudioClip shootSFX;
     public AudioClip enemyHitSFX;
@@ -37,7 +38,21 @@ public class AudioManager : MonoBehaviour
         return; // ← AGREGAR
     }
     }
+   public void PlayRandomGameplayMusic()
+{
+    if (gameplayMusicTracks == null || gameplayMusicTracks.Length == 0)
+    {
+        Debug.LogWarning("No gameplay music tracks assigned!");
+        return;
+    }
     
+    int randomIndex = Random.Range(0, gameplayMusicTracks.Length);
+    AudioClip randomTrack = gameplayMusicTracks[randomIndex];
+    
+    PlayMusic(randomTrack, true);
+    
+    Debug.Log($"Playing random track: {randomTrack.name}");
+}
     void InitializeAudio()
     {
         // Cargar configuración guardada

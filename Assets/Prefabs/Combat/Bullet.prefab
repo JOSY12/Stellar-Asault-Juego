@@ -189,3 +189,5 @@ MonoBehaviour:
   speed: 10
   lifeTime: 3
   damage: 1
+  knockbackForce: 0.5
+  knockbackDuration: 0.05
