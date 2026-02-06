@@ -126,14 +126,14 @@ public class DeathScreenUI : MonoBehaviour
         if (statsTabButton != null)
         {
             ColorBlock colors = statsTabButton.colors;
-            colors.normalColor = showStats ? new Color(0, 1, 1) : new Color(0.5f, 0.5f, 0.5f);
+            colors.normalColor = showStats ?   new Color(0.5f, 0.5f, 0.5f) :new Color(1f, 1f, 1f);
             statsTabButton.colors = colors;
         }
         
         if (upgradesTabButton != null)
         {
             ColorBlock colors = upgradesTabButton.colors;
-            colors.normalColor = !showStats ? new Color(0, 1, 1) : new Color(0.5f, 0.5f, 0.5f);
+            colors.normalColor = !showStats ?     new Color(0.5f, 0.5f, 0.5f) :new Color(1f, 1f, 1f);
             upgradesTabButton.colors = colors;
         }
     }
