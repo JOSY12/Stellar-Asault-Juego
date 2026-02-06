@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
     
     void Awake()
     {
-        // GameManager NO persiste entre escenas
+
+       
         if (Instance == null)
         {
             Instance = this;
@@ -42,6 +43,11 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
+
+
+    //           PlayerPrefs.DeleteAll();
+    //  Debug.Log("PlayerPrefs deleted!");
+        // GameManager NO persiste entre escenas
         StartNewGame();
         
         // Aplicar paleta guardada

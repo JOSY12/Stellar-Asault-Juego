@@ -90,12 +90,17 @@ public class ShipData : ScriptableObject
         bulletSpeed.LoadFromSave(shipName);
     }
     
-    public bool IsOwned()
-    {
-        if (SaveManager.Instance == null) return shipName == "Starter";
-        return SaveManager.Instance.IsShipOwned(shipName);
-    }
+   public bool IsOwned()
+{
+    // Si la nave es gratis (costo 0), está desbloqueada siempre
+    if (purchaseCost == 0)
+        return true;
     
+    if (SaveManager.Instance == null)
+        return false;
+    
+    return SaveManager.Instance.IsShipOwned(shipName);
+}
     public void Unlock()
     {
         if (SaveManager.Instance != null)

@@ -5,20 +5,36 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
     
-    void Awake()
+   void Awake()
+{
+    if (Instance == null)
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-         else if (Instance != this) // ← CAMBIO IMPORTANTE
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        
+        // ← AGREGAR ESTO AL FINAL
+        UnlockStarterShip();
+    }
+    else if (Instance != this)
     {
         Destroy(gameObject);
-        return; // ← AGREGAR
+        return;
     }
+}
+   void UnlockStarterShip()
+{
+    // Solo la primera vez que se ejecuta el juego
+    if (!PlayerPrefs.HasKey("FirstTimePlayed"))
+    {
+        // Desbloquear y equipar Starter
+        PlayerPrefs.SetInt("Ship_Starter_Owned", 1);
+        PlayerPrefs.SetString("EquippedShip", "Starter");
+        PlayerPrefs.SetInt("FirstTimePlayed", 1);
+        PlayerPrefs.Save();
+        
+        Debug.Log("Starter ship unlocked and equipped!");
     }
-    
+} 
     // ============ ECONOMÍA ============
     public int GetScrap()
     {

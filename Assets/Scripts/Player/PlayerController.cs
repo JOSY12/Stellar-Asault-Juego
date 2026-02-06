@@ -8,13 +8,17 @@ public class PlayerController : MonoBehaviour
     [Header("Joysticks")]
     public VirtualJoystick joystickMove;
     public VirtualJoystick joystickAim;
-    
+    [Header("Ship Data")]
+public ShipData[] allShips; // ← Debe estar asignado en Inspector
+
     [Header("Fire Point")]
     public Transform firePoint;
-    
+    [Header("Health")]
+private float maxHealth; // ← AGREGAR ESTA LÍNEA
+    private float currentHealth;
+
     [Header("Prefabs")]
     public GameObject bulletPrefab;
-    
     [Header("Camera Shake")]
     public float shakeIntensity = 0.1f;
     public float shakeDuration = 0.1f;
@@ -22,7 +26,6 @@ public class PlayerController : MonoBehaviour
 public HealthUI healthUI; // ← NUEVO
 
     // Runtime stats
-    private float currentHealth;
     private float nextFireTime;
     
     // Components
@@ -39,6 +42,7 @@ public HealthUI healthUI; // ← NUEVO
     {
         LoadShipData();
             ApplyCurrentPalette(); // ← AGREGAR ESTA LÍNEA
+    ApplyCurrentPalette();
 // ← NUEVO: Inicializar UI de salud
     if (healthUI != null)
     {
@@ -47,30 +51,106 @@ public HealthUI healthUI; // ← NUEVO
     }
     }
     
-    void LoadShipData()
+  void LoadShipData()
+{
+    Debug.Log("=== LOADING SHIP DATA ===");
+    
+    if (SaveManager.Instance == null)
     {
-        if (currentShip == null)
-        {
-            Debug.LogError("No ShipData assigned to PlayerController!");
-            return;
-        }
-        
-        // Cargar progreso guardado
-        currentShip.LoadProgress();
-        
-        // Aplicar sprite
-        if (spriteRenderer != null && currentShip.shipSprite != null)
-            spriteRenderer.sprite = currentShip.shipSprite;
-        
-        // Inicializar salud
-        currentHealth = currentShip.health.currentValue;
-        
-        Debug.Log($"Ship loaded: {currentShip.shipName}");
-        Debug.Log($"Damage: {currentShip.damage.currentValue}");
-        Debug.Log($"Fire Rate: {currentShip.fireRate.currentValue}");
-        Debug.Log($"Move Speed: {currentShip.moveSpeed.currentValue}");
+        Debug.LogError("SaveManager is NULL!");
+        return;
     }
     
+    if (allShips == null || allShips.Length == 0)
+    {
+        Debug.LogError("allShips array is empty or null!");
+        return;
+    }
+    
+    // Obtener nave equipada
+    string equippedShipName = SaveManager.Instance.GetEquippedShip();
+    Debug.Log($"Equipped ship from SaveManager: {equippedShipName}");
+    
+    // Buscar la ShipData
+    currentShip = null;
+    foreach (ShipData ship in allShips)
+    {
+        if (ship != null && ship.shipName == equippedShipName)
+        {
+            currentShip = ship;
+            Debug.Log($"✓ Found ship: {ship.shipName}");
+            break;
+        }
+    }
+    
+    if (currentShip == null)
+    {
+        Debug.LogError($"Ship '{equippedShipName}' not found in allShips array!");
+        Debug.Log("Available ships:");
+        foreach (ShipData ship in allShips)
+        {
+            if (ship != null)
+                Debug.Log($"  - {ship.shipName}");
+        }
+        
+        // Usar primera nave como fallback
+        currentShip = allShips[0];
+        Debug.LogWarning($"Using fallback ship: {currentShip.shipName}");
+    }
+    
+    // Cargar progreso de la nave
+    currentShip.LoadProgress();
+    
+    // Aplicar datos de la nave
+    ApplyShipData();
+}
+    
+void ApplyShipData()
+{
+    Debug.Log("=== APPLYING SHIP DATA ===");
+    Debug.Log($"Current ship: {currentShip.shipName}");
+    
+    // Verificar SpriteRenderer
+    if (spriteRenderer == null)
+    {
+        Debug.LogError("SpriteRenderer is NULL!");
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("Could not find SpriteRenderer component!");
+            return;
+        }
+    }
+    
+    // Verificar sprite de la nave
+    if (currentShip.shipSprite == null)
+    {
+        Debug.LogError($"Ship {currentShip.shipName} has NULL sprite!");
+        return;
+    }
+    
+    // APLICAR SPRITE
+    Sprite oldSprite = spriteRenderer.sprite;
+    spriteRenderer.sprite = currentShip.shipSprite;
+    
+    Debug.Log($"Sprite changed:");
+    Debug.Log($"  Old: {(oldSprite != null ? oldSprite.name : "NULL")}");
+    Debug.Log($"  New: {spriteRenderer.sprite.name}");
+    Debug.Log($"  Ship sprite: {currentShip.shipSprite.name}");
+    Debug.Log($"  Match: {spriteRenderer.sprite == currentShip.shipSprite}");
+    
+    // Aplicar stats
+    maxHealth = currentShip.health.currentValue;
+    currentHealth = maxHealth;
+    
+    Debug.Log($"Stats applied:");
+    Debug.Log($"  Health: {currentHealth}");
+    Debug.Log($"  Damage: {currentShip.damage.currentValue}");
+    Debug.Log($"  Fire Rate: {currentShip.fireRate.currentValue}");
+    Debug.Log($"  Move Speed: {currentShip.moveSpeed.currentValue}");
+    
+    Debug.Log("=== SHIP DATA APPLIED SUCCESSFULLY ===");
+}
    void Update()
 {
     // ← CAMBIO: Verificar game over PRIMERO

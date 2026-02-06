@@ -14,13 +14,14 @@ public class DeathScreenUI : MonoBehaviour
     public Button statsTabButton;
     public Button upgradesTabButton;
     
-    [Header("Stats Tab")]
+    [Header("Stats Tab Content")]
     public TextMeshProUGUI waveReachedText;
     public TextMeshProUGUI killsText;
     public TextMeshProUGUI scrapEarnedText;
     public TextMeshProUGUI permanentScrapText;
     
     [Header("Upgrades Tab - Ship Selection")]
+    public TextMeshProUGUI scrapDisplayText;
     public TextMeshProUGUI shipNameText;
     public Image shipPreviewImage;
     public Button prevShipButton;
@@ -31,12 +32,12 @@ public class DeathScreenUI : MonoBehaviour
     public Transform statsContainer;
     public GameObject statRowPrefab;
     
-    [Header("Upgrades Tab - Actions")]
+    [Header("Upgrades Tab - Ship Actions")]
     public Button purchaseShipButton;
     public Button equipShipButton;
-    public TextMeshProUGUI scrapDisplayText;
+    public TextMeshProUGUI purchaseButtonText;
     
-    [Header("Buttons")]
+    [Header("Main Buttons")]
     public Button retryButton;
     public Button watchAdButton;
     public Button mainMenuButton;
@@ -58,13 +59,14 @@ public class DeathScreenUI : MonoBehaviour
         if (upgradesTabButton != null)
             upgradesTabButton.onClick.AddListener(() => ShowTab(false));
         
-        // Conectar botones de nave
+        // Conectar navegación de naves
         if (prevShipButton != null)
             prevShipButton.onClick.AddListener(PreviousShip);
         
         if (nextShipButton != null)
             nextShipButton.onClick.AddListener(NextShip);
         
+        // Conectar acciones de nave
         if (purchaseShipButton != null)
             purchaseShipButton.onClick.AddListener(PurchaseShip);
         
@@ -90,7 +92,7 @@ public class DeathScreenUI : MonoBehaviour
         // Mostrar tab de stats por defecto
         ShowTab(true);
         
-        // Stats
+        // Actualizar stats tab
         if (waveReachedText != null)
             waveReachedText.text = $"WAVE {wave}";
         
@@ -105,9 +107,9 @@ public class DeathScreenUI : MonoBehaviour
         
         int adBonus = Mathf.FloorToInt(scrapEarned * 0.5f);
         if (adBonusText != null)
-            adBonusText.text = $"+{adBonus} BONUS";
+            adBonusText.text = $"+{adBonus}";
         
-        // Actualizar tab de upgrades
+        // Cargar nave equipada para upgrades tab
         LoadEquippedShip();
         UpdateUpgradesTab();
     }
@@ -120,18 +122,18 @@ public class DeathScreenUI : MonoBehaviour
         if (upgradesTab != null)
             upgradesTab.SetActive(!showStats);
         
-        // Cambiar colores de botones de tab
+        // Cambiar apariencia de botones de tab
         if (statsTabButton != null)
         {
-            var colors = statsTabButton.colors;
-            colors.normalColor = showStats ? Color.cyan : Color.gray;
+            ColorBlock colors = statsTabButton.colors;
+            colors.normalColor = showStats ? new Color(0, 1, 1) : new Color(0.5f, 0.5f, 0.5f);
             statsTabButton.colors = colors;
         }
         
         if (upgradesTabButton != null)
         {
-            var colors = upgradesTabButton.colors;
-            colors.normalColor = !showStats ? Color.cyan : Color.gray;
+            ColorBlock colors = upgradesTabButton.colors;
+            colors.normalColor = !showStats ? new Color(0, 1, 1) : new Color(0.5f, 0.5f, 0.5f);
             upgradesTabButton.colors = colors;
         }
     }
@@ -178,6 +180,8 @@ public class DeathScreenUI : MonoBehaviour
     
     void UpdateUpgradesTab()
     {
+        if (allShips == null || currentShipIndex >= allShips.Length) return;
+        
         ShipData ship = allShips[currentShipIndex];
         ship.LoadProgress();
         
@@ -187,21 +191,21 @@ public class DeathScreenUI : MonoBehaviour
             scrapDisplayText.text = $"SCRAP: {SaveManager.Instance.GetScrap()}";
         }
         
-        // Nombre
+        // Nombre de nave
         if (shipNameText != null)
             shipNameText.text = ship.shipName.ToUpper();
         
-        // Preview
+        // Preview sprite
         if (shipPreviewImage != null && ship.shipSprite != null)
             shipPreviewImage.sprite = ship.shipSprite;
         
-        // Status
+        // Status de la nave
         UpdateShipStatus(ship);
         
-        // Stats
+        // Stats de la nave
         UpdateStats(ship);
         
-        // Botones
+        // Botones de acción
         UpdateActionButtons(ship);
     }
     
@@ -232,9 +236,13 @@ public class DeathScreenUI : MonoBehaviour
     
     void UpdateStats(ShipData ship)
     {
+        if (statsContainer == null || statRowPrefab == null) return;
+        
+        // Limpiar stats anteriores
         foreach (Transform child in statsContainer)
             Destroy(child.gameObject);
         
+        // Crear row por cada stat
         CreateStatRow(ship.damage, ship);
         CreateStatRow(ship.fireRate, ship);
         CreateStatRow(ship.moveSpeed, ship);
@@ -243,40 +251,81 @@ public class DeathScreenUI : MonoBehaviour
     }
     
     void CreateStatRow(ShipStat stat, ShipData ship)
+{
+    if (statRowPrefab == null)
     {
-        GameObject row = Instantiate(statRowPrefab, statsContainer);
-        
-        TextMeshProUGUI nameText = row.transform.Find("StatName").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI valueText = row.transform.Find("ValueText").GetComponent<TextMeshProUGUI>();
-        Button upgradeBtn = row.transform.Find("UpgradeButton").GetComponent<Button>();
-        TextMeshProUGUI costText = upgradeBtn.GetComponentInChildren<TextMeshProUGUI>();
-        
-        nameText.text = stat.statName;
+        Debug.LogError("StatRow Prefab is NULL!");
+        return;
+    }
+    
+    GameObject row = Instantiate(statRowPrefab, statsContainer);
+    
+    // Buscar componentes con verificación
+    Transform nameTransform = row.transform.Find("StatName");
+    if (nameTransform == null)
+    {
+        Debug.LogError("StatRow prefab is missing 'StatName' child!");
+        Destroy(row);
+        return;
+    }
+    TextMeshProUGUI nameText = nameTransform.GetComponent<TextMeshProUGUI>();
+    
+    Transform valueTransform = row.transform.Find("ValueText");
+    if (valueTransform == null)
+    {
+        Debug.LogError("StatRow prefab is missing 'ValueText' child!");
+        Destroy(row);
+        return;
+    }
+    TextMeshProUGUI valueText = valueTransform.GetComponent<TextMeshProUGUI>();
+    
+    Transform buttonTransform = row.transform.Find("UpgradeButton");
+    if (buttonTransform == null)
+    {
+        Debug.LogError("StatRow prefab is missing 'UpgradeButton' child!");
+        Destroy(row);
+        return;
+    }
+    Button upgradeBtn = buttonTransform.GetComponent<Button>();
+    TextMeshProUGUI costText = upgradeBtn.GetComponentInChildren<TextMeshProUGUI>();
+    
+    // Configurar textos
+    if (nameText != null)
+        nameText.text = stat.statName + ":";
+    
+    if (valueText != null)
         valueText.text = $"{stat.currentLevel}/{stat.maxLevel}";
-        
-        int upgradeCost = stat.GetUpgradeCost();
-        bool canUpgrade = stat.CanUpgrade() && ship.IsOwned();
-        int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
-        bool canAfford = currentScrap >= upgradeCost;
-        
+    
+    // Configurar botón
+    int upgradeCost = stat.GetUpgradeCost();
+    bool canUpgrade = stat.CanUpgrade() && ship.IsOwned();
+    int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
+    bool canAfford = currentScrap >= upgradeCost;
+    
+    if (upgradeBtn != null)
+    {
         if (canUpgrade && canAfford)
         {
             upgradeBtn.interactable = true;
-            costText.text = $"{upgradeCost}";
+            if (costText != null)
+                costText.text = $"{upgradeCost}";
         }
         else if (!canUpgrade)
         {
             upgradeBtn.interactable = false;
-            costText.text = "MAX";
+            if (costText != null)
+                costText.text = "MAX";
         }
         else
         {
             upgradeBtn.interactable = false;
-            costText.text = $"{upgradeCost}";
+            if (costText != null)
+                costText.text = $"{upgradeCost}";
         }
         
         upgradeBtn.onClick.AddListener(() => OnUpgradeStat(stat, ship, upgradeCost));
     }
+}
     
     void OnUpgradeStat(ShipStat stat, ShipData ship, int cost)
     {
@@ -285,7 +334,11 @@ public class DeathScreenUI : MonoBehaviour
         
         if (SaveManager.Instance == null) return;
         
-        if (!SaveManager.Instance.SpendScrap(cost)) return;
+        if (!SaveManager.Instance.SpendScrap(cost))
+        {
+            Debug.Log("Not enough scrap!");
+            return;
+        }
         
         stat.Upgrade();
         SaveManager.Instance.UpgradeShipStat(ship.shipName, stat.statName);
@@ -301,13 +354,20 @@ public class DeathScreenUI : MonoBehaviour
         bool isOwned = ship.IsOwned();
         bool isEquipped = ship.IsEquipped();
         
+        // Botón Purchase
         if (purchaseShipButton != null)
         {
             purchaseShipButton.gameObject.SetActive(!isOwned);
+            
             int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
-            purchaseShipButton.interactable = currentScrap >= ship.purchaseCost;
+            bool canAfford = currentScrap >= ship.purchaseCost;
+            purchaseShipButton.interactable = canAfford;
+            
+            if (purchaseButtonText != null)
+                purchaseButtonText.text = $"PURCHASE ({ship.purchaseCost})";
         }
         
+        // Botón Equip
         if (equipShipButton != null)
         {
             equipShipButton.gameObject.SetActive(isOwned && !isEquipped);

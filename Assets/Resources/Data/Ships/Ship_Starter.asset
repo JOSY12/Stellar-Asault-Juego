@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da21be7e564529398438f9c22f73fc6, type: 3}
+  m_Name: Ship_Starter
+  m_EditorClassIdentifier: Assembly-CSharp::ShipData
+  shipName: Starter
+  shipSprite: {fileID: -2770624651766692744, guid: ca5cfb0e5510fc9e498a217b6dd198c3, type: 3}
+  purchaseCost: 0
+  bulletData: {fileID: 11400000, guid: e795f735f16c31e6e93429aebc4ca52d, type: 2}
+  damage:
+    statName: Damage
+    baseValue: 1
+    maxValue: 5
+    maxLevel: 5
+    baseUpgradeCost: 10
+    currentValue: 1
+    currentLevel: 1
+  fireRate:
+    statName: FireRate
+    baseValue: 0.15
+    maxValue: 0.05
+    maxLevel: 5
+    baseUpgradeCost: 15
+    currentValue: 0.3
+    currentLevel: 1
+  moveSpeed:
+    statName: MoveSpeed
+    baseValue: 5
+    maxValue: 10
+    maxLevel: 5
+    baseUpgradeCost: 12
+    currentValue: 5
+    currentLevel: 1
+  health:
+    statName: Health
+    baseValue: 3
+    maxValue: 10
+    maxLevel: 5
+    baseUpgradeCost: 20
+    currentValue: 3
+    currentLevel: 1
+  bulletSpeed:
+    statName: BulletSpeed
+    baseValue: 10
+    maxValue: 20
+    maxLevel: 5
+    baseUpgradeCost: 10
+    currentValue: 10
+    currentLevel: 1

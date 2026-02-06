@@ -69,7 +69,7 @@ public float knockbackDuration = 0.05f;  // ← Muy corto
         }
     }
     
-    void ApplyKnockback(Collider2D enemyCollider)
+ void ApplyKnockback(Collider2D enemyCollider)
 {
     Rigidbody2D enemyRb = enemyCollider.GetComponent<Rigidbody2D>();
     if (enemyRb != null)
@@ -77,28 +77,31 @@ public float knockbackDuration = 0.05f;  // ← Muy corto
         Vector2 knockbackDir = transform.up;
         
         bool wasKinematic = (enemyRb.bodyType == RigidbodyType2D.Kinematic);
+        float originalGravity = enemyRb.gravityScale; // ← NUEVO: Guardar gravedad original
         
         if (wasKinematic)
         {
             enemyRb.bodyType = RigidbodyType2D.Dynamic;
+            enemyRb.gravityScale = 0f; // ← NUEVO: Sin gravedad durante knockback
         }
         
         enemyRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
         
         if (wasKinematic && enemyCollider != null)
         {
-            StartCoroutine(ResetKinematic(enemyRb, knockbackDuration)); // ← Usar variable
+            StartCoroutine(ResetKinematic(enemyRb, knockbackDuration, originalGravity)); // ← NUEVO: Pasar gravedad
         }
     }
 }
 
     
-   System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay)
+System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay, float originalGravity) // ← CAMBIO: Agregar parámetro
 {
     yield return new WaitForSeconds(delay);
     if (rb != null)
     {
-        rb.linearVelocity = Vector2.zero; // ← Detener completamente
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = originalGravity; // ← NUEVO: Restaurar gravedad
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 }
