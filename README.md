@@ -98,3 +98,16 @@ FASE 5 - POLISH Y STATS (20 min):
 FASE 6 - ADMOB REAL (20 min):
 └─ Reemplazar ads simulados con AdMob real
 
+
+
+PLAN actual:
+🎮 ¿QUÉ PREFIERES HACER AHORA?
+A) Admin Menu (unlock all, add scrap, cambiar zona/paleta)
+B) Power-ups + Meteoritos
+C) Parallax espacial + Zonas
+D) Control alternativo (touch zones invisibles)
+E) Otra cosa que se me olvidó
+
+primero hagamos lo que parece mas rapido de solucionar,  Control alternativo (touch zones invisibles, pantalla dividad en 2),Admin Menu (unlock all, add scrap), Parallax espacial + Zonas,Power-ups + Meteoritos
+
+

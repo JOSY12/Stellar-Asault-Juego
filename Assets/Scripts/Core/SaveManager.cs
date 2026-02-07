@@ -202,7 +202,16 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("CameraShakeEnabled", enabled ? 1 : 0);
         PlayerPrefs.Save();
     }
-    
+    public float GetBestTime()
+{
+    return PlayerPrefs.GetFloat("BestTime", 0f);
+}
+
+public void SetBestTime(float time)
+{
+    PlayerPrefs.SetFloat("BestTime", time);
+    PlayerPrefs.Save();
+}
     // ============ RESET (para testing) ============
     public void ResetAllData()
     {

@@ -104,7 +104,19 @@ public HealthUI healthUI; // ← NUEVO
     // Aplicar datos de la nave
     ApplyShipData();
 }
+    public void Revive()
+{
+    currentHealth = maxHealth;
     
+    if (healthUI != null)
+    {
+        healthUI.UpdateHealth(Mathf.RoundToInt(currentHealth));
+    }
+     // ← AGREGAR: Resetear input
+    StopInput();
+    
+    Debug.Log("Player revived!");
+}
 void ApplyShipData()
 {
     Debug.Log("=== APPLYING SHIP DATA ===");
@@ -153,11 +165,15 @@ void ApplyShipData()
 }
    void Update()
 {
-    // ← CAMBIO: Verificar game over PRIMERO
+    // ← VERIFICAR ESTAS LÍNEAS
     if (GameManager.Instance != null && GameManager.Instance.isGameOver)
         return;
     
     if (GameManager.Instance != null && GameManager.Instance.isPaused)
+        return;
+    
+    // ← AGREGAR: No procesar si está muerto
+    if (currentHealth <= 0)
         return;
     
     HandleAiming();
@@ -166,16 +182,23 @@ void ApplyShipData()
     
    void FixedUpdate()
 {
-    // ← CAMBIO: Verificar game over PRIMERO
+    // ← VERIFICAR ESTAS LÍNEAS
     if (GameManager.Instance != null && GameManager.Instance.isGameOver)
     {
-        rb.linearVelocity = Vector2.zero; // Detener movimiento
+        rb.linearVelocity = Vector2.zero;
         return;
     }
     
     if (GameManager.Instance != null && GameManager.Instance.isPaused)
     {
-        rb.linearVelocity = Vector2.zero; // Detener movimiento
+        rb.linearVelocity = Vector2.zero;
+        return;
+    }
+    
+    // ← AGREGAR: No mover si está muerto
+    if (currentHealth <= 0)
+    {
+        rb.linearVelocity = Vector2.zero;
         return;
     }
     
@@ -215,7 +238,21 @@ void ApplyShipData()
             nextFireTime = Time.time + currentShip.fireRate.currentValue;
         }
     }
+    public void StopInput()
+{
+    // Detener movimiento
+    if (rb != null)
+        rb.linearVelocity = Vector2.zero;
     
+    // Resetear joysticks
+    if (joystickMove != null)
+        joystickMove.ResetJoystick();
+    
+    if (joystickAim != null)
+        joystickAim.ResetJoystick();
+    
+    Debug.Log("Player input stopped and joysticks reset");
+}
    void Shoot()
 {
     if (bulletPrefab == null || firePoint == null)
@@ -283,14 +320,20 @@ void ApplyShipData()
 }
     
     void Die()
+{
+    if (GameManager.Instance != null)
     {
-        // Notificar al GameManager
-        if (GameManager.Instance != null)
-            GameManager.Instance.PlayerDied();
-        
-        // Desactivar controles
-        enabled = false;
+        GameManager.Instance.PlayerDied();
     }
+    
+    // ← AGREGAR: Detener completamente el player
+    if (rb != null)
+        rb.linearVelocity = Vector2.zero;
+    
+    StopInput();
+    
+    Debug.Log("Player died!");
+}
     void ApplyCurrentPalette()
 {
     if (PaletteManager.Instance != null)

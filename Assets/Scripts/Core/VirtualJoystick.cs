@@ -17,7 +17,13 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         // Obtiene el primer hijo (la esfera del centro)
         handle = transform.GetChild(0).GetComponent<Image>();
     }
-
+// AGREGAR este método al final (antes de la última })
+public void ResetJoystick()
+{
+    InputVector = Vector2.zero;
+    if (handle != null)
+        handle.rectTransform.anchoredPosition = Vector2.zero;
+}
     public void OnDrag(PointerEventData ped)
     {
         Vector2 pos;

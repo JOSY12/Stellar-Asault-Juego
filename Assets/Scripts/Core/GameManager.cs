@@ -13,11 +13,12 @@ public class GameManager : MonoBehaviour
     public int currentWave = 1;
     public float waveDuration = 30f;
     private float waveTimer = 0f;
-    
+
     [Header("Economy")]
     public int scrapThisRun = 0;
     public int killsThisRun = 0;
-    
+    public float survivalTime = 0f; // ← NUEVO: Timer
+public bool hasUsedContinue = false; // ← NUEVO: Solo 1 continue por run
     [Header("Player Reference")]
     public PlayerController player;
     
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public TMPro.TextMeshProUGUI killsText;
     public TMPro.TextMeshProUGUI scrapText;
     public DeathScreenUI deathScreen;
+    public TMPro.TextMeshProUGUI timeText; // ← NUEVO
     
     void Awake()
     {
@@ -57,20 +59,23 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void Update()
+   void Update()
+{
+    if (isGameOver || isPaused) return;
+    
+    // Timer de supervivencia
+    survivalTime += Time.deltaTime;
+    
+    // Sistema de oleadas
+    waveTimer += Time.deltaTime;
+    if (waveTimer >= waveDuration)
     {
-        if (isGameOver || isPaused) return;
-        
-        // Sistema de oleadas por tiempo
-        waveTimer += Time.deltaTime;
-        if (waveTimer >= waveDuration)
-        {
-            waveTimer = 0f;
-            NextWave();
-        }
-        
-        UpdateUI();
+        waveTimer = 0f;
+        NextWave();
     }
+    
+    UpdateUI();
+}
     
     public void StartNewGame()
 {
@@ -114,39 +119,129 @@ public class GameManager : MonoBehaviour
         AddScrap(scrapReward);
     }
     
-    public void PlayerDied()
+   
+public void PlayerDied()
+{
+    if (isGameOver) return;
+    
+    isGameOver = true;
+    
+    Debug.Log("=== PLAYER DIED ===");
+    
+    // ← AGREGAR: Detener input del player
+    if (player != null)
     {
-        if (isGameOver) return;
-        
-        isGameOver = true;
-        
-        Debug.Log("=== PLAYER DIED ===");
-        
-        // NO pausar con Time.timeScale, solo marcar como game over
-        // Time.timeScale = 0f; ← QUITAR ESTO
-        
-        // Reproducir sonido de muerte
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeathSFX);
-        
-        // Guardar stats
-        int permanentScrap = SaveRunStats();
-        
-        Debug.Log($"Wave: {currentWave}, Kills: {killsThisRun}, Scrap: {scrapThisRun}, Saved: {permanentScrap}");
-        
-        // Mostrar Death Screen
-        if (deathScreen != null)
+        player.StopInput();
+    }
+    
+    // Reproducir sonido
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeathSFX);
+    
+    // Mostrar Death Screen
+    if (deathScreen != null)
+    {
+        deathScreen.ShowDeathScreen(
+            currentWave, 
+            killsThisRun, 
+            scrapThisRun, 
+            Mathf.FloorToInt(scrapThisRun * 0.4f),
+            survivalTime,
+            hasUsedContinue
+        );
+    }
+    else
+    {
+        Debug.LogError("DeathScreen reference is NULL!");
+    }
+}
+    
+public void ContinueRun()
+{
+    if (hasUsedContinue)
+    {
+        Debug.Log("Already used continue this run!");
+        return;
+    }
+    
+    Debug.Log("=== CONTINUE DEBUG ===");
+    
+    // Reactivar juego PRIMERO
+    isGameOver = false;
+    isPaused = false;
+    Time.timeScale = 1f;
+    
+    hasUsedContinue = true;
+    
+    Debug.Log($"Game state reset: isGameOver={isGameOver}, isPaused={isPaused}, timeScale={Time.timeScale}");
+    
+    // Revivir jugador
+    if (player != null)
+    {
+        player.Revive();
+        Debug.Log("Player revived!");
+    }
+    else
+    {
+        Debug.LogError("Player reference is NULL!");
+    }
+    
+    // ← MEJORAR: Destruir enemigos inmediatamente
+    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    Debug.Log($"Destroying {enemies.Length} enemies...");
+    
+    foreach (GameObject enemy in enemies)
+    {
+        if (enemy != null)
         {
-            Debug.Log("Showing DeathScreen...");
-            deathScreen.ShowDeathScreen(currentWave, killsThisRun, scrapThisRun, permanentScrap);
-        }
-        else
-        {
-            Debug.LogError("DeathScreen reference is NULL!");
-            Invoke("RestartGame", 3f);
+            Destroy(enemy);
         }
     }
     
+    // ← AGREGAR: Destruir balas enemigas también
+    GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+    Debug.Log($"Destroying {enemyBullets.Length} enemy bullets...");
+    
+    foreach (GameObject bullet in enemyBullets)
+    {
+        if (bullet != null)
+        {
+            Destroy(bullet);
+        }
+    }
+    
+    Debug.Log("=== CONTINUE COMPLETE ===");
+}
+
+public void EndRun(bool watchedAd)
+{
+    if (SaveManager.Instance == null) return;
+    
+    int scrapToSave;
+    
+    if (watchedAd)
+    {
+        // Vio ad: guarda 100%
+        scrapToSave = scrapThisRun;
+    }
+    else
+    {
+        // No vio ad: guarda 40%
+        scrapToSave = Mathf.FloorToInt(scrapThisRun * 0.4f);
+    }
+    
+    SaveManager.Instance.AddScrap(scrapToSave);
+    SaveManager.Instance.AddKills(killsThisRun);
+    SaveManager.Instance.SetHighScore(killsThisRun);
+    
+    // Guardar mejor tiempo
+    if (SaveManager.Instance.GetBestTime() < survivalTime)
+    {
+        SaveManager.Instance.SetBestTime(survivalTime);
+    }
+    
+    Debug.Log($"Run ended. Scrap saved: {scrapToSave} (Ad: {watchedAd})");
+}
     int SaveRunStats()
     {
         if (SaveManager.Instance == null) return 0;
@@ -189,5 +284,12 @@ public class GameManager : MonoBehaviour
         
         if (scrapText != null)
             scrapText.text = $"SCRAP: {scrapThisRun}";
+             // ← NUEVO: Actualizar timer
+    if (timeText != null)
+    {
+        int minutes = Mathf.FloorToInt(survivalTime / 60f);
+        int seconds = Mathf.FloorToInt(survivalTime % 60f);
+        timeText.text = $"{minutes:00}:{seconds:00}";
+    }
     }
 }

@@ -31,88 +31,134 @@ public class DeathScreenUI : MonoBehaviour
     [Header("Upgrades Tab - Stats")]
     public Transform statsContainer;
     public GameObject statRowPrefab;
-    
+    [Header("Stats Tab Content - NEW")]
+public TextMeshProUGUI survivalTimeText; // ← NUEVO
     [Header("Upgrades Tab - Ship Actions")]
     public Button purchaseShipButton;
     public Button equipShipButton;
     public TextMeshProUGUI purchaseButtonText;
-    
+    [Header("Death Options - NEW")]
+public Button continueButton; // ← NUEVO
+public Button saveScrapButton; // ← NUEVO
+public Button endRunButton; // ← NUEVO (antes retryButton)
+public TextMeshProUGUI saveScrapSubText; // ← NUEVO
+public TextMeshProUGUI endRunSubText; // ← NUEVO
     [Header("Main Buttons")]
     public Button retryButton;
     public Button watchAdButton;
     public Button mainMenuButton;
-    public TextMeshProUGUI adBonusText;
-    
+ 
+    [Header("Ad Scrap Button")]
+public Button adScrapButton;
+public TextMeshProUGUI adScrapButtonText;
     [Header("Ship Data")]
     public ShipData[] allShips;
     private int currentShipIndex = 0;
     
-    void Start()
+   void Start()
+{
+    if (adScrapButton != null)
+    adScrapButton.onClick.AddListener(OnWatchAdForScrap);
+    if (deathPanel != null)
+        deathPanel.SetActive(false);
+    
+    // Conectar tabs
+    if (statsTabButton != null)
+        statsTabButton.onClick.AddListener(() => ShowTab(true));
+    
+    if (upgradesTabButton != null)
+        upgradesTabButton.onClick.AddListener(() => ShowTab(false));
+    
+    // Conectar navegación de naves
+    if (prevShipButton != null)
+        prevShipButton.onClick.AddListener(PreviousShip);
+    
+    if (nextShipButton != null)
+        nextShipButton.onClick.AddListener(NextShip);
+    
+    // Conectar acciones de nave
+    if (purchaseShipButton != null)
+        purchaseShipButton.onClick.AddListener(PurchaseShip);
+    
+    if (equipShipButton != null)
+        equipShipButton.onClick.AddListener(EquipShip);
+    
+    // ← NUEVO: Conectar botones de muerte
+    if (continueButton != null)
+        continueButton.onClick.AddListener(OnContinue);
+    
+    if (saveScrapButton != null)
+        saveScrapButton.onClick.AddListener(OnSaveScrap);
+    
+    if (endRunButton != null)
+        endRunButton.onClick.AddListener(OnEndRun);
+    
+    // Botón de main menu
+    if (mainMenuButton != null)
+        mainMenuButton.onClick.AddListener(OnMainMenu);
+}
+    void OnWatchAdForScrap()
+{
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlayButtonClick();
+    
+    // TODO: Verificar cooldown (3x por día)
+    
+    // TODO: Mostrar ad (simular por ahora)
+    Debug.Log("Ad for scrap watched (simulated)");
+    
+    // Dar 50 scrap
+    if (SaveManager.Instance != null)
     {
-        if (deathPanel != null)
-            deathPanel.SetActive(false);
-        
-        // Conectar tabs
-        if (statsTabButton != null)
-            statsTabButton.onClick.AddListener(() => ShowTab(true));
-        
-        if (upgradesTabButton != null)
-            upgradesTabButton.onClick.AddListener(() => ShowTab(false));
-        
-        // Conectar navegación de naves
-        if (prevShipButton != null)
-            prevShipButton.onClick.AddListener(PreviousShip);
-        
-        if (nextShipButton != null)
-            nextShipButton.onClick.AddListener(NextShip);
-        
-        // Conectar acciones de nave
-        if (purchaseShipButton != null)
-            purchaseShipButton.onClick.AddListener(PurchaseShip);
-        
-        if (equipShipButton != null)
-            equipShipButton.onClick.AddListener(EquipShip);
-        
-        // Conectar botones principales
-        if (retryButton != null)
-            retryButton.onClick.AddListener(OnRetry);
-        
-        if (watchAdButton != null)
-            watchAdButton.onClick.AddListener(OnWatchAd);
-        
-        if (mainMenuButton != null)
-            mainMenuButton.onClick.AddListener(OnMainMenu);
+        SaveManager.Instance.AddScrap(50);
     }
     
-    public void ShowDeathScreen(int wave, int kills, int scrapEarned, int permanentScrap)
+    // Actualizar UI
+    UpdateUpgradesTab();
+}
+   public void ShowDeathScreen(int wave, int kills, int scrapEarned, int scrapWithoutAd, float survivalTime, bool hasUsedContinue)
+{
+    if (deathPanel != null)
+        deathPanel.SetActive(true);
+    
+    ShowTab(true);
+    
+    // Stats
+    if (waveReachedText != null)
+        waveReachedText.text = $"WAVE {wave}";
+    
+    if (killsText != null)
+        killsText.text = $"KILLS: {kills}";
+    
+    if (scrapEarnedText != null)
+        scrapEarnedText.text = $"SCRAP: {scrapEarned}";
+    
+    if (permanentScrapText != null)
+        permanentScrapText.text = $"WITHOUT AD: {scrapWithoutAd} (40%)";
+    
+    // Tiempo de supervivencia
+    if (survivalTimeText != null)
     {
-        if (deathPanel != null)
-            deathPanel.SetActive(true);
-        
-        // Mostrar tab de stats por defecto
-        ShowTab(true);
-        
-        // Actualizar stats tab
-        if (waveReachedText != null)
-            waveReachedText.text = $"WAVE {wave}";
-        
-        if (killsText != null)
-            killsText.text = $"KILLS: {kills}";
-        
-        if (scrapEarnedText != null)
-            scrapEarnedText.text = $"SCRAP EARNED: {scrapEarned}";
-        
-        if (permanentScrapText != null)
-            permanentScrapText.text = $"SAVED: {permanentScrap}";
-        
-        int adBonus = Mathf.FloorToInt(scrapEarned * 0.5f);
-        if (adBonusText != null)
-            adBonusText.text = $"+{adBonus}";
-        
-        // Cargar nave equipada para upgrades tab
-        LoadEquippedShip();
-        UpdateUpgradesTab();
+        int minutes = Mathf.FloorToInt(survivalTime / 60f);
+        int seconds = Mathf.FloorToInt(survivalTime % 60f);
+        survivalTimeText.text = $"TIME: {minutes:00}:{seconds:00}";
     }
+    
+    // Actualizar textos de botones
+    if (saveScrapSubText != null)
+        saveScrapSubText.text = $"Keep all {scrapEarned} scrap";
+    
+    if (endRunSubText != null)
+        endRunSubText.text = $"Save {scrapWithoutAd} scrap (40%)";
+    
+    // Botón Continue (solo si no se usó)
+    if (continueButton != null)
+        continueButton.gameObject.SetActive(!hasUsedContinue);
+    
+    // Actualizar upgrades tab
+    LoadEquippedShip();
+    UpdateUpgradesTab();
+}
     
     void ShowTab(bool showStats)
     {
@@ -425,13 +471,84 @@ public class DeathScreenUI : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Gameplay");
     }
+   
+  void OnContinue()
+{
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlayButtonClick();
     
-    void OnMainMenu()
+    Debug.Log("Continue button pressed");
+    
+    // TODO: Mostrar ad (por ahora simular)
+    Debug.Log("Continue ad watched (simulated)");
+    
+    // ← VERIFICAR: Cerrar panel ANTES de continuar
+    if (deathPanel != null)
     {
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayButtonClick();
-        
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        deathPanel.SetActive(false);
+        Debug.Log("Death panel closed");
     }
+    
+    // Continuar run
+    if (GameManager.Instance != null)
+    {
+        GameManager.Instance.ContinueRun();
+    }
+    else
+    {
+        Debug.LogError("GameManager.Instance is NULL!");
+    }
+}
+
+void OnSaveScrap()
+{
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlayButtonClick();
+    
+    // TODO: Mostrar ad (por ahora simular)
+    Debug.Log("Save scrap ad watched (simulated)");
+    
+    // Guardar 100% del scrap
+    if (GameManager.Instance != null)
+    {
+        GameManager.Instance.EndRun(true); // true = vio ad
+    }
+    
+    // Ir a retry
+    Time.timeScale = 1f;
+    SceneManager.LoadScene("Gameplay");
+}
+
+void OnEndRun()
+{
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlayButtonClick();
+    
+    // Guardar 40% del scrap (sin ad)
+    if (GameManager.Instance != null)
+    {
+        GameManager.Instance.EndRun(false); // false = no vio ad
+    }
+    
+    // Ir a retry
+    Time.timeScale = 1f;
+    SceneManager.LoadScene("Gameplay");
+}
+
+void OnMainMenu()
+{
+    if (AudioManager.Instance != null)
+        AudioManager.Instance.PlayButtonClick();
+    
+    // Guardar 40% (sin ad) si aún no guardó
+    if (GameManager.Instance != null)
+    {
+        GameManager.Instance.EndRun(false);
+    }
+    
+    Time.timeScale = 1f;
+    SceneManager.LoadScene("MainMenu");
+}
+ 
+    
 }
