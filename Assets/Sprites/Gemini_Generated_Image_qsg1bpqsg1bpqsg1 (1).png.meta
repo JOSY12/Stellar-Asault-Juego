@@ -129,12 +129,12 @@ TextureImporter:
       name: Gemini_Generated_Image_qsg1bpqsg1bpqsg1 (1)_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 74
-        width: 876
-        height: 876
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f112b5654639b6b8794aa64d85a3b4b3
     internalID: 0
     vertices: []
     indices: 

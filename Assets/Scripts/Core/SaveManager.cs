@@ -212,6 +212,18 @@ public void SetBestTime(float time)
     PlayerPrefs.SetFloat("BestTime", time);
     PlayerPrefs.Save();
 }
+
+// Controls
+public bool UseTouchZones()
+{
+    return PlayerPrefs.GetInt("UseTouchZones", 0) == 1;
+}
+
+public void SetUseTouchZones(bool value)
+{
+    PlayerPrefs.SetInt("UseTouchZones", value ? 1 : 0);
+    PlayerPrefs.Save();
+}
     // ============ RESET (para testing) ============
     public void ResetAllData()
     {

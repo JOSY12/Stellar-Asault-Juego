@@ -20,7 +20,10 @@ public class SettingsUI : MonoBehaviour
     
     [Header("Buttons")]
     public Button closeButton;
-    
+    [Header("Controls")]
+public Toggle controlToggle;
+public TextMeshProUGUI controlToggleLabel;
+
     void Start()
     {
         // Ocultar al inicio
@@ -50,6 +53,13 @@ public class SettingsUI : MonoBehaviour
     
     void SetupSettings()
     {
+         if (controlToggle != null)
+    {
+        bool useTouchZones = SaveManager.Instance.UseTouchZones();
+        controlToggle.isOn = useTouchZones;
+        controlToggle.onValueChanged.AddListener(OnControlToggleChanged);
+        UpdateControlToggleLabel(useTouchZones);
+    }
         if (SaveManager.Instance == null) return;
         
         // Music slider
@@ -153,4 +163,39 @@ public class SettingsUI : MonoBehaviour
             shakeToggleLabel.color = isOn ? Color.green : Color.red;
         }
     }   
+void OnControlToggleChanged(bool value)
+{
+    if (SaveManager.Instance != null)
+        SaveManager.Instance.SetUseTouchZones(value);
+    
+    UpdateControlToggleLabel(value);
+    
+    // ← MEJORAR: Buscar player y aplicar cambio
+    PlayerController player = Object.FindFirstObjectByType<PlayerController>();
+    if (player != null)
+    {
+        PlayerController.ControlType newType = value ? 
+            PlayerController.ControlType.TouchZones : 
+            PlayerController.ControlType.Joysticks;
+        
+        player.SetControlType(newType);
+        
+        Debug.Log($"Control type set to: {newType}");
+    }
+    else
+    {
+        Debug.LogWarning("PlayerController not found in scene!");
+    }
+}
+
+
+void UpdateControlToggleLabel(bool useTouchZones)
+{
+    if (controlToggleLabel != null)
+    {
+        controlToggleLabel.text = useTouchZones ? "TOUCH ZONES" : "JOYSTICKS";
+        controlToggleLabel.color = Color.cyan;
+    }
+}
+
 }
