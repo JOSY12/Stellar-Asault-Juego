@@ -7,9 +7,9 @@ public class Bullet : MonoBehaviour
     public float lifeTime = 3f;
     public int damage = 1;
     
- [Header("Knockback")]
-public float knockbackForce = 0.8f;  // ← REDUCIR (antes 3f)
-public float knockbackDuration = 0.05f;  // ← Muy corto
+    [Header("Knockback")]
+    public float knockbackForce = 0.8f;
+    public float knockbackDuration = 0.05f;
     
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -34,7 +34,6 @@ public float knockbackDuration = 0.05f;  // ← Muy corto
     
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Si es bala enemiga, solo daña al jugador
         if (gameObject.CompareTag("EnemyBullet"))
         {
             if (collision.CompareTag("Player"))
@@ -49,18 +48,14 @@ public float knockbackDuration = 0.05f;  // ← Muy corto
             return;
         }
         
-        // Si es bala del jugador, solo daña enemigos
         if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                
-                // Aplicar knockback
                 ApplyKnockback(collision);
                 
-                // Sonido de hit
                 if (AudioManager.Instance != null)
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyHitSFX);
             }
@@ -69,42 +64,41 @@ public float knockbackDuration = 0.05f;  // ← Muy corto
         }
     }
     
- void ApplyKnockback(Collider2D enemyCollider)
-{
-    Rigidbody2D enemyRb = enemyCollider.GetComponent<Rigidbody2D>();
-    if (enemyRb != null)
+    void ApplyKnockback(Collider2D enemyCollider)
     {
-        Vector2 knockbackDir = transform.up;
-        
-        bool wasKinematic = (enemyRb.bodyType == RigidbodyType2D.Kinematic);
-        float originalGravity = enemyRb.gravityScale; // ← NUEVO: Guardar gravedad original
-        
-        if (wasKinematic)
+        Rigidbody2D enemyRb = enemyCollider.GetComponent<Rigidbody2D>();
+        if (enemyRb != null)
         {
-            enemyRb.bodyType = RigidbodyType2D.Dynamic;
-            enemyRb.gravityScale = 0f; // ← NUEVO: Sin gravedad durante knockback
-        }
-        
-        enemyRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-        
-        if (wasKinematic && enemyCollider != null)
-        {
-            StartCoroutine(ResetKinematic(enemyRb, knockbackDuration, originalGravity)); // ← NUEVO: Pasar gravedad
+            Vector2 knockbackDir = transform.up;
+            
+            bool wasKinematic = (enemyRb.bodyType == RigidbodyType2D.Kinematic);
+            float originalGravity = enemyRb.gravityScale;
+            
+            if (wasKinematic)
+            {
+                enemyRb.bodyType = RigidbodyType2D.Dynamic;
+                enemyRb.gravityScale = 0f;
+            }
+            
+            enemyRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+            
+            if (wasKinematic && enemyCollider != null)
+            {
+                StartCoroutine(ResetKinematic(enemyRb, knockbackDuration, originalGravity));
+            }
         }
     }
-}
-
     
-System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay, float originalGravity) // ← CAMBIO: Agregar parámetro
-{
-    yield return new WaitForSeconds(delay);
-    if (rb != null)
+    System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay, float originalGravity)
     {
-        rb.linearVelocity = Vector2.zero;
-        rb.gravityScale = originalGravity; // ← NUEVO: Restaurar gravedad
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        yield return new WaitForSeconds(delay);
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = originalGravity;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
-}
     
     public void Initialize(float speed, int damage)
     {
@@ -119,18 +113,7 @@ System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay, float
         if (spriteRenderer != null && data.bulletSprite != null)
         {
             spriteRenderer.sprite = data.bulletSprite;
-            
-            Color finalColor = data.bulletColor;
-            if (PaletteManager.Instance != null)
-            {
-                PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
-                if (palette != null)
-                {
-                    finalColor = palette.playerBulletColor;
-                }
-            }
-            
-            spriteRenderer.color = finalColor;
+            spriteRenderer.color = data.bulletColor;
             transform.localScale = new Vector3(data.bulletScale.x, data.bulletScale.y, 1);
         }
         
@@ -145,19 +128,8 @@ System.Collections.IEnumerator ResetKinematic(Rigidbody2D rb, float delay, float
             trail.startWidth = data.trailWidth;
             trail.endWidth = 0f;
             trail.material = new Material(Shader.Find("Sprites/Default"));
-            
-            Color trailColor = data.trailColor;
-            if (PaletteManager.Instance != null)
-            {
-                PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
-                if (palette != null)
-                {
-                    trailColor = palette.playerBulletColor;
-                }
-            }
-            
-            trail.startColor = trailColor;
-            trail.endColor = new Color(trailColor.r, trailColor.g, trailColor.b, 0);
+            trail.startColor = data.trailColor;
+            trail.endColor = new Color(data.trailColor.r, data.trailColor.g, data.trailColor.b, 0);
         }
     }
 }

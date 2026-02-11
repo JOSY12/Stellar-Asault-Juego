@@ -4,18 +4,10 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [Header("Settings")]
-public SettingsUI settingsUI; // ← AGREGAR
-
+    public SettingsUI settingsUI;
 
     void Start()
     {
-        // Aplicar paleta guardada
-        if (PaletteManager.Instance != null)
-        {
-            PaletteManager.Instance.ApplyCurrentPalette();
-        }
-        
-        // Reproducir música de menú
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayMusic(AudioManager.Instance.menuMusic);
@@ -30,21 +22,14 @@ public SettingsUI settingsUI; // ← AGREGAR
         SceneManager.LoadScene("Hangar");
     }
     
-    public void OnPalettesButton()
+    public void OnSettingsButton()
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
-        SceneManager.LoadScene("PaletteSelector");
+        if (settingsUI != null)
+            settingsUI.Open();
     }
-public void OnSettingsButton()
-{
-    if (AudioManager.Instance != null)
-        AudioManager.Instance.PlayButtonClick();
-    
-    if (settingsUI != null)
-        settingsUI.Open();
-}
     
     public void OnExitButton()
     {
@@ -55,4 +40,3 @@ public void OnSettingsButton()
         Debug.Log("Exit Game");
     }
 }
- 

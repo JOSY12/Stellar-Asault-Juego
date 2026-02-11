@@ -29,17 +29,12 @@ public class HangarUI : MonoBehaviour
     public Button equipButton;
     public Button launchButton;
     public TextMeshProUGUI purchaseButtonText;
+    public TextMeshProUGUI launchButtonText;
     
     void Start()
     {
-        // Aplicar paleta
-        if (PaletteManager.Instance != null)
-            PaletteManager.Instance.ApplyCurrentPalette();
-        
-        // Cargar nave equipada
         LoadEquippedShip();
         
-        // Conectar botones
         if (prevShipButton != null)
             prevShipButton.onClick.AddListener(PreviousShip);
         
@@ -53,12 +48,11 @@ public class HangarUI : MonoBehaviour
             equipButton.onClick.AddListener(EquipShip);
         
         if (launchButton != null)
-            launchButton.onClick.AddListener(LaunchGame);
+            launchButton.onClick.AddListener(GoToZoneSelector);
         
         if (backButton != null)
             backButton.onClick.AddListener(GoBack);
         
-        // Mostrar nave actual
         UpdateUI();
     }
     
@@ -107,28 +101,20 @@ public class HangarUI : MonoBehaviour
         ShipData ship = allShips[currentShipIndex];
         ship.LoadProgress();
         
-        // Actualizar scrap
         if (scrapText != null && SaveManager.Instance != null)
         {
             int scrap = SaveManager.Instance.GetScrap();
             scrapText.text = $"SCRAP: {scrap}";
         }
         
-        // Nombre de nave
         if (shipNameText != null)
             shipNameText.text = ship.shipName.ToUpper();
         
-        // Preview sprite
         if (shipPreviewImage != null && ship.shipSprite != null)
             shipPreviewImage.sprite = ship.shipSprite;
         
-        // Status de la nave
         UpdateShipStatus(ship);
-        
-        // Stats de la nave
         UpdateStats(ship);
-        
-        // Botones de acción
         UpdateActionButtons(ship);
     }
     
@@ -161,11 +147,9 @@ public class HangarUI : MonoBehaviour
     {
         if (statsContainer == null) return;
         
-        // Limpiar stats anteriores
         foreach (Transform child in statsContainer)
             Destroy(child.gameObject);
         
-        // Crear row por cada stat
         CreateStatRow(ship.damage, ship);
         CreateStatRow(ship.fireRate, ship);
         CreateStatRow(ship.moveSpeed, ship);
@@ -175,51 +159,21 @@ public class HangarUI : MonoBehaviour
     
     void CreateStatRow(ShipStat stat, ShipData ship)
     {
-        if (statRowPrefab == null)
-        {
-            Debug.LogError("StatRow Prefab is NULL!");
-            return;
-        }
+        if (statRowPrefab == null) return;
         
         GameObject row = Instantiate(statRowPrefab, statsContainer);
         
-        // Buscar componentes
-        Transform nameTransform = row.transform.Find("StatName");
-        if (nameTransform == null)
-        {
-            Debug.LogError("StatRow missing 'StatName'");
-            Destroy(row);
-            return;
-        }
-        TextMeshProUGUI nameText = nameTransform.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI nameText = row.transform.Find("StatName")?.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI valueText = row.transform.Find("ValueText")?.GetComponent<TextMeshProUGUI>();
+        Button upgradeBtn = row.transform.Find("UpgradeButton")?.GetComponent<Button>();
+        TextMeshProUGUI costText = upgradeBtn?.GetComponentInChildren<TextMeshProUGUI>();
         
-        Transform valueTransform = row.transform.Find("ValueText");
-        if (valueTransform == null)
-        {
-            Debug.LogError("StatRow missing 'ValueText'");
-            Destroy(row);
-            return;
-        }
-        TextMeshProUGUI valueText = valueTransform.GetComponent<TextMeshProUGUI>();
-        
-        Transform buttonTransform = row.transform.Find("UpgradeButton");
-        if (buttonTransform == null)
-        {
-            Debug.LogError("StatRow missing 'UpgradeButton'");
-            Destroy(row);
-            return;
-        }
-        Button upgradeBtn = buttonTransform.GetComponent<Button>();
-        TextMeshProUGUI costText = upgradeBtn.GetComponentInChildren<TextMeshProUGUI>();
-        
-        // Configurar textos
         if (nameText != null)
             nameText.text = stat.statName + ":";
         
         if (valueText != null)
             valueText.text = $"{stat.currentLevel}/{stat.maxLevel}";
         
-        // Configurar botón
         int upgradeCost = stat.GetUpgradeCost();
         bool canUpgrade = stat.CanUpgrade() && ship.IsOwned();
         int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
@@ -257,14 +211,7 @@ public class HangarUI : MonoBehaviour
         
         if (SaveManager.Instance == null) return;
         
-        if (SaveManager.Instance.GetScrap() < cost)
-        {
-            Debug.Log("Not enough scrap!");
-            return;
-        }
-        
-        if (!SaveManager.Instance.SpendScrap(cost))
-            return;
+        if (!SaveManager.Instance.SpendScrap(cost)) return;
         
         stat.Upgrade();
         SaveManager.Instance.UpgradeShipStat(ship.shipName, stat.statName);
@@ -280,7 +227,6 @@ public class HangarUI : MonoBehaviour
         bool isOwned = ship.IsOwned();
         bool isEquipped = ship.IsEquipped();
         
-        // Botón Purchase
         if (purchaseButton != null)
         {
             purchaseButton.gameObject.SetActive(!isOwned);
@@ -293,16 +239,16 @@ public class HangarUI : MonoBehaviour
                 purchaseButtonText.text = $"PURCHASE ({ship.purchaseCost})";
         }
         
-        // Botón Equip
         if (equipButton != null)
         {
             equipButton.gameObject.SetActive(isOwned && !isEquipped);
         }
         
-        // Botón Launch siempre visible
         if (launchButton != null)
         {
             launchButton.interactable = true;
+            if (launchButtonText != null)
+                launchButtonText.text = "SELECT ZONE";
         }
     }
     
@@ -314,12 +260,6 @@ public class HangarUI : MonoBehaviour
         ShipData ship = allShips[currentShipIndex];
         
         if (SaveManager.Instance == null) return;
-        
-        if (SaveManager.Instance.GetScrap() < ship.purchaseCost)
-        {
-            Debug.Log("Not enough scrap!");
-            return;
-        }
         
         if (SaveManager.Instance.SpendScrap(ship.purchaseCost))
         {
@@ -344,12 +284,12 @@ public class HangarUI : MonoBehaviour
         UpdateUI();
     }
     
-    void LaunchGame()
+    void GoToZoneSelector()
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene("ZoneSelector");
     }
     
     void GoBack()
@@ -360,4 +300,3 @@ public class HangarUI : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 }
- 

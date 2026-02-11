@@ -1,40 +1,38 @@
 using UnityEngine;
-using System;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
     
-   void Awake()
-{
-    if (Instance == null)
+    void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        
-        // ← AGREGAR ESTO AL FINAL
-        UnlockStarterShip();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            UnlockStarterShip();
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
-    else if (Instance != this)
+    
+    void UnlockStarterShip()
     {
-        Destroy(gameObject);
-        return;
+        if (!PlayerPrefs.HasKey("FirstTimePlayed"))
+        {
+            PlayerPrefs.SetInt("Ship_Starter_Owned", 1);
+            PlayerPrefs.SetString("EquippedShip", "Starter");
+            PlayerPrefs.SetInt("Zone_0_Unlocked", 1);
+            PlayerPrefs.SetInt("FirstTimePlayed", 1);
+            PlayerPrefs.Save();
+            
+            Debug.Log("Starter ship and default zone unlocked!");
+        }
     }
-}
-   void UnlockStarterShip()
-{
-    // Solo la primera vez que se ejecuta el juego
-    if (!PlayerPrefs.HasKey("FirstTimePlayed"))
-    {
-        // Desbloquear y equipar Starter
-        PlayerPrefs.SetInt("Ship_Starter_Owned", 1);
-        PlayerPrefs.SetString("EquippedShip", "Starter");
-        PlayerPrefs.SetInt("FirstTimePlayed", 1);
-        PlayerPrefs.Save();
-        
-        Debug.Log("Starter ship unlocked and equipped!");
-    }
-} 
+    
     // ============ ECONOMÍA ============
     public int GetScrap()
     {
@@ -96,27 +94,26 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
-    // ============ PALETAS ============
-    public bool IsPaletteUnlocked(int paletteIndex)
+    // ============ ZONAS ============
+    public bool IsZoneUnlocked(int zoneIndex)
     {
-        return PlayerPrefs.GetInt($"Palette_{paletteIndex}_Unlocked", 0) == 1;
+        return PlayerPrefs.GetInt($"Zone_{zoneIndex}_Unlocked", 0) == 1;
     }
     
-    public void UnlockPalette(int paletteIndex)
+    public void UnlockZone(int zoneIndex)
     {
-        PlayerPrefs.SetInt($"Palette_{paletteIndex}_Unlocked", 1);
+        PlayerPrefs.SetInt($"Zone_{zoneIndex}_Unlocked", 1);
         PlayerPrefs.Save();
     }
     
-    public int GetCurrentPalette()
+    public int GetCurrentZone()
     {
-        return PlayerPrefs.GetInt("CurrentPalette", 0);
-
+        return PlayerPrefs.GetInt("CurrentZone", 0);
     }
     
-    public void SetCurrentPalette(int paletteIndex)
+    public void SetCurrentZone(int zoneIndex)
     {
-        PlayerPrefs.SetInt("CurrentPalette", paletteIndex);
+        PlayerPrefs.SetInt("CurrentZone", zoneIndex);
         PlayerPrefs.Save();
     }
     
@@ -144,6 +141,17 @@ public class SaveManager : MonoBehaviour
     {
         int current = GetTotalKills();
         PlayerPrefs.SetInt("TotalKills", current + amount);
+        PlayerPrefs.Save();
+    }
+    
+    public float GetBestTime()
+    {
+        return PlayerPrefs.GetFloat("BestTime", 0f);
+    }
+    
+    public void SetBestTime(float time)
+    {
+        PlayerPrefs.SetFloat("BestTime", time);
         PlayerPrefs.Save();
     }
     
@@ -202,29 +210,19 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("CameraShakeEnabled", enabled ? 1 : 0);
         PlayerPrefs.Save();
     }
-    public float GetBestTime()
-{
-    return PlayerPrefs.GetFloat("BestTime", 0f);
-}
-
-public void SetBestTime(float time)
-{
-    PlayerPrefs.SetFloat("BestTime", time);
-    PlayerPrefs.Save();
-}
-
-// Controls
-public bool UseTouchZones()
-{
-    return PlayerPrefs.GetInt("UseTouchZones", 0) == 1;
-}
-
-public void SetUseTouchZones(bool value)
-{
-    PlayerPrefs.SetInt("UseTouchZones", value ? 1 : 0);
-    PlayerPrefs.Save();
-}
-    // ============ RESET (para testing) ============
+    
+    public bool UseTouchZones()
+    {
+        return PlayerPrefs.GetInt("UseTouchZones", 0) == 1;
+    }
+    
+    public void SetUseTouchZones(bool value)
+    {
+        PlayerPrefs.SetInt("UseTouchZones", value ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    
+    // ============ RESET ============
     public void ResetAllData()
     {
         PlayerPrefs.DeleteAll();

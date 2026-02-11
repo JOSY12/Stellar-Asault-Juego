@@ -12,7 +12,6 @@ public class AdminMenu : MonoBehaviour
     public Button add1000ScrapButton;
     public Button add10000ScrapButton;
     public Button unlockAllShipsButton;
-    public Button unlockAllPalettesButton;
     public Button maxAllStatsButton;
     public Button resetAllDataButton;
     public Button closeButton;
@@ -41,8 +40,7 @@ public class AdminMenu : MonoBehaviour
         if (unlockAllShipsButton != null)
             unlockAllShipsButton.onClick.AddListener(UnlockAllShips);
         
-        if (unlockAllPalettesButton != null)
-            unlockAllPalettesButton.onClick.AddListener(UnlockAllPalettes);
+       
         
         if (maxAllStatsButton != null)
             maxAllStatsButton.onClick.AddListener(MaxAllStats);
@@ -126,23 +124,7 @@ public class AdminMenu : MonoBehaviour
             AudioManager.Instance.PlayButtonClick();
     }
     
-    void UnlockAllPalettes()
-    {
-        if (SaveManager.Instance != null)
-        {
-            // Desbloquear paletas 0-6 (7 paletas)
-            for (int i = 0; i < 7; i++)
-            {
-                SaveManager.Instance.UnlockPalette(i);
-            }
-            
-            ShowFeedback("All Palettes Unlocked!", Color.green);
-            Debug.Log("[ADMIN] All palettes unlocked");
-        }
-        
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayButtonClick();
-    }
+     
     
     void MaxAllStats()
     {

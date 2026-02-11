@@ -39,24 +39,16 @@ public class PlayerController : MonoBehaviour
     private float nextFireTime;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private Camera mainCamera;
     
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        mainCamera = Camera.main;
     }
     
     void Start()
     {
         LoadShipData();
-        ApplyCurrentPalette();
-
-        Debug.Log($"=== SHIP LOADED ===");
-        Debug.Log($"Ship: {currentShip.shipName}");
-        Debug.Log($"Fire Rate: {currentShip.fireRate.currentValue}");
-        Debug.Log($"Fire Rate Level: {currentShip.fireRate.currentLevel}/{currentShip.fireRate.maxLevel}");
 
         if (healthUI != null)
         {
@@ -73,22 +65,13 @@ public class PlayerController : MonoBehaviour
     
     void LoadShipData()
     {
-        Debug.Log("=== LOADING SHIP DATA ===");
-        
-        if (SaveManager.Instance == null)
+        if (SaveManager.Instance == null || allShips == null || allShips.Length == 0)
         {
-            Debug.LogError("SaveManager is NULL!");
-            return;
-        }
-        
-        if (allShips == null || allShips.Length == 0)
-        {
-            Debug.LogError("allShips array is empty or null!");
+            Debug.LogError("Cannot load ship data!");
             return;
         }
         
         string equippedShipName = SaveManager.Instance.GetEquippedShip();
-        Debug.Log($"Equipped ship from SaveManager: {equippedShipName}");
         
         currentShip = null;
         foreach (ShipData ship in allShips)
@@ -96,21 +79,12 @@ public class PlayerController : MonoBehaviour
             if (ship != null && ship.shipName == equippedShipName)
             {
                 currentShip = ship;
-                Debug.Log($"✓ Found ship: {ship.shipName}");
                 break;
             }
         }
         
         if (currentShip == null)
         {
-            Debug.LogError($"Ship '{equippedShipName}' not found in allShips array!");
-            Debug.Log("Available ships:");
-            foreach (ShipData ship in allShips)
-            {
-                if (ship != null)
-                    Debug.Log($"  - {ship.shipName}");
-            }
-            
             currentShip = allShips[0];
             Debug.LogWarning($"Using fallback ship: {currentShip.shipName}");
         }
@@ -121,53 +95,18 @@ public class PlayerController : MonoBehaviour
 
     void ApplyShipData()
     {
-        Debug.Log("=== APPLYING SHIP DATA ===");
-        Debug.Log($"Current ship: {currentShip.shipName}");
-        
-        if (spriteRenderer == null)
+        if (spriteRenderer != null && currentShip.shipSprite != null)
         {
-            Debug.LogError("SpriteRenderer is NULL!");
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer == null)
-            {
-                Debug.LogError("Could not find SpriteRenderer component!");
-                return;
-            }
+            spriteRenderer.sprite = currentShip.shipSprite;
         }
-        
-        if (currentShip.shipSprite == null)
-        {
-            Debug.LogError($"Ship {currentShip.shipName} has NULL sprite!");
-            return;
-        }
-        
-        Sprite oldSprite = spriteRenderer.sprite;
-        spriteRenderer.sprite = currentShip.shipSprite;
-        
-        Debug.Log($"Sprite changed:");
-        Debug.Log($"  Old: {(oldSprite != null ? oldSprite.name : "NULL")}");
-        Debug.Log($"  New: {spriteRenderer.sprite.name}");
-        Debug.Log($"  Ship sprite: {currentShip.shipSprite.name}");
-        Debug.Log($"  Match: {spriteRenderer.sprite == currentShip.shipSprite}");
         
         maxHealth = currentShip.health.currentValue;
         currentHealth = maxHealth;
-        
-        Debug.Log($"Stats applied:");
-        Debug.Log($"  Health: {currentHealth}");
-        Debug.Log($"  Damage: {currentShip.damage.currentValue}");
-        Debug.Log($"  Fire Rate: {currentShip.fireRate.currentValue}");
-        Debug.Log($"  Move Speed: {currentShip.moveSpeed.currentValue}");
-        
-        Debug.Log("=== SHIP DATA APPLIED SUCCESSFULLY ===");
     }
 
     void Update()
     {
-        if (GameManager.Instance != null && GameManager.Instance.isGameOver)
-            return;
-        
-        if (GameManager.Instance != null && GameManager.Instance.isPaused)
+        if (GameManager.Instance != null && (GameManager.Instance.isGameOver || GameManager.Instance.isPaused))
             return;
         
         if (currentHealth <= 0)
@@ -179,13 +118,7 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (GameManager.Instance != null && GameManager.Instance.isGameOver)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
-        }
-        
-        if (GameManager.Instance != null && GameManager.Instance.isPaused)
+        if (GameManager.Instance != null && (GameManager.Instance.isGameOver || GameManager.Instance.isPaused))
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -206,7 +139,6 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = moveInput * currentShip.moveSpeed.currentValue;
     }
     
-    // ✅ CORREGIDO: Usa lookInput en lugar de aimInput
     void HandleAiming()
     {
         Vector2 lookInput = GetAimInput();
@@ -215,9 +147,6 @@ public class PlayerController : MonoBehaviour
         {
             float angle = Mathf.Atan2(lookInput.y, lookInput.x) * Mathf.Rad2Deg - 90f;
             rb.rotation = angle;
-            
-            // Debug visual (solo en Scene view)
-            Debug.DrawRay(transform.position, new Vector3(lookInput.x, lookInput.y, 0) * 3f, Color.red);
         }
     }
 
@@ -237,11 +166,7 @@ public class PlayerController : MonoBehaviour
     
     void Shoot()
     {
-        if (bulletPrefab == null || firePoint == null)
-        {
-            Debug.LogError("Missing bullet prefab or fire point!");
-            return;
-        }
+        if (bulletPrefab == null || firePoint == null) return;
         
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         
@@ -273,33 +198,17 @@ public class PlayerController : MonoBehaviour
     {
         controlType = newType;
         
-        Debug.Log($"=== CHANGING CONTROL TYPE TO: {newType} ===");
-        
         if (joystickMov != null)
-        {
             joystickMov.gameObject.SetActive(newType == ControlType.Joysticks);
-            Debug.Log($"Joystick Move active: {newType == ControlType.Joysticks}");
-        }
         
         if (joystickVis != null)
-        {
             joystickVis.gameObject.SetActive(newType == ControlType.Joysticks);
-            Debug.Log($"Joystick Aim active: {newType == ControlType.Joysticks}");
-        }
         
         if (touchZoneMove != null)
-        {
             touchZoneMove.gameObject.SetActive(newType == ControlType.TouchZones);
-            Debug.Log($"TouchZone Move active: {newType == ControlType.TouchZones}");
-        }
         
         if (touchZoneAim != null)
-        {
             touchZoneAim.gameObject.SetActive(newType == ControlType.TouchZones);
-            Debug.Log($"TouchZone Aim active: {newType == ControlType.TouchZones}");
-        }
-        
-        Debug.Log($"=== CONTROL TYPE CHANGED ===");
     }
 
     public void StopInput()
@@ -318,8 +227,6 @@ public class PlayerController : MonoBehaviour
         
         if (touchZoneAim != null)
             touchZoneAim.ResetZone();
-        
-        Debug.Log("Player input stopped");
     }
 
     public void TakeDamage(int amount)
@@ -357,8 +264,6 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
         
         StopInput();
-        
-        Debug.Log("Player died!");
     }
 
     public void Revive()
@@ -372,22 +277,14 @@ public class PlayerController : MonoBehaviour
         
         StopInput();
         
-        Debug.Log("Player revived!");
-    }
-    
-    void ApplyCurrentPalette()
-    {
-        if (PaletteManager.Instance != null)
+        // REACTIVAR controles
+        if (SaveManager.Instance != null)
         {
-            PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
-            if (palette != null && spriteRenderer != null)
-            {
-                spriteRenderer.color = palette.playerColor;
-            }
+            bool useTouchZones = SaveManager.Instance.UseTouchZones();
+            SetControlType(useTouchZones ? ControlType.TouchZones : ControlType.Joysticks);
         }
     }
 
-    // ✅ INPUT METHODS
     Vector2 GetMoveInput()
     {
         if (controlType == ControlType.Joysticks && joystickMov != null)
@@ -410,12 +307,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (controlType == ControlType.TouchZones && touchZoneAim != null)
         {
-            // ✅ Usar el InputVector directamente (funciona igual que Movement)
             return new Vector2(touchZoneAim.Horizontal, touchZoneAim.Vertical);
         }
         
         return Vector2.zero;
     }
 }
-
- 

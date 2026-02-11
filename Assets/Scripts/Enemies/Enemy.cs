@@ -11,9 +11,11 @@ public class Enemy : MonoBehaviour
     public float shadowOffset = 0.3f;
     public Vector2 lightDirection = new Vector2(1, -1);
     [Range(0, 1)] public float shadowOpacity = 0.5f;
-    [Header("VFX")] // ← NUEVO
+    
+    [Header("VFX")]
     public GameObject hitEffectPrefab;
     public GameObject deathExplosionPrefab;
+    
     protected Transform player;
     protected SpriteRenderer enemyRenderer;
     protected SpriteRenderer shadowRenderer;
@@ -24,13 +26,10 @@ public class Enemy : MonoBehaviour
         CreateShadow();
     }
     
-    protected virtual void Start()  // ← CAMBIO: protected virtual
+    protected virtual void Start()
     {
         FindPlayer();
-           
-    // Aplicar paleta actual
-    ApplyCurrentPalette();
-        // Desactivar sombra temporalmente para evitar flash
+        
         if (shadowRenderer != null) shadowRenderer.enabled = false;
         Invoke("EnableShadow", 0.1f);
     }
@@ -47,10 +46,10 @@ public class Enemy : MonoBehaviour
             shadowRenderer.enabled = true;
     }
     
-    protected void CreateShadow()  // ← CAMBIO: protected (sin virtual)
+    protected void CreateShadow()
     {
         GameObject shadowObj = new GameObject("EnemyShadow");
-        shadowObj.transform.SetParent(transform);  // ← Importante: hijo del enemigo
+        shadowObj.transform.SetParent(transform);
         shadowRenderer = shadowObj.AddComponent<SpriteRenderer>();
         shadowRenderer.sprite = enemyRenderer.sprite;
         shadowRenderer.color = new Color(0, 0, 0, shadowOpacity);
@@ -58,28 +57,26 @@ public class Enemy : MonoBehaviour
         UpdateShadowPosition();
     }
     
-   void LateUpdate()
-{
-    // ← AGREGAR: No moverse si game over o paused
-    if (GameManager.Instance != null)
+    void LateUpdate()
     {
-        if (GameManager.Instance.isGameOver || GameManager.Instance.isPaused)
-            return;
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.isGameOver || GameManager.Instance.isPaused)
+                return;
+        }
+        
+        if (player != null)
+        {
+            FollowPlayer();
+            UpdateShadowPosition();
+        }
     }
-    
-    if (player != null)
-    {
-        FollowPlayer();
-        UpdateShadowPosition();
-    }
-}
     
     protected virtual void FollowPlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
         transform.position += (Vector3)direction * speed * Time.deltaTime;
         
-        // Rotar hacia el jugador
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
@@ -95,27 +92,13 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    
-     public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         health -= amount;
         
-        // ← NUEVO: Efecto de hit
         if (hitEffectPrefab != null)
         {
-            GameObject hitVFX = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-            
-            // Aplicar color de paleta
-            ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
-            if (ps != null && PaletteManager.Instance != null)
-            {
-                PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
-                if (palette != null)
-                {
-                    var main = ps.main;
-                    main.startColor = enemyRenderer.color;
-                }
-            }
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
         }
         
         if (health <= 0)
@@ -124,30 +107,16 @@ public class Enemy : MonoBehaviour
         }
     }
     
-   protected virtual void Die()
+    protected virtual void Die()
     {
-        // ← NUEVO: Explosión al morir
         if (deathExplosionPrefab != null)
         {
-            GameObject explosion = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
-            
-            ParticleSystem ps = explosion.GetComponent<ParticleSystem>();
-            if (ps != null && PaletteManager.Instance != null)
-            {
-                PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
-                if (palette != null)
-                {
-                    var main = ps.main;
-                    main.startColor = enemyRenderer.color;
-                }
-            }
+            Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
         }
         
-        // Notificar al GameManager
         if (GameManager.Instance != null)
             GameManager.Instance.AddKill();
         
-        // Reproducir sonido de muerte
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeathSFX);
         
@@ -163,21 +132,8 @@ public class Enemy : MonoBehaviour
             {
                 playerScript.TakeDamage(1);
             }
-             // ← AGREGAR: Destruir enemigo después de tocar
-        Destroy(gameObject);
+            
+            Destroy(gameObject);
         }
     }
-
- 
-void ApplyCurrentPalette()
-{
-    if (PaletteManager.Instance != null)
-    {
-        PaletteData palette = PaletteManager.Instance.GetCurrentPalette();
-        if (palette != null)
-        {
-            PaletteManager.Instance.ApplyColorToEnemy(gameObject, palette);
-        }
-    }
-}
 }
