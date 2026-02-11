@@ -6,9 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     public GameObject pauseMenu;
-    
-    [Header("Environment")]
-    public EnvironmentManager environmentManager;
+ 
     
     [Header("Game State")]
     public bool isGameOver = false;
@@ -209,8 +207,7 @@ public class GameManager : MonoBehaviour
         if (pauseMenu != null)
             pauseMenu.SetActive(true);
         
-        if (environmentManager != null)
-            environmentManager.PauseEnvironment();
+       
     }
     
     public void ResumeGame()
@@ -221,8 +218,7 @@ public class GameManager : MonoBehaviour
         if (pauseMenu != null)
             pauseMenu.SetActive(false);
         
-        if (environmentManager != null)
-            environmentManager.ResumeEnvironment();
+        
     }
     
     void UpdateUI()

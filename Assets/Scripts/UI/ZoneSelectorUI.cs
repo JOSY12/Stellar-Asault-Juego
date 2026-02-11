@@ -13,25 +13,19 @@ public class ZoneSelectorUI : MonoBehaviour
     [Header("Buttons")]
     public Button prevButton;
     public Button nextButton;
-    public Button selectButton;
+    public Button launchButton;
     public Button backButton;
     
     [Header("Button Text")]
-    public TextMeshProUGUI selectButtonText;
+    public TextMeshProUGUI launchButtonText;
     public TextMeshProUGUI statusText;
     
     private int currentIndex = 0;
     
     void Start()
     {
-        if (SaveManager.Instance != null && ZoneManager.Instance != null)
-        {
-            ZoneData currentZone = ZoneManager.Instance.GetCurrentZone();
-            if (currentZone != null)
-            {
-                currentIndex = currentZone.zoneIndex;
-            }
-        }
+        // Siempre empieza en zona 0
+        currentIndex = 0;
         
         if (prevButton != null)
             prevButton.onClick.AddListener(PreviousZone);
@@ -39,8 +33,8 @@ public class ZoneSelectorUI : MonoBehaviour
         if (nextButton != null)
             nextButton.onClick.AddListener(NextZone);
         
-        if (selectButton != null)
-            selectButton.onClick.AddListener(OnSelectZone);
+        if (launchButton != null)
+            launchButton.onClick.AddListener(OnLaunch);
         
         if (backButton != null)
             backButton.onClick.AddListener(GoBack);
@@ -48,15 +42,31 @@ public class ZoneSelectorUI : MonoBehaviour
         UpdateUI();
     }
     
+    void OnEnable()
+    {
+        // Refrescar UI al volver a esta escena
+        if (ZoneManager.Instance != null)
+        {
+            UpdateUI();
+        }
+    }
+    
     void PreviousZone()
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
+        if (ZoneManager.Instance == null || ZoneManager.Instance.allZones == null)
+        {
+            Debug.LogError("ZoneManager or zones not found!");
+            return;
+        }
+        
         currentIndex--;
         if (currentIndex < 0)
             currentIndex = ZoneManager.Instance.allZones.Length - 1;
         
+        Debug.Log($"Previous zone: {currentIndex}");
         UpdateUI();
     }
     
@@ -65,19 +75,47 @@ public class ZoneSelectorUI : MonoBehaviour
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
+        if (ZoneManager.Instance == null || ZoneManager.Instance.allZones == null)
+        {
+            Debug.LogError("ZoneManager or zones not found!");
+            return;
+        }
+        
         currentIndex++;
         if (currentIndex >= ZoneManager.Instance.allZones.Length)
             currentIndex = 0;
         
+        Debug.Log($"Next zone: {currentIndex}");
         UpdateUI();
     }
     
     void UpdateUI()
     {
-        if (ZoneManager.Instance == null || ZoneManager.Instance.allZones == null) return;
+        if (ZoneManager.Instance == null)
+        {
+            Debug.LogError("ZoneManager not found!");
+            return;
+        }
+        
+        if (ZoneManager.Instance.allZones == null || ZoneManager.Instance.allZones.Length == 0)
+        {
+            Debug.LogError("No zones assigned to ZoneManager!");
+            return;
+        }
+        
+        // Validar índice
+        if (currentIndex < 0 || currentIndex >= ZoneManager.Instance.allZones.Length)
+        {
+            Debug.LogWarning($"Invalid zone index {currentIndex}, resetting to 0");
+            currentIndex = 0;
+        }
         
         ZoneData zone = ZoneManager.Instance.allZones[currentIndex];
-        if (zone == null) return;
+        if (zone == null)
+        {
+            Debug.LogError($"Zone at index {currentIndex} is null!");
+            return;
+        }
         
         if (zoneNameText != null)
             zoneNameText.text = zone.zoneName;
@@ -89,30 +127,23 @@ public class ZoneSelectorUI : MonoBehaviour
             previewBackground.color = zone.ambientColor;
         
         bool isUnlocked = zone.IsUnlocked();
-        bool isCurrent = (SaveManager.Instance != null && 
-                         currentIndex == SaveManager.Instance.GetCurrentZone());
         
-        if (selectButton != null)
+        if (launchButton != null)
         {
-            if (isCurrent)
+            if (isUnlocked)
             {
-                if (selectButtonText != null)
-                    selectButtonText.text = "SELECTED";
-                selectButton.interactable = false;
-            }
-            else if (isUnlocked)
-            {
-                if (selectButtonText != null)
-                    selectButtonText.text = "SELECT";
-                selectButton.interactable = true;
+                launchButton.interactable = true;
+                if (launchButtonText != null)
+                    launchButtonText.text = "LAUNCH";
             }
             else
             {
-                if (selectButtonText != null)
-                    selectButtonText.text = $"LOCKED ({zone.unlockCost} SCRAP)";
-                
                 int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
-                selectButton.interactable = currentScrap >= zone.unlockCost;
+                bool canAfford = currentScrap >= zone.unlockCost;
+                
+                launchButton.interactable = canAfford;
+                if (launchButtonText != null)
+                    launchButtonText.text = canAfford ? $"UNLOCK ({zone.unlockCost})" : $"LOCKED ({zone.unlockCost})";
             }
         }
         
@@ -129,38 +160,43 @@ public class ZoneSelectorUI : MonoBehaviour
                 statusText.color = Color.red;
             }
         }
+        
+        Debug.Log($"UI Updated: Zone {currentIndex} - {zone.zoneName}");
     }
     
-    void OnSelectZone()
+    void OnLaunch()
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
+        if (ZoneManager.Instance == null || ZoneManager.Instance.allZones == null)
+        {
+            Debug.LogError("Cannot launch - ZoneManager not ready!");
+            return;
+        }
+        
         ZoneData zone = ZoneManager.Instance.allZones[currentIndex];
         bool isUnlocked = zone.IsUnlocked();
         
-        if (isUnlocked)
-        {
-            ZoneManager.Instance.SetCurrentZone(currentIndex);
-            LaunchGame();
-        }
-        else
+        if (!isUnlocked)
         {
             if (SaveManager.Instance != null && SaveManager.Instance.SpendScrap(zone.unlockCost))
             {
                 zone.Unlock();
-                ZoneManager.Instance.SetCurrentZone(currentIndex);
-                LaunchGame();
+                Debug.Log($"Zone {zone.zoneName} unlocked!");
             }
             else
             {
                 Debug.Log("Not enough scrap!");
+                return;
             }
         }
-    }
-    
-    void LaunchGame()
-    {
+        
+        // Guardar zona seleccionada
+        ZoneManager.Instance.SetCurrentZone(currentIndex);
+        Debug.Log($"Launching zone: {zone.zoneName}");
+        
+        // Ir a Gameplay
         SceneManager.LoadScene("Gameplay");
     }
     

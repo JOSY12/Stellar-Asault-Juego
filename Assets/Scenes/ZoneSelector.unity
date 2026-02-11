@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 608740168}
   - component: {fileID: 608740171}
   m_Layer: 5
-  m_Name: select
+  m_Name: launch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1276,9 +1276,9 @@ MonoBehaviour:
   previewBackground: {fileID: 1828717378}
   prevButton: {fileID: 1033181900}
   nextButton: {fileID: 433578439}
-  selectButton: {fileID: 608740168}
+  launchButton: {fileID: 608740168}
   backButton: {fileID: 914459838}
-  selectButtonText: {fileID: 1501791972}
+  launchButtonText: {fileID: 1501791972}
   statusText: {fileID: 1428140627}
 --- !u!1 &1250382741
 GameObject:
