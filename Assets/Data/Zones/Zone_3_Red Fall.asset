@@ -23,12 +23,12 @@ MonoBehaviour:
     depth: -9
     parallaxSpeed: 0.3
     sortingOrder: -9
-    nebulaColor: {r: 0.24313726, g: 0.019607838, b: 0.089301966, a: 0.78431374}
-    nebulaCount: 40
-    pulseSpeed: 1
-    minAlpha: 1
-    maxAlpha: 2
-    scaleVariation: 10
+    nebulaColor: {r: 0.31399423, g: 0.012269576, b: 0.0012977712, a: 1}
+    nebulaCount: 100
+    pulseSpeed: 10
+    minAlpha: 2
+    maxAlpha: 3
+    scaleVariation: 200
     noiseScale: 5
     nebulaSpawnRadius: 50
     enableDrift: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
     minStarSize: 0.05
     maxStarSize: 0.1
     enableTwinkle: 1
-    twinkleSpeed: 4
+    twinkleSpeed: 5
     starColor: {r: 1, g: 1, b: 1, a: 1}
     planetSprites: []
     planetCount: 3
@@ -127,14 +127,14 @@ MonoBehaviour:
     parallaxSpeed: 1
     sortingOrder: 7
     nebulaColor: {r: 0.6313726, g: 0, b: 0.060391814, a: 0.30980393}
-    nebulaCount: 60
-    pulseSpeed: 1
-    minAlpha: 0.5
-    maxAlpha: 1
-    scaleVariation: 10
-    noiseScale: 6
+    nebulaCount: 20
+    pulseSpeed: 20
+    minAlpha: 1
+    maxAlpha: 3
+    scaleVariation: 20
+    noiseScale: 3
     nebulaSpawnRadius: 40
-    enableDrift: 1
+    enableDrift: 0
     driftSpeed: 1
     driftScale: 2
     starCount: 300
@@ -177,16 +177,25 @@ MonoBehaviour:
     twinkleSpeed: 1
     starColor: {r: 1, g: 1, b: 1, a: 1}
     planetSprites:
-    - {fileID: 21300000, guid: 812baedd595464c8fbb1bed497335d60, type: 3}
-    - {fileID: 21300000, guid: 8d6db5cabc40d4ffd83edbe4b2bd7541, type: 3}
-    - {fileID: 21300000, guid: 8562f93408b8b027f8b8f1c6aea41899, type: 3}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 5994275585877690731, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: 4764904786231306360, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: -878775300250748510, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: 228813063816687610, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: 267879827, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: 1486043848406091610, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: -8169790608347111050, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: 21300000, guid: 46216932d1acfed0c9d7a3d9b42af7e0, type: 3}
+    - {fileID: 21300000, guid: f6228c661291431f18b22305f6c261af, type: 3}
+    - {fileID: 21300000, guid: 3b65d7d3c6cc840969b2fc625f3c2823, type: 3}
+    - {fileID: 21300000, guid: 8d3cd95eba850633a845eac618fa7184, type: 3}
     planetCount: 3
     planetSpawnRadius: 30
-    minPlanetSize: 0.06
-    maxPlanetSize: 0.1
-    planetTint: {r: 0.6313726, g: 0.9411765, b: 0.70400566, a: 1}
-    rotatePlanets: 1
+    minPlanetSize: 1
+    maxPlanetSize: 3
+    planetTint: {r: 1, g: 1, b: 1, a: 1}
+    rotatePlanets: 0
     minRotationSpeed: 2
     maxRotationSpeed: 3

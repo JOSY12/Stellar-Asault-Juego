@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZoneData
   zoneName: Cosmic Kale
   zoneIndex: 2
-  scrapMultiplier: 1
-  unlockCost: 20
+  scrapMultiplier: 1.2
+  unlockCost: 50
   ambientColor: {r: 0, g: 0, b: 0.04, a: 1}
   layers:
   - type: 0
@@ -24,12 +24,12 @@ MonoBehaviour:
     parallaxSpeed: 0.3
     sortingOrder: -9
     nebulaColor: {r: 0.019607838, g: 0.24313726, b: 0.026204517, a: 1}
-    nebulaCount: 40
-    pulseSpeed: 1
+    nebulaCount: 100
+    pulseSpeed: 5
     minAlpha: 1
-    maxAlpha: 2
-    scaleVariation: 10
-    noiseScale: 5
+    maxAlpha: 3
+    scaleVariation: 200
+    noiseScale: 10
     nebulaSpawnRadius: 50
     enableDrift: 1
     driftSpeed: 0.5
@@ -127,16 +127,16 @@ MonoBehaviour:
     parallaxSpeed: 1
     sortingOrder: 7
     nebulaColor: {r: 0.012513788, g: 0.6313726, b: 0, a: 0.44705883}
-    nebulaCount: 60
-    pulseSpeed: 1
-    minAlpha: 0.5
-    maxAlpha: 1
-    scaleVariation: 10
+    nebulaCount: 100
+    pulseSpeed: 4
+    minAlpha: 2
+    maxAlpha: 3
+    scaleVariation: 200
     noiseScale: 6
     nebulaSpawnRadius: 40
     enableDrift: 1
-    driftSpeed: 1
-    driftScale: 2
+    driftSpeed: 5
+    driftScale: 100
     starCount: 300
     starSpawnRadius: 15
     minStarSize: 0.05
@@ -180,13 +180,14 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 812baedd595464c8fbb1bed497335d60, type: 3}
     - {fileID: 21300000, guid: 8d6db5cabc40d4ffd83edbe4b2bd7541, type: 3}
     - {fileID: 21300000, guid: 8562f93408b8b027f8b8f1c6aea41899, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 21300000, guid: 9cb372e857da3f037bc72d52f4dc33a8, type: 3}
+    - {fileID: 21300000, guid: 2d499ed905a152ee59849b0a3bbc7235, type: 3}
+    - {fileID: 21300000, guid: 3b65d7d3c6cc840969b2fc625f3c2823, type: 3}
     planetCount: 3
     planetSpawnRadius: 30
-    minPlanetSize: 0.06
-    maxPlanetSize: 0.1
-    planetTint: {r: 0.6313726, g: 0.9411765, b: 0.70400566, a: 1}
-    rotatePlanets: 1
+    minPlanetSize: 0.05
+    maxPlanetSize: 0.5
+    planetTint: {r: 0.11263904, g: 0.35876983, b: 0.17183508, a: 1}
+    rotatePlanets: 0
     minRotationSpeed: 2
     maxRotationSpeed: 3

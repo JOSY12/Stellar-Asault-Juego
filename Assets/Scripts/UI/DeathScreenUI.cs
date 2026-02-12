@@ -60,6 +60,17 @@ public class DeathScreenUI : MonoBehaviour
     public ShipData[] allShips;
     private int currentShipIndex = 0;
     
+    // Threading fix
+    private bool shouldExecuteBonusScrap = false;
+    private bool shouldExecuteContinue = false;
+    private bool shouldExecuteSaveScrap = false;
+    private bool saveScrapSuccess = false;
+    
+    // ═══ NUEVO: Cooldown para evitar spam ═══
+    private float bonusScrapCooldown = 0f;
+    private bool hasContinued = false; // Para evitar múltiples continues
+    // ═══════════════════════════════════════
+    
     void Start()
     {
         if (adScrapButton != null)
@@ -99,37 +110,167 @@ public class DeathScreenUI : MonoBehaviour
             mainMenuButton.onClick.AddListener(OnMainMenu);
     }
     
+    void Update()
+    {
+        // Threading fix
+        if (shouldExecuteBonusScrap)
+        {
+            shouldExecuteBonusScrap = false;
+            ExecuteBonusScrap();
+        }
+        
+        if (shouldExecuteContinue)
+        {
+            shouldExecuteContinue = false;
+            ExecuteContinue();
+        }
+        
+        if (shouldExecuteSaveScrap)
+        {
+            shouldExecuteSaveScrap = false;
+            ExecuteSaveScrap(saveScrapSuccess);
+        }
+        
+        // ═══ NUEVO: Actualizar cooldown ═══
+        if (bonusScrapCooldown > 0f)
+        {
+            bonusScrapCooldown -= Time.unscaledDeltaTime; // unscaled porque puede estar pausado
+        }
+        // ═════════════════════════════════
+        
+        // ═══ NUEVO: Actualizar estado de botones cada frame ═══
+        UpdateButtonStates();
+        // ═════════════════════════════════════════════════════
+    }
+    
+    // ═══ NUEVO: Actualizar estado de botones según ads disponibles ═══
+    void UpdateButtonStates()
+    {
+        bool adManagerExists = AdManager.Instance != null;
+        bool rewardedAdReady = adManagerExists && AdManager.Instance.IsRewardedAdReady();
+        
+        // Botón de bonus scrap
+        if (adScrapButton != null)
+        {
+            bool canGetBonus = bonusScrapCooldown <= 0f;
+            adScrapButton.interactable = canGetBonus && rewardedAdReady;
+            
+            if (adScrapButtonText != null)
+            {
+                if (!canGetBonus)
+                {
+                    int secondsLeft = Mathf.CeilToInt(bonusScrapCooldown);
+                    adScrapButtonText.text = $"Wait {secondsLeft}s";
+                }
+                else if (!rewardedAdReady)
+                {
+                    adScrapButtonText.text = "AD LOADING...";
+                }
+                else
+                {
+                    adScrapButtonText.text = "+50 SCRAP";
+                }
+            }
+        }
+        
+        // Botón de continue
+        if (continueButton != null && continueButton.gameObject.activeSelf)
+        {
+            bool canContinue = !hasContinued && rewardedAdReady;
+            continueButton.interactable = canContinue;
+            
+            TextMeshProUGUI continueText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (continueText != null)
+            {
+                if (hasContinued)
+                {
+                    continueText.text = "USED";
+                }
+                else if (!rewardedAdReady)
+                {
+                    continueText.text = "AD LOADING...";
+                }
+                else
+                {
+                    continueText.text = "CONTINUE(AD";
+                }
+            }
+        }
+        
+        // Botón de save scrap
+        if (saveScrapButton != null)
+        {
+            saveScrapButton.interactable = rewardedAdReady;
+            
+            if (saveScrapSubText != null && !rewardedAdReady)
+            {
+                saveScrapSubText.text = "Ad loading...";
+            }
+        }
+    }
+    // ═════════════════════════════════════════════════════════════════
+    
     void OnWatchAdForScrap()
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
-        // ═══ ADS: 50 scrap bonus ═══
-        if (AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady())
+        // ═══ VALIDACIÓN: Cooldown ═══
+        if (bonusScrapCooldown > 0f)
         {
-            AdManager.Instance.ShowRewardedAd("bonus_scrap", (success) =>
-            {
-                if (success && SaveManager.Instance != null)
-                {
-                    SaveManager.Instance.AddScrap(50);
-                    UpdateUpgradesTab();
-                }
-            });
+            Debug.Log($"Bonus scrap on cooldown: {bonusScrapCooldown}s left");
+            return;
         }
-        else
+        // ════════════════════════════════
+        
+        // ═══ VALIDACIÓN: AdManager y ad ready ═══
+        if (AdManager.Instance == null)
         {
-            // Fallback si no hay ad
-            if (SaveManager.Instance != null)
+            Debug.LogWarning("AdManager not found - bonus scrap disabled");
+            return;
+        }
+        
+        if (!AdManager.Instance.IsRewardedAdReady())
+        {
+            Debug.LogWarning("Rewarded ad not ready yet");
+            return;
+        }
+        // ═══════════════════════════════════════
+        
+        Debug.Log("Showing bonus scrap ad...");
+        
+        AdManager.Instance.ShowRewardedAd("bonus_scrap", (success) =>
+        {
+            Debug.Log($"Bonus scrap ad callback: {success}");
+            
+            if (success)
             {
-                SaveManager.Instance.AddScrap(50);
-                UpdateUpgradesTab();
+                shouldExecuteBonusScrap = true;
             }
+        });
+    }
+    
+    void ExecuteBonusScrap()
+    {
+        Debug.Log("Executing bonus scrap reward");
+        
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.AddScrap(50);
+            UpdateUpgradesTab();
+            
+            // ═══ NUEVO: Cooldown de 3 segundos ═══
+            bonusScrapCooldown = 3f;
+            // ═════════════════════════════════════
         }
-        // ═══════════════════════════
     }
     
     public void ShowDeathScreen(int wave, int kills, int scrapEarned, int scrapWithoutAd, float survivalTime, bool hasUsedContinue)
     {
+        // ═══ RESET: Estado de continue ═══
+        hasContinued = hasUsedContinue;
+        // ═════════════════════════════════
+        
         if (deathPanel != null)
             deathPanel.SetActive(true);
         
@@ -239,7 +380,7 @@ public class DeathScreenUI : MonoBehaviour
         
         if (scrapDisplayText != null && SaveManager.Instance != null)
         {
-            scrapDisplayText.text = $" {SaveManager.Instance.GetScrap()}";
+            scrapDisplayText.text = $"{SaveManager.Instance.GetScrap()}";
         }
         
         if (shipNameText != null)
@@ -444,31 +585,59 @@ public class DeathScreenUI : MonoBehaviour
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
-        // ═══ ADS: Continue con rewarded ad ═══
-        if (AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady())
+        // ═══ VALIDACIÓN: Ya usó continue ═══
+        if (hasContinued)
         {
-            AdManager.Instance.ShowRewardedAd("continue", (success) =>
-            {
-                if (success)
-                {
-                    if (deathPanel != null)
-                        deathPanel.SetActive(false);
-                    
-                    if (GameManager.Instance != null)
-                        GameManager.Instance.ContinueRun();
-                }
-            });
+            Debug.Log("Continue already used!");
+            return;
         }
-        else
+        // ═══════════════════════════════════
+        
+        // ═══ VALIDACIÓN: AdManager y ad ready ═══
+        if (AdManager.Instance == null)
         {
-            // Fallback si no hay ad
-            if (deathPanel != null)
-                deathPanel.SetActive(false);
+            Debug.LogWarning("AdManager not found - continue disabled");
+            return;
+        }
+        
+        if (!AdManager.Instance.IsRewardedAdReady())
+        {
+            Debug.LogWarning("Rewarded ad not ready for continue");
+            return;
+        }
+        // ═══════════════════════════════════════
+        
+        Debug.Log("Showing continue ad...");
+        
+        // ═══ MARCAR como usado ANTES del ad ═══
+        hasContinued = true;
+        // ══════════════════════════════════════
+        
+        AdManager.Instance.ShowRewardedAd("continue", (success) =>
+        {
+            Debug.Log($"Continue ad callback: {success}");
             
-            if (GameManager.Instance != null)
-                GameManager.Instance.ContinueRun();
-        }
-        // ═════════════════════════════════════
+            if (success)
+            {
+                shouldExecuteContinue = true;
+            }
+            else
+            {
+                // Si falló el ad, desmarcar
+                hasContinued = false;
+            }
+        });
+    }
+    
+    void ExecuteContinue()
+    {
+        Debug.Log("Executing continue");
+        
+        if (deathPanel != null)
+            deathPanel.SetActive(false);
+        
+        if (GameManager.Instance != null)
+            GameManager.Instance.ContinueRun();
     }
 
     void OnSaveScrap()
@@ -476,28 +645,42 @@ public class DeathScreenUI : MonoBehaviour
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
-        // ═══ ADS: Save scrap con rewarded ad ═══
-        if (AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady())
+        // ═══ VALIDACIÓN: AdManager y ad ready ═══
+        if (AdManager.Instance == null)
         {
-            AdManager.Instance.ShowRewardedAd("full_scrap", (success) =>
-            {
-                if (GameManager.Instance != null)
-                    GameManager.Instance.EndRun(success);
-                
-                Time.timeScale = 1f;
-                SceneManager.LoadScene("Gameplay");
-            });
+            Debug.LogWarning("AdManager not found - saving partial scrap");
+            ExecuteSaveScrap(false);
+            return;
         }
-        else
+        
+        if (!AdManager.Instance.IsRewardedAdReady())
         {
-            // Fallback si no hay ad
-            if (GameManager.Instance != null)
-                GameManager.Instance.EndRun(true);
-            
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("Gameplay");
+            Debug.LogWarning("Rewarded ad not ready - saving partial scrap");
+            ExecuteSaveScrap(false);
+            return;
         }
         // ═══════════════════════════════════════
+        
+        Debug.Log("Showing save scrap ad...");
+        
+        AdManager.Instance.ShowRewardedAd("full_scrap", (success) =>
+        {
+            Debug.Log($"Save scrap ad callback: {success}");
+            
+            saveScrapSuccess = success;
+            shouldExecuteSaveScrap = true;
+        });
+    }
+    
+    void ExecuteSaveScrap(bool success)
+    {
+        Debug.Log($"Executing save scrap: {success}");
+        
+        if (GameManager.Instance != null)
+            GameManager.Instance.EndRun(success);
+        
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Gameplay");
     }
 
     void OnEndRun()

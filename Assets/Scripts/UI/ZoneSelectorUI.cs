@@ -20,13 +20,15 @@ public class ZoneSelectorUI : MonoBehaviour
     public TextMeshProUGUI launchButtonText;
     public TextMeshProUGUI statusText;
     
-    // ═══ ADS: Botón opcional para desbloquear con ad ═══
     [Header("Unlock With Ad (OPTIONAL)")]
     public Button watchAdToUnlockButton;
     public TextMeshProUGUI watchAdButtonText;
-    // ═══════════════════════════════════════════════════
     
     private int currentIndex = 0;
+    
+    // ═══ THREADING FIX: Bandera para ejecutar en Update ═══
+    private bool shouldExecuteUnlock = false;
+    // ══════════════════════════════════════════════════════
     
     void Start()
     {
@@ -44,10 +46,8 @@ public class ZoneSelectorUI : MonoBehaviour
         if (backButton != null)
             backButton.onClick.AddListener(GoBack);
         
-        // ═══ ADS ═══
         if (watchAdToUnlockButton != null)
             watchAdToUnlockButton.onClick.AddListener(OnWatchAdToUnlock);
-        // ═══════════
         
         UpdateUI();
     }
@@ -59,6 +59,17 @@ public class ZoneSelectorUI : MonoBehaviour
             UpdateUI();
         }
     }
+    
+    // ═══ THREADING FIX: Update ejecuta acciones en hilo principal ═══
+    void Update()
+    {
+        if (shouldExecuteUnlock)
+        {
+            shouldExecuteUnlock = false;
+            ExecuteUnlock();
+        }
+    }
+    // ═════════════════════════════════════════════════════════════════
     
     void PreviousZone()
     {
@@ -169,10 +180,8 @@ public class ZoneSelectorUI : MonoBehaviour
             }
         }
         
-        // ═══ ADS: Mostrar/ocultar botón de ad ═══
         if (watchAdToUnlockButton != null)
         {
-            // Solo mostrar si está bloqueada y tiene costo
             if (!isUnlocked && zone.unlockCost > 0)
             {
                 bool adReady = AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady();
@@ -181,14 +190,13 @@ public class ZoneSelectorUI : MonoBehaviour
                 watchAdToUnlockButton.interactable = adReady;
                 
                 if (watchAdButtonText != null)
-                    watchAdButtonText.text = adReady ? "UNLOCK" : "AD NOT READY";
+                    watchAdButtonText.text = adReady ? "UNLOCK(AD)" : "AD NOT READY";
             }
             else
             {
                 watchAdToUnlockButton.gameObject.SetActive(false);
             }
         }
-        // ═════════════════════════════════════════
         
         Debug.Log($"UI Updated: Zone {currentIndex} - {zone.zoneName}");
     }
@@ -227,7 +235,6 @@ public class ZoneSelectorUI : MonoBehaviour
         SceneManager.LoadScene("Gameplay");
     }
     
-    // ═══ ADS: Desbloquear zona con ad ═══
     void OnWatchAdToUnlock()
     {
         if (AudioManager.Instance != null)
@@ -239,19 +246,28 @@ public class ZoneSelectorUI : MonoBehaviour
             return;
         }
         
-        ZoneData zone = ZoneManager.Instance.allZones[currentIndex];
-        
+        // ═══ THREADING FIX: Solo marcar bandera ═══
         AdManager.Instance.ShowRewardedAd("unlock_zone", (success) =>
         {
             if (success)
             {
-                zone.Unlock();
-                Debug.Log($"Zone {zone.zoneName} unlocked with ad!");
-                UpdateUI();
+                shouldExecuteUnlock = true; // ← Solo bandera
             }
         });
+        // ═════════════════════════════════════════
     }
-    // ═══════════════════════════════════
+    
+    // ═══ THREADING FIX: Ejecutar en hilo principal ═══
+    void ExecuteUnlock()
+    {
+        if (ZoneManager.Instance == null) return;
+        
+        ZoneData zone = ZoneManager.Instance.allZones[currentIndex];
+        zone.Unlock();
+        Debug.Log($"Zone {zone.zoneName} unlocked with ad!");
+        UpdateUI();
+    }
+    // ═════════════════════════════════════════════════
     
     void GoBack()
     {
