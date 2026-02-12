@@ -1,0 +1,997 @@
+fileFormatVersion: 2
+guid: e13e6eff9ca34f7578b271eae3d9de1e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2631423596080824135
+    second: Army_UI_PNG_0
+  - first:
+      213: 7096484394429180483
+    second: Army_UI_PNG_1
+  - first:
+      213: -2692927193226818930
+    second: Army_UI_PNG_2
+  - first:
+      213: -2686722254799821127
+    second: Army_UI_PNG_3
+  - first:
+      213: 8829673243831034883
+    second: Army_UI_PNG_4
+  - first:
+      213: -6090904119864639916
+    second: Army_UI_PNG_5
+  - first:
+      213: -354592193243280697
+    second: Army_UI_PNG_6
+  - first:
+      213: 8450080471920608612
+    second: Army_UI_PNG_7
+  - first:
+      213: 8419371286838524294
+    second: Army_UI_PNG_8
+  - first:
+      213: -6395189042416716569
+    second: Army_UI_PNG_9
+  - first:
+      213: 324231531378186150
+    second: Army_UI_PNG_10
+  - first:
+      213: -8886580186018355104
+    second: Army_UI_PNG_11
+  - first:
+      213: 7418467422899576954
+    second: Army_UI_PNG_12
+  - first:
+      213: -588942139676899694
+    second: Army_UI_PNG_13
+  - first:
+      213: -6393865936623516029
+    second: Army_UI_PNG_14
+  - first:
+      213: -3487240624237579831
+    second: Army_UI_PNG_15
+  - first:
+      213: 3559158361425621412
+    second: Army_UI_PNG_16
+  - first:
+      213: 7935479315424827987
+    second: Army_UI_PNG_17
+  - first:
+      213: 33979390520248873
+    second: Army_UI_PNG_18
+  - first:
+      213: -7137802999262503968
+    second: Army_UI_PNG_19
+  - first:
+      213: -4474856274081105633
+    second: Army_UI_PNG_20
+  - first:
+      213: 598262488069539916
+    second: Army_UI_PNG_21
+  - first:
+      213: 4092881815957410626
+    second: Army_UI_PNG_22
+  - first:
+      213: -1737648088810505214
+    second: Army_UI_PNG_23
+  - first:
+      213: 2009558276952765094
+    second: Army_UI_PNG_24
+  - first:
+      213: -6414212573963986770
+    second: Army_UI_PNG_25
+  - first:
+      213: 8159669523582365836
+    second: Army_UI_PNG_26
+  - first:
+      213: -7371234186626277112
+    second: Army_UI_PNG_27
+  - first:
+      213: 1983728576587276478
+    second: Army_UI_PNG_28
+  - first:
+      213: 123892692406245911
+    second: Army_UI_PNG_29
+  - first:
+      213: -7308512838344117405
+    second: Army_UI_PNG_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Army_UI_PNG_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 823
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f7af991d1b48420800000000000000
+      internalID: 2631423596080824135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 824
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34aed0c35f6cb7260800000000000000
+      internalID: 7096484394429180483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 822
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8ac9b94cfcc0aad0800000000000000
+      internalID: -2692927193226818930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_3
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 830
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b625881858d6bad0800000000000000
+      internalID: -2686722254799821127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 822
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 304e15d980d498a70800000000000000
+      internalID: 8829673243831034883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_5
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 830
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45e318659f2c87ba0800000000000000
+      internalID: -6090904119864639916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 794
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca8b99674c341bf0800000000000000
+      internalID: -354592193243280697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 792
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4650b443b67b44570800000000000000
+      internalID: 8450080471920608612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_8
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 758
+        width: 144
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6893220e39d97d470800000000000000
+      internalID: 8419371286838524294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_9
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 758
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e4f747f279bf37a0800000000000000
+      internalID: -6395189042416716569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 502
+        width: 516
+        height: 292
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a717c42cd6ef7400800000000000000
+      internalID: 324231531378186150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 758
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 068e95867668ca480800000000000000
+      internalID: -8886580186018355104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_12
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 760
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a70acbff0d0b3f660800000000000000
+      internalID: 7418467422899576954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_13
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 758
+        width: 129
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 296cc4b8e38a3d7f0800000000000000
+      internalID: -588942139676899694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_14
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 728
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 386c51a8ecc6447a0800000000000000
+      internalID: -6393865936623516029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_15
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 694
+        width: 144
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c1f102e025da9fc0800000000000000
+      internalID: -3487240624237579831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_16
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 694
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1b2282caba46130800000000000000
+      internalID: 3559158361425621412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_17
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 696
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35a5b56b46c702e60800000000000000
+      internalID: 7935479315424827987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_18
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 694
+        width: 129
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92ac4ad5318b87000800000000000000
+      internalID: 33979390520248873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_19
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 664
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eb9d386dfd61fc90800000000000000
+      internalID: -7137802999262503968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 662
+        width: 200
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f19b7727ded16e1c0800000000000000
+      internalID: -4474856274081105633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_21
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 632
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4883db20947d4800800000000000000
+      internalID: 598262488069539916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 630
+        width: 8
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2431ccb9356dcc830800000000000000
+      internalID: 4092881815957410626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_23
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 600
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c30d90542a2e7e0800000000000000
+      internalID: -1737648088810505214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 598
+        width: 222
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a237351b9263eb10800000000000000
+      internalID: 2009558276952765094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_25
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 568
+        width: 175
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea8580fd5a32cf6a0800000000000000
+      internalID: -6414212573963986770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 566
+        width: 160
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8035bd2338fc3170800000000000000
+      internalID: 8159669523582365836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_27
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 566
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801ecedcf8d14b990800000000000000
+      internalID: -7371234186626277112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_28
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 566
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb0a64251ae978b10800000000000000
+      internalID: 1983728576587276478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_29
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 566
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71a14215fb728b100800000000000000
+      internalID: 123892692406245911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_30
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 566
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 363fd12bb42f29a90800000000000000
+      internalID: -7308512838344117405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_31
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 22
+        width: 576
+        height: 416
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38522a3d614b548ae8ff131e5504d1c1
+      internalID: -547209726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_UI_PNG_32
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 22
+        width: 576
+        height: 416
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860f15ed0ba013b579140953890b973c
+      internalID: 88829403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ba48192ca571a6e028a44af5564587a0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Army_UI_PNG_0: 2631423596080824135
+      Army_UI_PNG_1: 7096484394429180483
+      Army_UI_PNG_10: 324231531378186150
+      Army_UI_PNG_11: -8886580186018355104
+      Army_UI_PNG_12: 7418467422899576954
+      Army_UI_PNG_13: -588942139676899694
+      Army_UI_PNG_14: -6393865936623516029
+      Army_UI_PNG_15: -3487240624237579831
+      Army_UI_PNG_16: 3559158361425621412
+      Army_UI_PNG_17: 7935479315424827987
+      Army_UI_PNG_18: 33979390520248873
+      Army_UI_PNG_19: -7137802999262503968
+      Army_UI_PNG_2: -2692927193226818930
+      Army_UI_PNG_20: -4474856274081105633
+      Army_UI_PNG_21: 598262488069539916
+      Army_UI_PNG_22: 4092881815957410626
+      Army_UI_PNG_23: -1737648088810505214
+      Army_UI_PNG_24: 2009558276952765094
+      Army_UI_PNG_25: -6414212573963986770
+      Army_UI_PNG_26: 8159669523582365836
+      Army_UI_PNG_27: -7371234186626277112
+      Army_UI_PNG_28: 1983728576587276478
+      Army_UI_PNG_29: 123892692406245911
+      Army_UI_PNG_3: -2686722254799821127
+      Army_UI_PNG_30: -7308512838344117405
+      Army_UI_PNG_31: -547209726
+      Army_UI_PNG_32: 88829403
+      Army_UI_PNG_4: 8829673243831034883
+      Army_UI_PNG_5: -6090904119864639916
+      Army_UI_PNG_6: -354592193243280697
+      Army_UI_PNG_7: 8450080471920608612
+      Army_UI_PNG_8: 8419371286838524294
+      Army_UI_PNG_9: -6395189042416716569
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

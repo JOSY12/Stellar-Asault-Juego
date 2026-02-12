@@ -1,0 +1,2405 @@
+fileFormatVersion: 2
+guid: 73e1f7b8e12fb84d5b8218205abf5f69
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6101834961944611020
+    second: Army_GUI_PNG_0
+  - first:
+      213: 6282405068333118057
+    second: Army_GUI_PNG_1
+  - first:
+      213: -1559644541407449033
+    second: Army_GUI_PNG_2
+  - first:
+      213: -2438644472901183164
+    second: Army_GUI_PNG_3
+  - first:
+      213: 1999486168188708704
+    second: Army_GUI_PNG_4
+  - first:
+      213: -7823210245787214369
+    second: Army_GUI_PNG_5
+  - first:
+      213: -7150015614961353639
+    second: Army_GUI_PNG_6
+  - first:
+      213: 1568714920470163181
+    second: Army_GUI_PNG_7
+  - first:
+      213: -999012851819906580
+    second: Army_GUI_PNG_8
+  - first:
+      213: 3432452122745117690
+    second: Army_GUI_PNG_9
+  - first:
+      213: 222621488922414920
+    second: Army_GUI_PNG_10
+  - first:
+      213: -2222515038208664854
+    second: Army_GUI_PNG_11
+  - first:
+      213: 4425912534143303473
+    second: Army_GUI_PNG_12
+  - first:
+      213: -7779579560470920437
+    second: Army_GUI_PNG_13
+  - first:
+      213: 4973981515928513937
+    second: Army_GUI_PNG_14
+  - first:
+      213: -1955450171741191062
+    second: Army_GUI_PNG_15
+  - first:
+      213: -3716645745909666932
+    second: Army_GUI_PNG_16
+  - first:
+      213: 2880384317093832088
+    second: Army_GUI_PNG_17
+  - first:
+      213: -5683149328617337733
+    second: Army_GUI_PNG_18
+  - first:
+      213: 3053108371593053678
+    second: Army_GUI_PNG_19
+  - first:
+      213: -1381837378161728708
+    second: Army_GUI_PNG_20
+  - first:
+      213: -8023980992352582817
+    second: Army_GUI_PNG_21
+  - first:
+      213: -7360107551580236163
+    second: Army_GUI_PNG_22
+  - first:
+      213: 2640416184544658730
+    second: Army_GUI_PNG_23
+  - first:
+      213: 8499929461601628137
+    second: Army_GUI_PNG_24
+  - first:
+      213: -2444341200205817913
+    second: Army_GUI_PNG_25
+  - first:
+      213: 691256676167929397
+    second: Army_GUI_PNG_26
+  - first:
+      213: -4804392445686224648
+    second: Army_GUI_PNG_27
+  - first:
+      213: 111999084044146996
+    second: Army_GUI_PNG_28
+  - first:
+      213: -3987445577846013693
+    second: Army_GUI_PNG_29
+  - first:
+      213: -1977054917891618335
+    second: Army_GUI_PNG_30
+  - first:
+      213: -2348640722633479722
+    second: Army_GUI_PNG_31
+  - first:
+      213: 4589949359470365004
+    second: Army_GUI_PNG_32
+  - first:
+      213: -2008249968792970439
+    second: Army_GUI_PNG_33
+  - first:
+      213: 5447378684945342234
+    second: Army_GUI_PNG_34
+  - first:
+      213: 6671987744711744015
+    second: Army_GUI_PNG_35
+  - first:
+      213: 2170782864745562573
+    second: Army_GUI_PNG_36
+  - first:
+      213: 3043474874884373675
+    second: Army_GUI_PNG_37
+  - first:
+      213: 8299862541439004360
+    second: Army_GUI_PNG_38
+  - first:
+      213: 1236693678536449314
+    second: Army_GUI_PNG_39
+  - first:
+      213: -3271029420827572013
+    second: Army_GUI_PNG_40
+  - first:
+      213: 4240683682155881125
+    second: Army_GUI_PNG_41
+  - first:
+      213: 5858788722365895680
+    second: Army_GUI_PNG_42
+  - first:
+      213: -3150353805278558948
+    second: Army_GUI_PNG_43
+  - first:
+      213: 4352346294224544328
+    second: Army_GUI_PNG_44
+  - first:
+      213: -7930795179030188493
+    second: Army_GUI_PNG_45
+  - first:
+      213: -4400989206042930075
+    second: Army_GUI_PNG_46
+  - first:
+      213: 8766706737732134526
+    second: Army_GUI_PNG_47
+  - first:
+      213: 6028939276806854524
+    second: Army_GUI_PNG_48
+  - first:
+      213: 7245794166321065528
+    second: Army_GUI_PNG_49
+  - first:
+      213: 3643754239428979866
+    second: Army_GUI_PNG_50
+  - first:
+      213: -9075274663157809620
+    second: Army_GUI_PNG_51
+  - first:
+      213: -3111389729201651073
+    second: Army_GUI_PNG_52
+  - first:
+      213: -5761076004824035774
+    second: Army_GUI_PNG_53
+  - first:
+      213: 5978916062499993847
+    second: Army_GUI_PNG_54
+  - first:
+      213: -3715124416439518194
+    second: Army_GUI_PNG_55
+  - first:
+      213: -3067094385931980674
+    second: Army_GUI_PNG_56
+  - first:
+      213: 5522005997241620181
+    second: Army_GUI_PNG_57
+  - first:
+      213: 7661164726777518351
+    second: Army_GUI_PNG_58
+  - first:
+      213: -6434217118668343705
+    second: Army_GUI_PNG_59
+  - first:
+      213: -3313162783616693939
+    second: Army_GUI_PNG_60
+  - first:
+      213: 3123216580356432168
+    second: Army_GUI_PNG_61
+  - first:
+      213: -3203946078033177585
+    second: Army_GUI_PNG_62
+  - first:
+      213: -8715146454617762337
+    second: Army_GUI_PNG_63
+  - first:
+      213: -3906898735412686696
+    second: Army_GUI_PNG_64
+  - first:
+      213: 4857455783452203955
+    second: Army_GUI_PNG_65
+  - first:
+      213: -7794646309780390759
+    second: Army_GUI_PNG_66
+  - first:
+      213: -7348201512068702192
+    second: Army_GUI_PNG_67
+  - first:
+      213: -5940550977634605971
+    second: Army_GUI_PNG_68
+  - first:
+      213: -1047598767975490996
+    second: Army_GUI_PNG_69
+  - first:
+      213: 7458740458816357299
+    second: Army_GUI_PNG_70
+  - first:
+      213: -254293345885530146
+    second: Army_GUI_PNG_71
+  - first:
+      213: 5173852413745474438
+    second: Army_GUI_PNG_72
+  - first:
+      213: -3877546238507120031
+    second: Army_GUI_PNG_73
+  - first:
+      213: 1282300737714067460
+    second: Army_GUI_PNG_74
+  - first:
+      213: 7610919735011034108
+    second: Army_GUI_PNG_75
+  - first:
+      213: 2675133327266745491
+    second: Army_GUI_PNG_76
+  - first:
+      213: -2215188632052967087
+    second: Army_GUI_PNG_77
+  - first:
+      213: -6542412701394392452
+    second: Army_GUI_PNG_78
+  - first:
+      213: 744723140939531994
+    second: Army_GUI_PNG_79
+  - first:
+      213: 42925923342930073
+    second: Army_GUI_PNG_80
+  - first:
+      213: 7797407547243907519
+    second: Army_GUI_PNG_81
+  - first:
+      213: 4183991843390936975
+    second: Army_GUI_PNG_82
+  - first:
+      213: 5154391529917162260
+    second: Army_GUI_PNG_83
+  - first:
+      213: -5174535246731808341
+    second: Army_GUI_PNG_84
+  - first:
+      213: 9187710960917458673
+    second: Army_GUI_PNG_85
+  - first:
+      213: -11619390480917015
+    second: Army_GUI_PNG_86
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Army_GUI_PNG_0
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 740
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4377b375e6de15ba0800000000000000
+      internalID: -6101834961944611020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_1
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 740
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 962fb11cf169f2750800000000000000
+      internalID: 6282405068333118057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 740
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 730388d8d870b5ae0800000000000000
+      internalID: -1559644541407449033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_3
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 740
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449514bb5c1382ed0800000000000000
+      internalID: -2438644472901183164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_4
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 740
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 067e134831a9fbb10800000000000000
+      internalID: 1999486168188708704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 740
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdd18a80bbf5e6390800000000000000
+      internalID: -7823210245787214369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 20
+        width: 6
+        height: 727
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95c7bbb3eaa06cc90800000000000000
+      internalID: -7150015614961353639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_7
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 613
+        width: 221
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deeaa74a8e135c510800000000000000
+      internalID: 1568714920470163181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_8
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 704
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce97931ba1bc222f0800000000000000
+      internalID: -999012851819906580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_9
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 704
+        width: 102
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb12cc050582af20800000000000000
+      internalID: 3432452122745117690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_10
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 704
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84fc69e8019e61300800000000000000
+      internalID: 222621488922414920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_11
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 704
+        width: 102
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeadb9f195a0821e0800000000000000
+      internalID: -2222515038208664854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_12
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 672
+        width: 97
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f7f8410000c6d30800000000000000
+      internalID: 4425912534143303473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_13
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 672
+        width: 129
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03cd349b91690490800000000000000
+      internalID: -7779579560470920437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_14
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 608
+        width: 99
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d2740e5d1270540800000000000000
+      internalID: 4973981515928513937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_15
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 608
+        width: 221
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64c361ed68dcd4e0800000000000000
+      internalID: -1955450171741191062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_16
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 608
+        width: 162
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b661fb262db6cc0800000000000000
+      internalID: -3716645745909666932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_17
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 476
+        width: 183
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 895ebf4864e29f720800000000000000
+      internalID: 2880384317093832088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_18
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 584
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c8346dbc56121b0800000000000000
+      internalID: -5683149328617337733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_19
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 584
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee5439d43e1de5a20800000000000000
+      internalID: 3053108371593053678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_20
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 584
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c332051d93ab2dce0800000000000000
+      internalID: -1381837378161728708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_21
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 501
+        width: 24
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f538652ecc715a090800000000000000
+      internalID: -8023980992352582817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_22
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 584
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76d3676d25abd990800000000000000
+      internalID: -7360107551580236163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_23
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 584
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a250af2c784a4a420800000000000000
+      internalID: 2640416184544658730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_24
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 480
+        width: 183
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef64ae8fc0d5f570800000000000000
+      internalID: 8499929461601628137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_25
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 480
+        width: 96
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c751eb01a4f31ed0800000000000000
+      internalID: -2444341200205817913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_26
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 544
+        width: 38
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53e4b97d846d79900800000000000000
+      internalID: 691256676167929397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_27
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 544
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f86d41868e535db0800000000000000
+      internalID: -4804392445686224648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_28
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 544
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 439de93d296ed8100800000000000000
+      internalID: 111999084044146996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_29
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 538
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30149439f5fb9a8c0800000000000000
+      internalID: -3987445577846013693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_30
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 476
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e981ade6071094e0800000000000000
+      internalID: -1977054917891618335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_31
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 476
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d92a66d4b3f76fd0800000000000000
+      internalID: -2348640722633479722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_32
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 476
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c494344bf96c2bf30800000000000000
+      internalID: 4589949359470365004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_33
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 476
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93bd7e52b434124e0800000000000000
+      internalID: -2008249968792970439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_34
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 476
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f93317d0af89b40800000000000000
+      internalID: 5447378684945342234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_35
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 476
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a9d4d0189a79c50800000000000000
+      internalID: 6671987744711744015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_36
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 480
+        width: 67
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc10aa1a38b202e10800000000000000
+      internalID: 2170782864745562573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_37
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 271
+        width: 102
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac3f4016489c3a20800000000000000
+      internalID: 3043474874884373675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_38
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 439
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ceea03c1090f2370800000000000000
+      internalID: 8299862541439004360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_39
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 439
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22dd22d295e992110800000000000000
+      internalID: 1236693678536449314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_40
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 439
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d888b98218fa92d0800000000000000
+      internalID: -3271029420827572013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_41
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 439
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a262bf375fe9da30800000000000000
+      internalID: 4240683682155881125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_42
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 419
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0041fa24d499e4150800000000000000
+      internalID: 5858788722365895680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_43
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 448
+        width: 54
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c154297c7e1b744d0800000000000000
+      internalID: -3150353805278558948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_44
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 423
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 842edb615e3a66c30800000000000000
+      internalID: 4352346294224544328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_45
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 423
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33e6687cdc720f190800000000000000
+      internalID: -7930795179030188493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_46
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 423
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5649b7172ab8ce2c0800000000000000
+      internalID: -4400989206042930075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_47
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 423
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e762c88745999a970800000000000000
+      internalID: 8766706737732134526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_48
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 423
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c77197e54581ba350800000000000000
+      internalID: 6028939276806854524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_49
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 423
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e2a27876b3e8460800000000000000
+      internalID: 7245794166321065528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_50
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 256
+        width: 76
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9cecf1ec27319230800000000000000
+      internalID: 3643754239428979866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_51
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 407
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2e3067d6c52e0280800000000000000
+      internalID: -9075274663157809620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_52
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 407
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f720321b68f12d4d0800000000000000
+      internalID: -3111389729201651073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_53
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 407
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24ecf68a5eb8c00b0800000000000000
+      internalID: -5761076004824035774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_54
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 407
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f8703f2b7069f250800000000000000
+      internalID: 5978916062499993847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_55
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 407
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0cfdbdd60a317cc0800000000000000
+      internalID: -3715124416439518194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_56
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 407
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e70fde9f7ed7f65d0800000000000000
+      internalID: -3067094385931980674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_57
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 391
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6d929923b12ac40800000000000000
+      internalID: 5522005997241620181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_58
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 391
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0993597abce15a60800000000000000
+      internalID: 7661164726777518351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_59
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 391
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 766390ade9115b6a0800000000000000
+      internalID: -6434217118668343705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_60
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 391
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d498b7f80084502d0800000000000000
+      internalID: -3313162783616693939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_61
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 391
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82161ccaee4e75b20800000000000000
+      internalID: 3123216580356432168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_62
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 391
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f04935b640c4983d0800000000000000
+      internalID: -3203946078033177585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_63
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 391
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd5d00f69749d0780800000000000000
+      internalID: -8715146454617762337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_64
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 256
+        width: 102
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 890dd4ebc48e7c9c0800000000000000
+      internalID: -3906898735412686696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_65
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 288
+        width: 179
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bbd5d49c46296340800000000000000
+      internalID: 4857455783452203955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_66
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 32
+        width: 203
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99cfab3aa7ad3d390800000000000000
+      internalID: -7794646309780390759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_67
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 32
+        width: 203
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010282f38a1f50a90800000000000000
+      internalID: -7348201512068702192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_68
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 192
+        width: 145
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d646df73c5cee8da0800000000000000
+      internalID: -5940550977634605971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_69
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 128
+        width: 111
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4a1faf887e2671f0800000000000000
+      internalID: -1047598767975490996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_70
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 96
+        width: 111
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b3459fdde4c28760800000000000000
+      internalID: 7458740458816357299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_71
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 96
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed75fb99c81987cf0800000000000000
+      internalID: -254293345885530146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_72
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 99
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68ba899ab573dc740800000000000000
+      internalID: 5173852413745474438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_73
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 64
+        width: 82
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a81ad7d30303ac0800000000000000
+      internalID: -3877546238507120031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_74
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 0
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4081bae1ab5abc110800000000000000
+      internalID: 1282300737714067460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_75
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 76
+        width: 80
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf3c753bc2b6f9960800000000000000
+      internalID: 7610919735011034108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_76
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 3
+        width: 80
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c0b82769bff1520800000000000000
+      internalID: 2675133327266745491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_77
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 32
+        width: 82
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159dffbfca11241e0800000000000000
+      internalID: -2215188632052967087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_78
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 18
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a226faf4ea435a0800000000000000
+      internalID: -6542412701394392452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_79
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 18
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad6c6bf30c9c55a00800000000000000
+      internalID: 744723140939531994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_80
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 18
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990d28c56e0889000800000000000000
+      internalID: 42925923342930073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_81
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 18
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb94c6e0ad4f53c60800000000000000
+      internalID: 7797407547243907519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_82
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 18
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87d270f966801a30800000000000000
+      internalID: 4183991843390936975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_83
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 18
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413aefd89c3188740800000000000000
+      internalID: 5154391529917162260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_84
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 18
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba1ffc4eb9b5038b0800000000000000
+      internalID: -5174535246731808341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_85
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 18
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fea27cb07e418f70800000000000000
+      internalID: 9187710960917458673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Army_GUI_PNG_86
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 18
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9edd0e5d938b6dff0800000000000000
+      internalID: -11619390480917015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Army_GUI_PNG_0: -6101834961944611020
+      Army_GUI_PNG_1: 6282405068333118057
+      Army_GUI_PNG_10: 222621488922414920
+      Army_GUI_PNG_11: -2222515038208664854
+      Army_GUI_PNG_12: 4425912534143303473
+      Army_GUI_PNG_13: -7779579560470920437
+      Army_GUI_PNG_14: 4973981515928513937
+      Army_GUI_PNG_15: -1955450171741191062
+      Army_GUI_PNG_16: -3716645745909666932
+      Army_GUI_PNG_17: 2880384317093832088
+      Army_GUI_PNG_18: -5683149328617337733
+      Army_GUI_PNG_19: 3053108371593053678
+      Army_GUI_PNG_2: -1559644541407449033
+      Army_GUI_PNG_20: -1381837378161728708
+      Army_GUI_PNG_21: -8023980992352582817
+      Army_GUI_PNG_22: -7360107551580236163
+      Army_GUI_PNG_23: 2640416184544658730
+      Army_GUI_PNG_24: 8499929461601628137
+      Army_GUI_PNG_25: -2444341200205817913
+      Army_GUI_PNG_26: 691256676167929397
+      Army_GUI_PNG_27: -4804392445686224648
+      Army_GUI_PNG_28: 111999084044146996
+      Army_GUI_PNG_29: -3987445577846013693
+      Army_GUI_PNG_3: -2438644472901183164
+      Army_GUI_PNG_30: -1977054917891618335
+      Army_GUI_PNG_31: -2348640722633479722
+      Army_GUI_PNG_32: 4589949359470365004
+      Army_GUI_PNG_33: -2008249968792970439
+      Army_GUI_PNG_34: 5447378684945342234
+      Army_GUI_PNG_35: 6671987744711744015
+      Army_GUI_PNG_36: 2170782864745562573
+      Army_GUI_PNG_37: 3043474874884373675
+      Army_GUI_PNG_38: 8299862541439004360
+      Army_GUI_PNG_39: 1236693678536449314
+      Army_GUI_PNG_4: 1999486168188708704
+      Army_GUI_PNG_40: -3271029420827572013
+      Army_GUI_PNG_41: 4240683682155881125
+      Army_GUI_PNG_42: 5858788722365895680
+      Army_GUI_PNG_43: -3150353805278558948
+      Army_GUI_PNG_44: 4352346294224544328
+      Army_GUI_PNG_45: -7930795179030188493
+      Army_GUI_PNG_46: -4400989206042930075
+      Army_GUI_PNG_47: 8766706737732134526
+      Army_GUI_PNG_48: 6028939276806854524
+      Army_GUI_PNG_49: 7245794166321065528
+      Army_GUI_PNG_5: -7823210245787214369
+      Army_GUI_PNG_50: 3643754239428979866
+      Army_GUI_PNG_51: -9075274663157809620
+      Army_GUI_PNG_52: -3111389729201651073
+      Army_GUI_PNG_53: -5761076004824035774
+      Army_GUI_PNG_54: 5978916062499993847
+      Army_GUI_PNG_55: -3715124416439518194
+      Army_GUI_PNG_56: -3067094385931980674
+      Army_GUI_PNG_57: 5522005997241620181
+      Army_GUI_PNG_58: 7661164726777518351
+      Army_GUI_PNG_59: -6434217118668343705
+      Army_GUI_PNG_6: -7150015614961353639
+      Army_GUI_PNG_60: -3313162783616693939
+      Army_GUI_PNG_61: 3123216580356432168
+      Army_GUI_PNG_62: -3203946078033177585
+      Army_GUI_PNG_63: -8715146454617762337
+      Army_GUI_PNG_64: -3906898735412686696
+      Army_GUI_PNG_65: 4857455783452203955
+      Army_GUI_PNG_66: -7794646309780390759
+      Army_GUI_PNG_67: -7348201512068702192
+      Army_GUI_PNG_68: -5940550977634605971
+      Army_GUI_PNG_69: -1047598767975490996
+      Army_GUI_PNG_7: 1568714920470163181
+      Army_GUI_PNG_70: 7458740458816357299
+      Army_GUI_PNG_71: -254293345885530146
+      Army_GUI_PNG_72: 5173852413745474438
+      Army_GUI_PNG_73: -3877546238507120031
+      Army_GUI_PNG_74: 1282300737714067460
+      Army_GUI_PNG_75: 7610919735011034108
+      Army_GUI_PNG_76: 2675133327266745491
+      Army_GUI_PNG_77: -2215188632052967087
+      Army_GUI_PNG_78: -6542412701394392452
+      Army_GUI_PNG_79: 744723140939531994
+      Army_GUI_PNG_8: -999012851819906580
+      Army_GUI_PNG_80: 42925923342930073
+      Army_GUI_PNG_81: 7797407547243907519
+      Army_GUI_PNG_82: 4183991843390936975
+      Army_GUI_PNG_83: 5154391529917162260
+      Army_GUI_PNG_84: -5174535246731808341
+      Army_GUI_PNG_85: 9187710960917458673
+      Army_GUI_PNG_86: -11619390480917015
+      Army_GUI_PNG_9: 3432452122745117690
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

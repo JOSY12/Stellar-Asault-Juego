@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     public GameObject pauseMenu;
- 
     
     [Header("Game State")]
     public bool isGameOver = false;
@@ -123,6 +122,13 @@ public class GameManager : MonoBehaviour
         
         Debug.Log("=== PLAYER DIED ===");
         
+        // ═══ INTEGRACIÓN ADS: Notificar para interstitial ═══
+        if (AdManager.Instance != null)
+        {
+            AdManager.Instance.OnPlayerDeath();
+        }
+        // ════════════════════════════════════════════════════
+        
         if (player != null)
         {
             player.StopInput();
@@ -206,8 +212,6 @@ public class GameManager : MonoBehaviour
         
         if (pauseMenu != null)
             pauseMenu.SetActive(true);
-        
-       
     }
     
     public void ResumeGame()
@@ -217,20 +221,18 @@ public class GameManager : MonoBehaviour
         
         if (pauseMenu != null)
             pauseMenu.SetActive(false);
-        
-        
     }
     
     void UpdateUI()
     {
         if (waveText != null)
-            waveText.text = $"WAVE {currentWave}";
+            waveText.text = $"{currentWave}";
         
         if (killsText != null)
-            killsText.text = $"KILLS: {killsThisRun}";
+            killsText.text = $"{killsThisRun}";
         
         if (scrapText != null)
-            scrapText.text = $"SCRAP: {scrapThisRun}";
+            scrapText.text = $"{scrapThisRun}";
         
         if (timeText != null)
         {

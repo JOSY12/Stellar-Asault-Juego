@@ -104,7 +104,7 @@ public class HangarUI : MonoBehaviour
         if (scrapText != null && SaveManager.Instance != null)
         {
             int scrap = SaveManager.Instance.GetScrap();
-            scrapText.text = $"SCRAP: {scrap}";
+            scrapText.text = $"{scrap}";
         }
         
         if (shipNameText != null)

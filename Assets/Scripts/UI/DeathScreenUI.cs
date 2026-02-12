@@ -31,134 +31,141 @@ public class DeathScreenUI : MonoBehaviour
     [Header("Upgrades Tab - Stats")]
     public Transform statsContainer;
     public GameObject statRowPrefab;
+    
     [Header("Stats Tab Content - NEW")]
-public TextMeshProUGUI survivalTimeText; // ← NUEVO
+    public TextMeshProUGUI survivalTimeText;
+    
     [Header("Upgrades Tab - Ship Actions")]
     public Button purchaseShipButton;
     public Button equipShipButton;
     public TextMeshProUGUI purchaseButtonText;
+    
     [Header("Death Options - NEW")]
-public Button continueButton; // ← NUEVO
-public Button saveScrapButton; // ← NUEVO
-public Button endRunButton; // ← NUEVO (antes retryButton)
-public TextMeshProUGUI saveScrapSubText; // ← NUEVO
-public TextMeshProUGUI endRunSubText; // ← NUEVO
+    public Button continueButton;
+    public Button saveScrapButton;
+    public Button endRunButton;
+    public TextMeshProUGUI saveScrapSubText;
+    public TextMeshProUGUI endRunSubText;
+    
     [Header("Main Buttons")]
     public Button retryButton;
     public Button watchAdButton;
     public Button mainMenuButton;
  
     [Header("Ad Scrap Button")]
-public Button adScrapButton;
-public TextMeshProUGUI adScrapButtonText;
+    public Button adScrapButton;
+    public TextMeshProUGUI adScrapButtonText;
+    
     [Header("Ship Data")]
     public ShipData[] allShips;
     private int currentShipIndex = 0;
     
-   void Start()
-{
-    if (adScrapButton != null)
-    adScrapButton.onClick.AddListener(OnWatchAdForScrap);
-    if (deathPanel != null)
-        deathPanel.SetActive(false);
+    void Start()
+    {
+        if (adScrapButton != null)
+            adScrapButton.onClick.AddListener(OnWatchAdForScrap);
+        
+        if (deathPanel != null)
+            deathPanel.SetActive(false);
+        
+        if (statsTabButton != null)
+            statsTabButton.onClick.AddListener(() => ShowTab(true));
+        
+        if (upgradesTabButton != null)
+            upgradesTabButton.onClick.AddListener(() => ShowTab(false));
+        
+        if (prevShipButton != null)
+            prevShipButton.onClick.AddListener(PreviousShip);
+        
+        if (nextShipButton != null)
+            nextShipButton.onClick.AddListener(NextShip);
+        
+        if (purchaseShipButton != null)
+            purchaseShipButton.onClick.AddListener(PurchaseShip);
+        
+        if (equipShipButton != null)
+            equipShipButton.onClick.AddListener(EquipShip);
+        
+        if (continueButton != null)
+            continueButton.onClick.AddListener(OnContinue);
+        
+        if (saveScrapButton != null)
+            saveScrapButton.onClick.AddListener(OnSaveScrap);
+        
+        if (endRunButton != null)
+            endRunButton.onClick.AddListener(OnEndRun);
+        
+        if (mainMenuButton != null)
+            mainMenuButton.onClick.AddListener(OnMainMenu);
+    }
     
-    // Conectar tabs
-    if (statsTabButton != null)
-        statsTabButton.onClick.AddListener(() => ShowTab(true));
-    
-    if (upgradesTabButton != null)
-        upgradesTabButton.onClick.AddListener(() => ShowTab(false));
-    
-    // Conectar navegación de naves
-    if (prevShipButton != null)
-        prevShipButton.onClick.AddListener(PreviousShip);
-    
-    if (nextShipButton != null)
-        nextShipButton.onClick.AddListener(NextShip);
-    
-    // Conectar acciones de nave
-    if (purchaseShipButton != null)
-        purchaseShipButton.onClick.AddListener(PurchaseShip);
-    
-    if (equipShipButton != null)
-        equipShipButton.onClick.AddListener(EquipShip);
-    
-    // ← NUEVO: Conectar botones de muerte
-    if (continueButton != null)
-        continueButton.onClick.AddListener(OnContinue);
-    
-    if (saveScrapButton != null)
-        saveScrapButton.onClick.AddListener(OnSaveScrap);
-    
-    if (endRunButton != null)
-        endRunButton.onClick.AddListener(OnEndRun);
-    
-    // Botón de main menu
-    if (mainMenuButton != null)
-        mainMenuButton.onClick.AddListener(OnMainMenu);
-}
     void OnWatchAdForScrap()
-{
-    if (AudioManager.Instance != null)
-        AudioManager.Instance.PlayButtonClick();
-    
-    // TODO: Verificar cooldown (3x por día)
-    
-    // TODO: Mostrar ad (simular por ahora)
-    Debug.Log("Ad for scrap watched (simulated)");
-    
-    // Dar 50 scrap
-    if (SaveManager.Instance != null)
     {
-        SaveManager.Instance.AddScrap(50);
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayButtonClick();
+        
+        // ═══ ADS: 50 scrap bonus ═══
+        if (AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady())
+        {
+            AdManager.Instance.ShowRewardedAd("bonus_scrap", (success) =>
+            {
+                if (success && SaveManager.Instance != null)
+                {
+                    SaveManager.Instance.AddScrap(50);
+                    UpdateUpgradesTab();
+                }
+            });
+        }
+        else
+        {
+            // Fallback si no hay ad
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.AddScrap(50);
+                UpdateUpgradesTab();
+            }
+        }
+        // ═══════════════════════════
     }
     
-    // Actualizar UI
-    UpdateUpgradesTab();
-}
-   public void ShowDeathScreen(int wave, int kills, int scrapEarned, int scrapWithoutAd, float survivalTime, bool hasUsedContinue)
-{
-    if (deathPanel != null)
-        deathPanel.SetActive(true);
-    
-    ShowTab(true);
-    
-    // Stats
-    if (waveReachedText != null)
-        waveReachedText.text = $"WAVE {wave}";
-    
-    if (killsText != null)
-        killsText.text = $"KILLS: {kills}";
-    
-    if (scrapEarnedText != null)
-        scrapEarnedText.text = $"SCRAP: {scrapEarned}";
-    
-    if (permanentScrapText != null)
-        permanentScrapText.text = $"WITHOUT AD: {scrapWithoutAd} (40%)";
-    
-    // Tiempo de supervivencia
-    if (survivalTimeText != null)
+    public void ShowDeathScreen(int wave, int kills, int scrapEarned, int scrapWithoutAd, float survivalTime, bool hasUsedContinue)
     {
-        int minutes = Mathf.FloorToInt(survivalTime / 60f);
-        int seconds = Mathf.FloorToInt(survivalTime % 60f);
-        survivalTimeText.text = $"TIME: {minutes:00}:{seconds:00}";
+        if (deathPanel != null)
+            deathPanel.SetActive(true);
+        
+        ShowTab(true);
+        
+        if (waveReachedText != null)
+            waveReachedText.text = $"WAVE {wave}";
+        
+        if (killsText != null)
+            killsText.text = $"KILLS: {kills}";
+        
+        if (scrapEarnedText != null)
+            scrapEarnedText.text = $"{scrapEarned}";
+        
+        if (permanentScrapText != null)
+            permanentScrapText.text = $"WITHOUT AD: {scrapWithoutAd} (40%)";
+        
+        if (survivalTimeText != null)
+        {
+            int minutes = Mathf.FloorToInt(survivalTime / 60f);
+            int seconds = Mathf.FloorToInt(survivalTime % 60f);
+            survivalTimeText.text = $"TIME: {minutes:00}:{seconds:00}";
+        }
+        
+        if (saveScrapSubText != null)
+            saveScrapSubText.text = $"Keep all {scrapEarned} scrap";
+        
+        if (endRunSubText != null)
+            endRunSubText.text = $"Save {scrapWithoutAd} scrap (40%)";
+        
+        if (continueButton != null)
+            continueButton.gameObject.SetActive(!hasUsedContinue);
+        
+        LoadEquippedShip();
+        UpdateUpgradesTab();
     }
-    
-    // Actualizar textos de botones
-    if (saveScrapSubText != null)
-        saveScrapSubText.text = $"Keep all {scrapEarned} scrap";
-    
-    if (endRunSubText != null)
-        endRunSubText.text = $"Save {scrapWithoutAd} scrap (40%)";
-    
-    // Botón Continue (solo si no se usó)
-    if (continueButton != null)
-        continueButton.gameObject.SetActive(!hasUsedContinue);
-    
-    // Actualizar upgrades tab
-    LoadEquippedShip();
-    UpdateUpgradesTab();
-}
     
     void ShowTab(bool showStats)
     {
@@ -168,18 +175,17 @@ public TextMeshProUGUI adScrapButtonText;
         if (upgradesTab != null)
             upgradesTab.SetActive(!showStats);
         
-        // Cambiar apariencia de botones de tab
         if (statsTabButton != null)
         {
             ColorBlock colors = statsTabButton.colors;
-            colors.normalColor = showStats ?   new Color(0.5f, 0.5f, 0.5f) :new Color(1f, 1f, 1f);
+            colors.normalColor = showStats ? new Color(0.5f, 0.5f, 0.5f) : new Color(1f, 1f, 1f);
             statsTabButton.colors = colors;
         }
         
         if (upgradesTabButton != null)
         {
             ColorBlock colors = upgradesTabButton.colors;
-            colors.normalColor = !showStats ?     new Color(0.5f, 0.5f, 0.5f) :new Color(1f, 1f, 1f);
+            colors.normalColor = !showStats ? new Color(0.5f, 0.5f, 0.5f) : new Color(1f, 1f, 1f);
             upgradesTabButton.colors = colors;
         }
     }
@@ -231,27 +237,19 @@ public TextMeshProUGUI adScrapButtonText;
         ShipData ship = allShips[currentShipIndex];
         ship.LoadProgress();
         
-        // Scrap disponible
         if (scrapDisplayText != null && SaveManager.Instance != null)
         {
-            scrapDisplayText.text = $"SCRAP: {SaveManager.Instance.GetScrap()}";
+            scrapDisplayText.text = $" {SaveManager.Instance.GetScrap()}";
         }
         
-        // Nombre de nave
         if (shipNameText != null)
             shipNameText.text = ship.shipName.ToUpper();
         
-        // Preview sprite
         if (shipPreviewImage != null && ship.shipSprite != null)
             shipPreviewImage.sprite = ship.shipSprite;
         
-        // Status de la nave
         UpdateShipStatus(ship);
-        
-        // Stats de la nave
         UpdateStats(ship);
-        
-        // Botones de acción
         UpdateActionButtons(ship);
     }
     
@@ -284,11 +282,9 @@ public TextMeshProUGUI adScrapButtonText;
     {
         if (statsContainer == null || statRowPrefab == null) return;
         
-        // Limpiar stats anteriores
         foreach (Transform child in statsContainer)
             Destroy(child.gameObject);
         
-        // Crear row por cada stat
         CreateStatRow(ship.damage, ship);
         CreateStatRow(ship.fireRate, ship);
         CreateStatRow(ship.moveSpeed, ship);
@@ -297,81 +293,78 @@ public TextMeshProUGUI adScrapButtonText;
     }
     
     void CreateStatRow(ShipStat stat, ShipData ship)
-{
-    if (statRowPrefab == null)
     {
-        Debug.LogError("StatRow Prefab is NULL!");
-        return;
-    }
-    
-    GameObject row = Instantiate(statRowPrefab, statsContainer);
-    
-    // Buscar componentes con verificación
-    Transform nameTransform = row.transform.Find("StatName");
-    if (nameTransform == null)
-    {
-        Debug.LogError("StatRow prefab is missing 'StatName' child!");
-        Destroy(row);
-        return;
-    }
-    TextMeshProUGUI nameText = nameTransform.GetComponent<TextMeshProUGUI>();
-    
-    Transform valueTransform = row.transform.Find("ValueText");
-    if (valueTransform == null)
-    {
-        Debug.LogError("StatRow prefab is missing 'ValueText' child!");
-        Destroy(row);
-        return;
-    }
-    TextMeshProUGUI valueText = valueTransform.GetComponent<TextMeshProUGUI>();
-    
-    Transform buttonTransform = row.transform.Find("UpgradeButton");
-    if (buttonTransform == null)
-    {
-        Debug.LogError("StatRow prefab is missing 'UpgradeButton' child!");
-        Destroy(row);
-        return;
-    }
-    Button upgradeBtn = buttonTransform.GetComponent<Button>();
-    TextMeshProUGUI costText = upgradeBtn.GetComponentInChildren<TextMeshProUGUI>();
-    
-    // Configurar textos
-    if (nameText != null)
-        nameText.text = stat.statName + ":";
-    
-    if (valueText != null)
-        valueText.text = $"{stat.currentLevel}/{stat.maxLevel}";
-    
-    // Configurar botón
-    int upgradeCost = stat.GetUpgradeCost();
-    bool canUpgrade = stat.CanUpgrade() && ship.IsOwned();
-    int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
-    bool canAfford = currentScrap >= upgradeCost;
-    
-    if (upgradeBtn != null)
-    {
-        if (canUpgrade && canAfford)
+        if (statRowPrefab == null)
         {
-            upgradeBtn.interactable = true;
-            if (costText != null)
-                costText.text = $"{upgradeCost}";
-        }
-        else if (!canUpgrade)
-        {
-            upgradeBtn.interactable = false;
-            if (costText != null)
-                costText.text = "MAX";
-        }
-        else
-        {
-            upgradeBtn.interactable = false;
-            if (costText != null)
-                costText.text = $"{upgradeCost}";
+            Debug.LogError("StatRow Prefab is NULL!");
+            return;
         }
         
-        upgradeBtn.onClick.AddListener(() => OnUpgradeStat(stat, ship, upgradeCost));
+        GameObject row = Instantiate(statRowPrefab, statsContainer);
+        
+        Transform nameTransform = row.transform.Find("StatName");
+        if (nameTransform == null)
+        {
+            Debug.LogError("StatRow prefab is missing 'StatName' child!");
+            Destroy(row);
+            return;
+        }
+        TextMeshProUGUI nameText = nameTransform.GetComponent<TextMeshProUGUI>();
+        
+        Transform valueTransform = row.transform.Find("ValueText");
+        if (valueTransform == null)
+        {
+            Debug.LogError("StatRow prefab is missing 'ValueText' child!");
+            Destroy(row);
+            return;
+        }
+        TextMeshProUGUI valueText = valueTransform.GetComponent<TextMeshProUGUI>();
+        
+        Transform buttonTransform = row.transform.Find("UpgradeButton");
+        if (buttonTransform == null)
+        {
+            Debug.LogError("StatRow prefab is missing 'UpgradeButton' child!");
+            Destroy(row);
+            return;
+        }
+        Button upgradeBtn = buttonTransform.GetComponent<Button>();
+        TextMeshProUGUI costText = upgradeBtn.GetComponentInChildren<TextMeshProUGUI>();
+        
+        if (nameText != null)
+            nameText.text = stat.statName + ":";
+        
+        if (valueText != null)
+            valueText.text = $"{stat.currentLevel}/{stat.maxLevel}";
+        
+        int upgradeCost = stat.GetUpgradeCost();
+        bool canUpgrade = stat.CanUpgrade() && ship.IsOwned();
+        int currentScrap = SaveManager.Instance != null ? SaveManager.Instance.GetScrap() : 0;
+        bool canAfford = currentScrap >= upgradeCost;
+        
+        if (upgradeBtn != null)
+        {
+            if (canUpgrade && canAfford)
+            {
+                upgradeBtn.interactable = true;
+                if (costText != null)
+                    costText.text = $"{upgradeCost}";
+            }
+            else if (!canUpgrade)
+            {
+                upgradeBtn.interactable = false;
+                if (costText != null)
+                    costText.text = "MAX";
+            }
+            else
+            {
+                upgradeBtn.interactable = false;
+                if (costText != null)
+                    costText.text = $"{upgradeCost}";
+            }
+            
+            upgradeBtn.onClick.AddListener(() => OnUpgradeStat(stat, ship, upgradeCost));
+        }
     }
-}
     
     void OnUpgradeStat(ShipStat stat, ShipData ship, int cost)
     {
@@ -400,7 +393,6 @@ public TextMeshProUGUI adScrapButtonText;
         bool isOwned = ship.IsOwned();
         bool isEquipped = ship.IsEquipped();
         
-        // Botón Purchase
         if (purchaseShipButton != null)
         {
             purchaseShipButton.gameObject.SetActive(!isOwned);
@@ -410,10 +402,9 @@ public TextMeshProUGUI adScrapButtonText;
             purchaseShipButton.interactable = canAfford;
             
             if (purchaseButtonText != null)
-                purchaseButtonText.text = $"PURCHASE ({ship.purchaseCost})";
+                purchaseButtonText.text = $"BUY ({ship.purchaseCost})";
         }
         
-        // Botón Equip
         if (equipShipButton != null)
         {
             equipShipButton.gameObject.SetActive(isOwned && !isEquipped);
@@ -448,107 +439,92 @@ public TextMeshProUGUI adScrapButtonText;
         UpdateUpgradesTab();
     }
     
-    void OnRetry()
+    void OnContinue()
     {
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayButtonClick();
         
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Gameplay");
-    }
-    
-    void OnWatchAd()
-    {
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayButtonClick();
-        
-        if (GameManager.Instance != null && SaveManager.Instance != null)
+        // ═══ ADS: Continue con rewarded ad ═══
+        if (AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady())
         {
-            int scrapBonus = Mathf.FloorToInt(GameManager.Instance.scrapThisRun * 0.5f);
-            SaveManager.Instance.AddScrap(scrapBonus);
+            AdManager.Instance.ShowRewardedAd("continue", (success) =>
+            {
+                if (success)
+                {
+                    if (deathPanel != null)
+                        deathPanel.SetActive(false);
+                    
+                    if (GameManager.Instance != null)
+                        GameManager.Instance.ContinueRun();
+                }
+            });
+        }
+        else
+        {
+            // Fallback si no hay ad
+            if (deathPanel != null)
+                deathPanel.SetActive(false);
+            
+            if (GameManager.Instance != null)
+                GameManager.Instance.ContinueRun();
+        }
+        // ═════════════════════════════════════
+    }
+
+    void OnSaveScrap()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayButtonClick();
+        
+        // ═══ ADS: Save scrap con rewarded ad ═══
+        if (AdManager.Instance != null && AdManager.Instance.IsRewardedAdReady())
+        {
+            AdManager.Instance.ShowRewardedAd("full_scrap", (success) =>
+            {
+                if (GameManager.Instance != null)
+                    GameManager.Instance.EndRun(success);
+                
+                Time.timeScale = 1f;
+                SceneManager.LoadScene("Gameplay");
+            });
+        }
+        else
+        {
+            // Fallback si no hay ad
+            if (GameManager.Instance != null)
+                GameManager.Instance.EndRun(true);
+            
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Gameplay");
+        }
+        // ═══════════════════════════════════════
+    }
+
+    void OnEndRun()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayButtonClick();
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndRun(false);
         }
         
         Time.timeScale = 1f;
         SceneManager.LoadScene("Gameplay");
     }
-   
-  void OnContinue()
-{
-    if (AudioManager.Instance != null)
-        AudioManager.Instance.PlayButtonClick();
-    
-    Debug.Log("Continue button pressed");
-    
-    // TODO: Mostrar ad (por ahora simular)
-    Debug.Log("Continue ad watched (simulated)");
-    
-    // ← VERIFICAR: Cerrar panel ANTES de continuar
-    if (deathPanel != null)
-    {
-        deathPanel.SetActive(false);
-        Debug.Log("Death panel closed");
-    }
-    
-    // Continuar run
-    if (GameManager.Instance != null)
-    {
-        GameManager.Instance.ContinueRun();
-    }
-    else
-    {
-        Debug.LogError("GameManager.Instance is NULL!");
-    }
-}
 
-void OnSaveScrap()
-{
-    if (AudioManager.Instance != null)
-        AudioManager.Instance.PlayButtonClick();
-    
-    // TODO: Mostrar ad (por ahora simular)
-    Debug.Log("Save scrap ad watched (simulated)");
-    
-    // Guardar 100% del scrap
-    if (GameManager.Instance != null)
+    void OnMainMenu()
     {
-        GameManager.Instance.EndRun(true); // true = vio ad
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayButtonClick();
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndRun(false);
+        }
+        
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
-    
-    // Ir a retry
-    Time.timeScale = 1f;
-    SceneManager.LoadScene("Gameplay");
-}
-
-void OnEndRun()
-{
-    if (AudioManager.Instance != null)
-        AudioManager.Instance.PlayButtonClick();
-    
-    // Guardar 40% del scrap (sin ad)
-    if (GameManager.Instance != null)
-    {
-        GameManager.Instance.EndRun(false); // false = no vio ad
-    }
-    
-    // Ir a retry
-    Time.timeScale = 1f;
-    SceneManager.LoadScene("Gameplay");
-}
-
-void OnMainMenu()
-{
-    if (AudioManager.Instance != null)
-        AudioManager.Instance.PlayButtonClick();
-    
-    // Guardar 40% (sin ad) si aún no guardó
-    if (GameManager.Instance != null)
-    {
-        GameManager.Instance.EndRun(false);
-    }
-    
-    Time.timeScale = 1f;
-    SceneManager.LoadScene("MainMenu");
-}
- 
-    
 }
