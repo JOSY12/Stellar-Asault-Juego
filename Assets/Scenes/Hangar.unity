@@ -1568,8 +1568,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2.3799896, y: 9.424999}
+  m_SizeDelta: {x: 4.7600327, y: -18.850002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017241368
 MonoBehaviour:
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PURCHASE (200)
+  m_text: BUY(2000)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50229fc0ad71a7df7a2a75e40296fcc4, type: 2}
   m_sharedMaterial: {fileID: -270260132871444064, guid: 50229fc0ad71a7df7a2a75e40296fcc4, type: 2}
@@ -1618,8 +1618,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2268,8 +2268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 8.835003}
+  m_SizeDelta: {x: 0, y: -17.669994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1392689446
 MonoBehaviour:
@@ -2405,8 +2405,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 10.070004}
+  m_SizeDelta: {x: 0, y: -20.13999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1574557667
 MonoBehaviour:
@@ -2455,8 +2455,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

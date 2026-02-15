@@ -236,7 +236,7 @@ public class HangarUI : MonoBehaviour
             purchaseButton.interactable = canAfford;
             
             if (purchaseButtonText != null)
-                purchaseButtonText.text = $"PURCHASE ({ship.purchaseCost})";
+                purchaseButtonText.text = $"BUY({ship.purchaseCost})";
         }
         
         if (equipButton != null)

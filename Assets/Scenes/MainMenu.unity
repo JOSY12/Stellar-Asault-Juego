@@ -1111,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &404434263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2348,14 +2348,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069171faef5498cb9a6fc1174521735a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdManager
-  androidBannerAdUnitId: ca-app-pub-3940256099942544/6300978111
-  androidInterstitialAdUnitId: ca-app-pub-3940256099942544/1033173712
-  androidRewardedAdUnitId: ca-app-pub-3940256099942544/5224354917
-  iosBannerAdUnitId: ca-app-pub-3940256099942544/2934735716
-  iosInterstitialAdUnitId: ca-app-pub-3940256099942544/4411468910
-  iosRewardedAdUnitId: ca-app-pub-3940256099942544/1712485313
+  androidBannerAdUnitId: 
+  androidInterstitialAdUnitId: ca-app-pub-5399905667336641/9013508362
+  androidRewardedAdUnitId: ca-app-pub-5399905667336641/1861050309
+  iosBannerAdUnitId: 
+  iosInterstitialAdUnitId: 
+  iosRewardedAdUnitId: 
   showBannerOnStart: 0
-  testMode: 1
+  testMode: 0
   deathsBeforeInterstitial: 5
 --- !u!4 &839737862
 Transform:
@@ -3202,7 +3202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 859.9999, y: -515}
+  m_AnchoredPosition: {x: 959.81, y: -464.14}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103344439

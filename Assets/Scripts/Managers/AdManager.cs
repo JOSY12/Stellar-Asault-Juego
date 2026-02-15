@@ -51,24 +51,29 @@ public class AdManager : MonoBehaviour
     {
         InitializeAds();
     }
+   void InitializeAds()
+{
+    // Usando la sintaxis directa para evitar el error de Builder
+    RequestConfiguration requestConfiguration = new RequestConfiguration();
+    requestConfiguration.TagForChildDirectedTreatment = TagForChildDirectedTreatment.True;
+    requestConfiguration.MaxAdContentRating = MaxAdContentRating.PG;
     
-    void InitializeAds()
+    MobileAds.SetRequestConfiguration(requestConfiguration);
+
+    MobileAds.Initialize(initStatus =>
     {
-        MobileAds.Initialize(initStatus =>
+        isInitialized = true;
+        Debug.Log("[AdManager] AdMob inicializado con políticas de niños.");
+        
+        LoadInterstitialAd();
+        LoadRewardedAd();
+        
+        if (showBannerOnStart)
         {
-            isInitialized = true;
-            Debug.Log("[AdManager] AdMob initialized");
-            
-            // Precargar ads
-            LoadInterstitialAd();
-            LoadRewardedAd();
-            
-            if (showBannerOnStart)
-            {
-                ShowBanner();
-            }
-        });
-    }
+            ShowBanner();
+        }
+    });
+}
     
     // ═══════════════════════════════════════════════════════════════════
     // BANNER AD

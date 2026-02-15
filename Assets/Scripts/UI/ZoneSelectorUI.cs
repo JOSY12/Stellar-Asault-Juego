@@ -190,7 +190,7 @@ public class ZoneSelectorUI : MonoBehaviour
                 watchAdToUnlockButton.interactable = adReady;
                 
                 if (watchAdButtonText != null)
-                    watchAdButtonText.text = adReady ? "UNLOCK(AD)" : "AD NOT READY";
+                    watchAdButtonText.text = adReady ? "UNLOCK WITH AD" : "AD NOT READY";
             }
             else
             {

@@ -180,16 +180,14 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 812baedd595464c8fbb1bed497335d60, type: 3}
     - {fileID: 21300000, guid: 8d6db5cabc40d4ffd83edbe4b2bd7541, type: 3}
     - {fileID: 21300000, guid: 8562f93408b8b027f8b8f1c6aea41899, type: 3}
-    - {fileID: -8169790608347111050, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
-    - {fileID: -878775300250748510, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
-    - {fileID: 228813063816687610, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
+    - {fileID: 21300000, guid: 2d499ed905a152ee59849b0a3bbc7235, type: 3}
     - {fileID: 4519518871663985449, guid: b81a797bebd32f11d9d352265208f37d, type: 3}
     - {fileID: 21300000, guid: 9cb372e857da3f037bc72d52f4dc33a8, type: 3}
-    planetCount: 5
-    planetSpawnRadius: 50
-    minPlanetSize: 0.06
-    maxPlanetSize: 0.1
-    planetTint: {r: 0.43732926, g: 0.43266785, b: 1, a: 1}
+    planetCount: 2
+    planetSpawnRadius: 100
+    minPlanetSize: 1
+    maxPlanetSize: 3
+    planetTint: {r: 1, g: 1, b: 1, a: 1}
     rotatePlanets: 1
     minRotationSpeed: 2
     maxRotationSpeed: 3

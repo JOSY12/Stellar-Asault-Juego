@@ -184,8 +184,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 2d499ed905a152ee59849b0a3bbc7235, type: 3}
     - {fileID: 21300000, guid: 3b65d7d3c6cc840969b2fc625f3c2823, type: 3}
     planetCount: 3
-    planetSpawnRadius: 30
-    minPlanetSize: 0.05
+    planetSpawnRadius: 100
+    minPlanetSize: 0.2
     maxPlanetSize: 0.5
     planetTint: {r: 0.11263904, g: 0.35876983, b: 0.17183508, a: 1}
     rotatePlanets: 0

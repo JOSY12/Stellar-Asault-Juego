@@ -168,7 +168,7 @@ public class DeathScreenUI : MonoBehaviour
                 }
                 else
                 {
-                    adScrapButtonText.text = "+50 SCRAP";
+                    adScrapButtonText.text = "WATCH AD FOR +50 SCRAP";
                 }
             }
         }
@@ -192,7 +192,7 @@ public class DeathScreenUI : MonoBehaviour
                 }
                 else
                 {
-                    continueText.text = "CONTINUE(AD";
+                    continueText.text = "WATCH AD TO CONTINUE";
                 }
             }
         }
@@ -296,7 +296,7 @@ public class DeathScreenUI : MonoBehaviour
         }
         
         if (saveScrapSubText != null)
-            saveScrapSubText.text = $"Keep all {scrapEarned} scrap";
+            saveScrapSubText.text = $"WATCH AD TO SAVE ALL {scrapEarned}";
         
         if (endRunSubText != null)
             endRunSubText.text = $"Save {scrapWithoutAd} scrap (40%)";
@@ -543,7 +543,7 @@ public class DeathScreenUI : MonoBehaviour
             purchaseShipButton.interactable = canAfford;
             
             if (purchaseButtonText != null)
-                purchaseButtonText.text = $"BUY ({ship.purchaseCost})";
+                purchaseButtonText.text = $"BUY({ship.purchaseCost})";
         }
         
         if (equipShipButton != null)
